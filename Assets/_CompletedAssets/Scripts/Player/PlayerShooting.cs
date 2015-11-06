@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
+using System.Collections;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace CompleteProject
 {
@@ -7,7 +10,9 @@ namespace CompleteProject
     {
         public int damagePerShot = 20;                  // The damage inflicted by each bullet.
         public float timeBetweenBullets = 0.15f;        // The time between each shot.
-        public float range = 100f;                      // The distance the gun can fire.
+        public float range = 10f;                      // The distance the gun can fire.
+        public Rigidbody bullet;
+        public Rigidbody opponent;
 
 
         float timer;                                    // A timer to determine when to fire.
@@ -20,6 +25,7 @@ namespace CompleteProject
         Light gunLight;                                 // Reference to the light component.
 		public Light faceLight;								// Duh
         float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
+        List<Rigidbody> bullets;
 
 
         void Awake ()
@@ -32,6 +38,7 @@ namespace CompleteProject
             gunLine = GetComponent <LineRenderer> ();
             gunAudio = GetComponent<AudioSource> ();
             gunLight = GetComponent<Light> ();
+            bullets = new List<Rigidbody>();
 			//faceLight = GetComponentInChildren<Light> ();
         }
 
@@ -40,6 +47,11 @@ namespace CompleteProject
         {
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
+            foreach(var bullet in bullets)
+            {
+                bullet.velocity = bullet.velocity.normalized * (opponent.GetComponent<PlayerMovement>().currentSpeed + 0.01f) * 30;
+            }
+            
 
 #if !MOBILE_INPUT
             // If the Fire1 button is being press and it's time to fire...
@@ -85,6 +97,11 @@ namespace CompleteProject
             // Enable the lights.
             gunLight.enabled = true;
 			faceLight.enabled = true;
+
+            //Create bullet
+            var bullet = (Rigidbody)Instantiate(this.bullet, transform.position, transform.rotation);
+            bullet.velocity = transform.forward * (transform.parent.GetComponent<PlayerMovement>().currentSpeed +1);
+            bullets.Add(bullet);
 
             // Stop the particles from playing if they were, then start the particles.
             gunParticles.Stop ();
