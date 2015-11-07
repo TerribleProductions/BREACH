@@ -8,4 +8,11 @@ Developed by Adrian Blanco, Jacob Norlin-Andersson, Lucas Åström, Max Turpeine
 
 # Mechanics demo
 
-Currently there is no way to control the different players independently, so that still needs to be added. Otherwise I think it should work. Very poorly hacked together.
+There are two playable boxes that can be controlled independently. Turning is done by holding down a button.
+
+Current key setup is:
+
+p1: wasd fg(turn) lctrl(shoot)
+p2: ijkl op rctrl
+
+Not possible to play on a single keyboard due to too many keypresses, but usable for examples.
