@@ -7,6 +7,8 @@ namespace CompleteProject
     {
         public float speed = 6f;            // The speed that the player will move at.
         public float currentSpeed;
+        public string horizontalAxis;
+        public string verticalAxis;
 
 
         Vector3 movement;                   // The vector to store the direction of the player's movement.
@@ -33,8 +35,8 @@ namespace CompleteProject
         void FixedUpdate ()
         {
             // Store the input axes.
-            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+            float h = CrossPlatformInputManager.GetAxisRaw(horizontalAxis);
+            float v = CrossPlatformInputManager.GetAxisRaw(verticalAxis);
 
             // Move the player around the scene.
             Move (h, v);
