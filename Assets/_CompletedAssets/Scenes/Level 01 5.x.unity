@@ -1584,6 +1584,14 @@ Prefab:
       propertyPath: fireButton
       value: Fire1
       objectReference: {fileID: 0}
+    - target: {fileID: 11484620, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
+      propertyPath: rotX
+      value: Stick2p1X
+      objectReference: {fileID: 0}
+    - target: {fileID: 11484620, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
+      propertyPath: rotY
+      value: Stick2p1Y
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
   m_IsPrefabParent: 0
@@ -2723,7 +2731,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 452378, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 452378, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2776,6 +2784,14 @@ Prefab:
     - target: {fileID: 11484620, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
       propertyPath: turnRight
       value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 11484620, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
+      propertyPath: rotX
+      value: Stick2p2X
+      objectReference: {fileID: 0}
+    - target: {fileID: 11484620, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
+      propertyPath: rotY
+      value: Stick2p2Y
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15b51a07bc3fe944089a54d9dde4baea, type: 2}
