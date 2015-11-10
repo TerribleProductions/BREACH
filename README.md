@@ -1,6 +1,6 @@
-# DeadlineMiami
+# BREACH
 
-Deadline Miami is a top down multiplayer game, with a twist that each player can control time.
+BREACH is a top down multiplayer game, where two players compete against each other.
 
 ## Contributors
 
