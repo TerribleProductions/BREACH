@@ -13,6 +13,7 @@ public class DoubleTap : MonoBehaviour, Ability {
 
     float timer;
     float doubleTapInterval = 0.1f;
+    float projectileSpeed = 100;
 
     // Use this for initialization
     void Start () {
@@ -49,6 +50,6 @@ public class DoubleTap : MonoBehaviour, Ability {
     private void spawnBullet()
     {
         var bullet = (Rigidbody)Instantiate(this.projectile, transform.position, transform.rotation);
-        bullet.velocity = transform.forward * 30;
+        bullet.velocity = transform.forward * projectileSpeed   ;
     }
 }
