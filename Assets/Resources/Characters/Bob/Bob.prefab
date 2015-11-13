@@ -14,7 +14,7 @@ GameObject:
   - 54: {fileID: 5464326}
   - 114: {fileID: 11457504}
   - 114: {fileID: 11454184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,6 +133,10 @@ Prefab:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 5469496, guid: 0db89bba777353e46a5e90adf27b954e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 154906}
