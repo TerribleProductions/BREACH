@@ -1,19 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoubleTap : MonoBehaviour, Ability {
-
-    public Rigidbody projectile;
-
-    public float cooldown { get; set; }
-    public float globalCooldown { get; set; }
-    public string abilityName { get; set; }
-    public string description { get; set; }
-
+public class DoubleTap : ProjectileAbility {
 
     float timer;
     float doubleTapInterval = 0.1f;
-    float projectileSpeed = 100;
 
     // Use this for initialization
     void Start () {
@@ -21,36 +12,24 @@ public class DoubleTap : MonoBehaviour, Ability {
         globalCooldown = 1f;
         name = "Double Tap";
         description = "Shoots 2 bullets yo";
+
         projectile = (Resources.Load("Characters/Bob/Abilities/DoubleTap/DoubleTapProjectile") as GameObject).GetComponent<Rigidbody>();
+        projectileSpeed = 100f;
 	}
 
-    void Update ()
-    {
-        timer += Time.deltaTime;
-    }
 
-    public void Cast()
+    public override void Cast()
     {
-        if(timer >= cooldown)
-        {
-            //this is probably dumb
-            timer = 0;
-            StartCoroutine(shoot());
-        }
-        
+        //this is probably dumb
+        StartCoroutine(shoot());
     }
 
     private IEnumerator shoot()
-    {
-        
-        spawnBullet();
+    {       
+        spawnProjectile(projectile, projectileSpeed, projectileRange);
         yield return new WaitForSeconds(doubleTapInterval);
-        spawnBullet();
+        spawnProjectile(projectile, projectileSpeed, projectileRange);
     }
 
-    private void spawnBullet()
-    {
-        var bullet = (Rigidbody)Instantiate(this.projectile, transform.position, transform.rotation);
-        bullet.velocity = transform.forward * projectileSpeed   ;
-    }
+
 }

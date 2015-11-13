@@ -3,9 +3,12 @@ using System.Collections;
 
 public class Bob : MonoBehaviour {
 
+    float globalTimer = 0;
+
     struct charAbilities
     {
-        public Ability mainAttack;
+        public Ability mainAbility;
+        public Ability secondaryAbility;
     }
     
     charAbilities abilities; 
@@ -13,16 +16,31 @@ public class Bob : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         abilities = new charAbilities();
-        abilities.mainAttack = gameObject.AddComponent<DoubleTap>();
+        abilities.mainAbility = gameObject.AddComponent<DoubleTap>();
+        abilities.secondaryAbility = gameObject.AddComponent<Quickshot>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetButton("Fire1"))
+
+       globalTimer += Time.deltaTime;
+
+        if(globalTimer > 0.2f)
         {
-            abilities.mainAttack.Cast();
+            
+            if (Input.GetButton("Fire1"))
+            {
+                abilities.mainAbility.Cast();
+            }
+            if (Input.GetButton("Fire2"))
+            {
+                abilities.secondaryAbility.Cast();
+            }
+            globalTimer = 0f;
         }
+
+        
 	
 	}
 }
