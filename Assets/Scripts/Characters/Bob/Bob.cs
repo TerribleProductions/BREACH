@@ -9,6 +9,7 @@ public class Bob : MonoBehaviour {
     {
         public Ability mainAbility;
         public Ability secondaryAbility;
+        public Ability defensiveAbility;
     }
     
     charAbilities abilities; 
@@ -18,6 +19,7 @@ public class Bob : MonoBehaviour {
         abilities = new charAbilities();
         abilities.mainAbility = gameObject.AddComponent<DoubleTap>();
         abilities.secondaryAbility = gameObject.AddComponent<Quickshot>();
+        abilities.defensiveAbility = gameObject.AddComponent<EnforcerKick>();
 	}
 	
 	// Update is called once per frame
@@ -35,7 +37,7 @@ public class Bob : MonoBehaviour {
             }
             if (Input.GetButton("Fire2"))
             {
-                abilities.secondaryAbility.Cast();
+                abilities.defensiveAbility.Cast();
             }
             globalTimer = 0f;
         }
