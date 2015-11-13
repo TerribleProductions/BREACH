@@ -26,20 +26,22 @@ public class Bob : MonoBehaviour {
 	void Update () {
 
 
-       globalTimer += Time.deltaTime;
+        globalTimer += Time.deltaTime;
 
-        if(globalTimer > 0.2f)
+        if(globalTimer > 0.4f)
         {
             
             if (Input.GetButton("Fire1"))
             {
+                globalTimer = 0f;
                 abilities.mainAbility.Cast();
             }
             if (Input.GetButton("Fire2"))
             {
+                globalTimer = 0f;
                 abilities.defensiveAbility.Cast();
             }
-            globalTimer = 0f;
+            
         }
 
         
