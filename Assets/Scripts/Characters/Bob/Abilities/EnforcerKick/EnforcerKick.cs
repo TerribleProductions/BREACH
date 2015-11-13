@@ -6,13 +6,19 @@ public class EnforcerKick : MeleeAbility {
 
 	// Use this for initialization
 	void Start () {
-        area = 100f;
-        range = transform.forward *2;
+        area = 1f;
+        range = transform.forward;
 	}
 
     public override void Cast()
     {
-        var closestUnit = GetClosestUnitInRange(area, range);
+        GameObject closestUnit = GetClosestUnitInRange(area, range);
         Debug.Log(closestUnit);
+        if(closestUnit != null)
+        {
+            closestUnit.GetComponent<Rigidbody>().velocity = transform.forward * 10f;
+        }
+        
+       
     }
 }

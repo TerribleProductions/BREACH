@@ -10,7 +10,9 @@ public abstract class MeleeAbility : Ability {
 
     public Collider[] GetCollidersInRange(float range, Vector3 offset)
     {
-        return Physics.OverlapSphere(transform.position + offset, range);
+        //Ignore own player.
+        int layerMask = ~(1 << gameObject.layer);
+        return Physics.OverlapSphere(transform.position + offset, range, layerMask);
     }
 
     /// <summary>
@@ -22,9 +24,10 @@ public abstract class MeleeAbility : Ability {
     {
         var colliders = GetCollidersInRange(range, offset);
         GameObject closestUnit = null;
-        float shortestDistanceSqr = range + 1;
+        float shortestDistanceSqr = Mathf.Infinity;
         foreach (var collider in colliders)
         {
+            Debug.Log(shortestDistanceSqr);
             var distanceToSelfSqr = (collider.transform.position - transform.position).sqrMagnitude;
             if (distanceToSelfSqr < shortestDistanceSqr)
             {
