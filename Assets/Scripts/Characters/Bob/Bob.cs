@@ -13,7 +13,7 @@ public class Bob : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         abilities = new charAbilities();
-        abilities.mainAttack = GetComponent<DoubleTap>();
+        abilities.mainAttack = gameObject.AddComponent<DoubleTap>();
 	}
 	
 	// Update is called once per frame
