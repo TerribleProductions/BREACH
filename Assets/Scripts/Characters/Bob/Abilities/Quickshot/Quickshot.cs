@@ -7,8 +7,8 @@ public class Quickshot : ProjectileAbility {
 	void Start () {
         cooldown = 0.5f;
         globalCooldown = 1f;
-        name = "Double Tap";
-        description = "Shoots 2 bullets yo";
+        name = "QuickShot";
+        description = "Shoots 1 bullet yo";
 
         projectile = (Resources.Load("Characters/Bob/Abilities/Quickshot/QuickshotProjectile") as GameObject).GetComponent<Rigidbody>();
         projectileSpeed = 150f;
