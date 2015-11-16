@@ -19,13 +19,17 @@ public class GamepadInterface : MonoBehaviour {
 		// TODO use later when scene has been fixed for multiple controller support
 		//playerId = "player " + playerNumber;
 
-		playerId = "joystick";
+		playerId = "joystick " + playerNumber;
 	}
 
 	/* LEFT STICK */
 	
 	// Gets the value of the X axis of the left stick. -1 is left, 1 is right
 	public float getLeftStickAxisX() {
+		if (Input.GetAxisRaw (playerId + " X axis") < axisDeadzone && Input.GetAxisRaw (playerId + " X axis") > -axisDeadzone) {
+			return 0.0f;
+		}
+
 		return Input.GetAxisRaw(playerId + " X axis");
 	}
 	
@@ -41,6 +45,10 @@ public class GamepadInterface : MonoBehaviour {
 	
 	// Gets the value of the Y axis of the left stick, 1 is up and -1 is right
 	public float getLeftStickAxisY() {
+		if (Input.GetAxisRaw (playerId + " Y axis") < axisDeadzone && Input.GetAxisRaw (playerId + " Y axis") > -axisDeadzone) {
+			return 0.0f;
+		}
+
 		return Input.GetAxisRaw(playerId + " Y axis");
 	}
 	
@@ -64,6 +72,10 @@ public class GamepadInterface : MonoBehaviour {
 	
 	// Gets the value of the X axis of the right stick. -1 is left, 1 is right
 	public float getRightStickAxisX() {
+		if (Input.GetAxisRaw (playerId + " 4th axis") < axisDeadzone && Input.GetAxisRaw (playerId + " 4th axis") > -axisDeadzone) {
+			return 0.0f;
+		}
+
 		return Input.GetAxisRaw(playerId + " 4th axis");
 	}
 	
@@ -79,6 +91,10 @@ public class GamepadInterface : MonoBehaviour {
 	
 	// Gets the value of the Y axis of the right stick, 1 is up and -1 is right
 	public float getRightStickAxisY() {
+		if (Input.GetAxisRaw (playerId + " 5th axis") < axisDeadzone && Input.GetAxisRaw (playerId + " 5th axis") > -axisDeadzone) {
+			return 0.0f;
+		}
+
 		return Input.GetAxisRaw(playerId + " 5th axis");
 	}
 	
@@ -107,7 +123,7 @@ public class GamepadInterface : MonoBehaviour {
 	
 	// Returns whether the left trigger is pressed
 	public bool isLeftTriggerPressed() {
-		return (Input.GetAxisRaw(playerId + " 3rd axis") > axisDeadzone);
+		return (Input.GetAxisRaw(playerId + " 3rd axis") < -axisDeadzone);
 	}
 	
 	// Returns whether the left trigger is only soft pressed
@@ -127,7 +143,7 @@ public class GamepadInterface : MonoBehaviour {
 	
 	// Returns whether the right trigger is pressed
 	public bool isRightTriggerPressed() {
-		return (Input.GetAxisRaw(playerId + " 3rd axis") < -axisDeadzone);
+		return (Input.GetAxisRaw(playerId + " 3rd axis") > axisDeadzone);
 	}
 	
 	// Returns whether the right trigger is only soft pressed

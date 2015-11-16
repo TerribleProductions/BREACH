@@ -5,8 +5,9 @@ namespace CompleteProject
 {
     public class PlayerMovement : MonoBehaviour
     {
+		public int player = 1;
         public float speed = 6f;            // The speed that the player will move at.
-
+		private GamepadInterface gamepadInterface;
 
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
@@ -16,8 +17,12 @@ namespace CompleteProject
         float camRayLength = 100f;          // The length of the ray from the camera into the scene.
 #endif
 
+
+
         void Awake ()
         {
+			gamepadInterface = new GamepadInterface (player);
+
 #if !MOBILE_INPUT
             // Create a layer mask for the floor layer.
             floorMask = LayerMask.GetMask ("Floor");
@@ -32,8 +37,8 @@ namespace CompleteProject
         void FixedUpdate ()
         {
             // Store the input axes.
-            float h = CrossPlatformInputManager.GetAxisRaw("Horizontal");
-            float v = CrossPlatformInputManager.GetAxisRaw("Vertical");
+			float h = -gamepadInterface.getLeftStickAxisX ();
+			float v = gamepadInterface.getLeftStickAxisY ();
 
             // Move the player around the scene.
             Move (h, v);
@@ -61,6 +66,15 @@ namespace CompleteProject
 
         void Turning ()
         {
+			float h = gamepadInterface.getRightStickAxisX ();
+			float v = gamepadInterface.getRightStickAxisY ();
+
+			Vector3 lookAt = transform.position;
+			lookAt.x -= h;
+			lookAt.z += v;
+			transform.LookAt (lookAt);
+			return;
+
 #if !MOBILE_INPUT
             // Create a ray from the mouse cursor on screen in the direction of the camera.
             Ray camRay = Camera.main.ScreenPointToRay (Input.mousePosition);
