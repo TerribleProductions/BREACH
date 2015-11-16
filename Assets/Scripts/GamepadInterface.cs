@@ -8,7 +8,7 @@ public class GamepadInterface : MonoBehaviour {
 	private float axisInput;
 	
 	private float axisDeadzone = 0.3f;
-	private float triggerHardPressTreshhold = 0.9;
+	private float triggerHardPressTreshhold = 0.9f;
 	
 	public int playerNumber = 1;
 	private string playerId;
@@ -92,12 +92,7 @@ public class GamepadInterface : MonoBehaviour {
 	bool isRightStickDown() {
 		return (Input.GetAxisRaw(playerId + " 5th axis") < -axisDeadzone);
 	}
-	
-	// Returns the value of the right trigger axis
-	float getRightTrigger() {
-		return Input.GetAxisRaw(playerId + " 5th axis");
-	}
-	
+
 	// Returns whether the right stick has been pressed so it clicks
 	bool isRightStickClicked() {
 		return (Input.GetButton(playerId + " button 9"));
@@ -197,13 +192,8 @@ public class GamepadInterface : MonoBehaviour {
 		return Input.GetButton(playerId + " button 4");
 	}
 	
-	// Returns whether the left bumper is pressed
-	bool isLeftBumperPressed() {
-		return Input.GetButton(playerId + " button 4");
-	}
-	
 	// Returns whether the right bumper is pressed
-	bool isLeftRightPressed() {
+	bool isRightBumperPressed() {
 		return Input.GetButton(playerId + " button 5");
 	}
 	
