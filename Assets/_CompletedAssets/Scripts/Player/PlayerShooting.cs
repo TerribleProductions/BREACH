@@ -21,9 +21,14 @@ namespace CompleteProject
 		public Light faceLight;								// Duh
         float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
 
+		public int player = 1;
+		private GamepadInterface gamepadInterface;
 
         void Awake ()
         {
+
+			gamepadInterface = new GamepadInterface (player);
+
             // Create a layer mask for the Shootable layer.
             shootableMask = LayerMask.GetMask ("Shootable");
 
@@ -43,7 +48,7 @@ namespace CompleteProject
 
 #if !MOBILE_INPUT
             // If the Fire1 button is being press and it's time to fire...
-			if(Input.GetButton ("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0)
+			if((Input.GetButton ("Fire1") || gamepadInterface.isRightTriggerPressed()) && timer >= timeBetweenBullets && Time.timeScale != 0)
             {
                 // ... shoot the gun.
                 Shoot ();
