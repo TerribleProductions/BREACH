@@ -22,13 +22,15 @@ namespace CompleteProject
 
         void FixedUpdate ()
         {
+			float minCameraDistance = 7f;
+
 			// How far the characters are from each other
 			float characterDistance = Vector3.Distance (target.transform.position, target2.transform.position);
 
 			// The middle point of the two characters
 			Vector3 characterMidpoint = target.position + ((target2.position - target.position) / 2.0f);
 
-			float cameraDistance = Mathf.Max (5, characterDistance / 2.0f);
+			float cameraDistance = Mathf.Max (minCameraDistance, characterDistance / 3f);
 			Camera.main.orthographicSize = cameraDistance;
 
             // Create a postion the camera is aiming for based on the offset from the target.
