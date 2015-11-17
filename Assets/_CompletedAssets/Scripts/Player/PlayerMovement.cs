@@ -7,7 +7,7 @@ namespace CompleteProject
     {
 		public int player = 1;
         public float speed = 6f;            // The speed that the player will move at.
-		private GamepadInterface gamepadInterface;
+		private ControlInterface controlInterface;
 
         Vector3 movement;                   // The vector to store the direction of the player's movement.
         Animator anim;                      // Reference to the animator component.
@@ -21,7 +21,7 @@ namespace CompleteProject
 
         void Awake ()
         {
-			gamepadInterface = new GamepadInterface (player);
+			controlInterface = new ControlInterface (player);
 
 #if !MOBILE_INPUT
             // Create a layer mask for the floor layer.
@@ -36,9 +36,12 @@ namespace CompleteProject
 
         void FixedUpdate ()
         {
+			float epsilon = 0.001f;
+
             // Store the input axes.
-			float h = -gamepadInterface.getLeftStickAxisX ();
-			float v = gamepadInterface.getLeftStickAxisY ();
+			float h = controlInterface.getMovementHorizontal ();
+			float v = controlInterface.getMovementVertical ();
+
 
             // Move the player around the scene.
             Move (h, v);
@@ -66,8 +69,11 @@ namespace CompleteProject
 
         void Turning ()
         {
-			float h = gamepadInterface.getRightStickAxisX ();
-			float v = gamepadInterface.getRightStickAxisY ();
+			float h = controlInterface.getLookHorizontal ();
+			float v = controlInterface.getLookVertical ();
+
+			transform.forward = Vector3.Normalize (new Vector3(h, 0.0f, v));
+			return;
 
 			Vector3 lookAt = transform.position;
 			lookAt.x -= h;

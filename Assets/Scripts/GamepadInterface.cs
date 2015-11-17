@@ -26,11 +26,12 @@ public class GamepadInterface : MonoBehaviour {
 	
 	// Gets the value of the X axis of the left stick. -1 is left, 1 is right
 	public float getLeftStickAxisX() {
+
 		if (Input.GetAxisRaw (playerId + " X axis") < axisDeadzone && Input.GetAxisRaw (playerId + " X axis") > -axisDeadzone) {
 			return 0.0f;
 		}
 
-		return Input.GetAxisRaw(playerId + " X axis");
+		return -Input.GetAxisRaw(playerId + " X axis");
 	}
 	
 	// Returns whether the left stick is tilted left
@@ -72,11 +73,13 @@ public class GamepadInterface : MonoBehaviour {
 	
 	// Gets the value of the X axis of the right stick. -1 is left, 1 is right
 	public float getRightStickAxisX() {
+		/*
 		if (Input.GetAxisRaw (playerId + " 4th axis") < axisDeadzone && Input.GetAxisRaw (playerId + " 4th axis") > -axisDeadzone) {
 			return 0.0f;
 		}
+		*/
 
-		return Input.GetAxisRaw(playerId + " 4th axis");
+		return -Input.GetAxisRaw(playerId + " 4th axis");
 	}
 	
 	// Returns whether the right stick is tilted left
@@ -91,9 +94,11 @@ public class GamepadInterface : MonoBehaviour {
 	
 	// Gets the value of the Y axis of the right stick, 1 is up and -1 is right
 	public float getRightStickAxisY() {
-		if (Input.GetAxisRaw (playerId + " 5th axis") < axisDeadzone && Input.GetAxisRaw (playerId + " 5th axis") > -axisDeadzone) {
+		/*
+		 if (Input.GetAxisRaw (playerId + " 5th axis") < axisDeadzone && Input.GetAxisRaw (playerId + " 5th axis") > -axisDeadzone) {
 			return 0.0f;
 		}
+		 */
 
 		return Input.GetAxisRaw(playerId + " 5th axis");
 	}
