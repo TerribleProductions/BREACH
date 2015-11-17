@@ -18,9 +18,13 @@ namespace CompleteProject
 #endif
 
 
+		PlayerMovement() {
+
+		}
 
         void Awake ()
         {
+
 			controlInterface = new ControlInterface (player);
 
 #if !MOBILE_INPUT
@@ -72,13 +76,12 @@ namespace CompleteProject
 			float h = controlInterface.getLookHorizontal ();
 			float v = controlInterface.getLookVertical ();
 
-			transform.forward = Vector3.Normalize (new Vector3(h, 0.0f, v));
-			return;
+			Vector3 newDirection = Vector3.Normalize (new Vector3(h, 0.0f, v));
 
-			Vector3 lookAt = transform.position;
-			lookAt.x -= h;
-			lookAt.z += v;
-			transform.LookAt (lookAt);
+			if (!controlInterface.equalsZero (newDirection)) {
+				transform.forward = newDirection;
+			}
+
 			return;
 
 #if !MOBILE_INPUT

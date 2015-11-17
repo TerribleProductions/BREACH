@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ControlInterface : MonoBehaviour {
-
-	private int playerNumber = 1;
+public class ControlInterface {
+	
 	private GamepadInterface gamepadInterface;
 	private KeyboardInterface keyboardInterface;
 
 	private float epsilon = 0.001f;
 
 	public ControlInterface(int playerNumber){
-		this.playerNumber = playerNumber;
 		gamepadInterface = new GamepadInterface (playerNumber);
 		keyboardInterface = new KeyboardInterface (playerNumber);
 	}
@@ -22,7 +20,7 @@ public class ControlInterface : MonoBehaviour {
 	public float getMovementHorizontal() {
 		float h = gamepadInterface.getLeftStickAxisX ();
 
-		if (floatEqualsZero (h)) {
+		if (equalsZero (h)) {
 			h = keyboardInterface.getMovementHorizontal();
 		}
 
@@ -32,7 +30,7 @@ public class ControlInterface : MonoBehaviour {
 	public float getMovementVertical() {
 		float v = gamepadInterface.getLeftStickAxisY ();
 		
-		if (floatEqualsZero (v)) {
+		if (equalsZero (v)) {
 			v = keyboardInterface.getMovementVertical();
 		}
 		
@@ -42,7 +40,7 @@ public class ControlInterface : MonoBehaviour {
 	public float getLookHorizontal() {
 		float h = gamepadInterface.getRightStickAxisX ();
 		
-		if (floatEqualsZero (h)) {
+		if (equalsZero (h)) {
 			h = keyboardInterface.getLookHorizontal();
 		}
 		
@@ -52,7 +50,7 @@ public class ControlInterface : MonoBehaviour {
 	public float getLookVertical() {
 		float v = gamepadInterface.getRightStickAxisY ();
 		
-		if (floatEqualsZero (v)) {
+		if (equalsZero (v)) {
 			v = keyboardInterface.getLookVertical();
 		}
 		
@@ -63,11 +61,19 @@ public class ControlInterface : MonoBehaviour {
 		return (gamepadInterface.isRightTriggerPressed () || keyboardInterface.getFire ());
 	}
 
-	private bool floatEqualsZero(float f) {
+	public bool equalsZero(float f) {
 		if ((Mathf.Abs (f) - epsilon) < 0.0f) {
 			return true;
 		} else {
 			return false;
 		}
 	}
+
+	public bool equalsZero(Vector3 v) {
+		Vector3 zero = new Vector3 (0f, 0f, 0f);
+		float distance = Vector3.Distance (v, zero);
+
+		return equalsZero (distance);
+	}
+
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GamepadInterface : MonoBehaviour {
+public class GamepadInterface {
 	
 	private string currentButton;
 	private string currentAxis;

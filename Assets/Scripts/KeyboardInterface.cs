@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class KeyboardInterface : MonoBehaviour {
+public class KeyboardInterface {
 
-	private int playerNumber = 1;
+	private int playerNumber;
 	private string playerId;
 
 	public KeyboardInterface(int playerNumber) {

@@ -22,12 +22,14 @@ namespace CompleteProject
         float effectsDisplayTime = 0.2f;                // The proportion of the timeBetweenBullets that the effects will display for.
 
 		public int player = 1;
-		private GamepadInterface gamepadInterface;
+		private ControlInterface controlInterface;
+
+		public PlayerShooting() {
+		}
 
         void Awake ()
         {
-
-			gamepadInterface = new GamepadInterface (player);
+			controlInterface = new ControlInterface (player);
 
             // Create a layer mask for the Shootable layer.
             shootableMask = LayerMask.GetMask ("Shootable");
@@ -46,21 +48,13 @@ namespace CompleteProject
             // Add the time since Update was last called to the timer.
             timer += Time.deltaTime;
 
-#if !MOBILE_INPUT
             // If the Fire1 button is being press and it's time to fire...
-			if(gamepadInterface.isRightTriggerPressed() && timer >= timeBetweenBullets && Time.timeScale != 0)
+			if(controlInterface.getFire() && timer >= timeBetweenBullets && Time.timeScale != 0)
             {
                 // ... shoot the gun.
                 Shoot ();
             }
-#else
-            // If there is input on the shoot direction stick and it's time to fire...
-            if ((CrossPlatformInputManager.GetAxisRaw("Mouse X") != 0 || CrossPlatformInputManager.GetAxisRaw("Mouse Y") != 0) && timer >= timeBetweenBullets)
-            {
-                // ... shoot the gun
-                Shoot();
-            }
-#endif
+
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
             if(timer >= timeBetweenBullets * effectsDisplayTime)
             {
