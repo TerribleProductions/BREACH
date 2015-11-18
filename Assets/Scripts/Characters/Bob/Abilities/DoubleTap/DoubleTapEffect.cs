@@ -6,7 +6,7 @@ public class DoubleTapEffect : MonoBehaviour {
     public GameObject owner { get; set; }
     void OnTriggerEnter(Collider collider)
     {
-        
+        //TODO: Fix this
         var enemy = collider.gameObject;
         if (enemy != null && !enemy.name.Equals(owner.name) && !enemy.name.Equals("Floor") )
         {

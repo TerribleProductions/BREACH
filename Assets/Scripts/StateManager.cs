@@ -5,6 +5,7 @@ using System;
 
 public class StateManager{
 
+    //Not sure this is needed
     public Character statefulChar;
 
     public StateEffect currentState {
@@ -24,13 +25,12 @@ public class StateManager{
     {
         if((int)state.state == 0)
         {
-            throw new Exception("Cannot assign neutral state from here");
+            throw new Exception("Cannot assign neutral state from here");//Just a safety measure to avoid screwing up state.
         }
 
         bool canStateBeSet = CharacterState.CompareStates(state.state, currentState.state) > 0;
         if (canStateBeSet)
         {
-            Debug.Log("Setting state to " + state + "current state "+currentState);
             currentState = state;
             setFloatText();
         }
@@ -87,7 +87,6 @@ public class StateManager{
 
     public void SetNeutralState()
     {
-        Debug.Log("Setting neutral state");
         currentState = CharacterState.neutralState;
         setFloatText();
     }

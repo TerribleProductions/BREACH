@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 /// <summary>
-/// Class for modeling states. Should probably be an IEnumerable.
+/// Class for modeling states. Should probably be an IEnumerable(TODO?).
 /// </summary>
 public class StateEffect
 {
@@ -65,11 +65,12 @@ public class StateEffect
     /// <param name="states"></param>
     public StateEffect(params StateEffect[] states)
     {
+        //TODO: Actually test this
         var head = states.First();
         //Folds over the tail to generate one long state chain
         var tailStates = states.Skip(2).Aggregate(states[1], (a, b) =>
         {
-            return new StateEffect(a, b);
+            return a + b;
         });
         this.state = head.state;
         this.duration = head.duration;
