@@ -13,7 +13,7 @@ public class StateEffect
 
     public StateEffect nextState = null;
     public CharacterState.States state{ get; private set; }
-    public float duration { get; set; } = Mathf.Infinity;
+    public float duration = Mathf.Infinity;
 
     public override string ToString()
     {
