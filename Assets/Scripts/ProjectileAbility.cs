@@ -11,6 +11,7 @@ public abstract class ProjectileAbility : Ability {
     public void spawnProjectile(Rigidbody proj, float pSpeed, float pRange)
     {
         var p = (Rigidbody)Instantiate(proj, transform.position, transform.rotation);
+        p.GetComponent<DoubleTapEffect>().owner = this.gameObject;
         p.velocity = transform.forward * pSpeed;
     }
 }

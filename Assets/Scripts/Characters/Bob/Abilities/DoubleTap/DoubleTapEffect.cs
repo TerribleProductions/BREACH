@@ -3,21 +3,21 @@ using System.Collections;
 
 public class DoubleTapEffect : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-
-    void OnCollisionEnter()
+    public GameObject owner { get; set; }
+    void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("hit someting!");
-        var enemy = GetComponent<Character>();
-        if(enemy != null)
+        
+        var enemy = collider.gameObject;
+        Debug.Log(enemy.name);
+        Debug.Log(owner.name);
+        if (enemy != null && !enemy.name.Equals(owner.name) && !enemy.name.Equals("Floor") )
         {
+            var enemyChar = enemy.GetComponent<Character>();
             Debug.Log("Hit enemy!");
-            enemy.hp = -50;
+            //enemyChar.hp -= 50;
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 	
 	// Update is called once per frame

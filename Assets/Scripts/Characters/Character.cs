@@ -33,7 +33,7 @@ public abstract class Character : MonoBehaviour {
     protected virtual void Awake()
     {
         stateManager = new StateManager(this);
-        stateManager.SetState(CharacterState.neutralState);
+        stateManager.SetNeutralState();
         playerRigidbody = GetComponent<Rigidbody>();
         //movementVector = new Vector3(0, 0, 0);
         controller = new ControlInterface(playerNumber);
@@ -41,13 +41,11 @@ public abstract class Character : MonoBehaviour {
 
     protected void moveInput()
     {
+        bool isMoving = stateManager.HasState(CharacterState.States.MOVING);
         float h = controller.getMovementHorizontal();
         float v = controller.getMovementVertical();
-        if(h == 0 && v == 0 && !stateManager.HasState(CharacterState.States.BASIC_ATTACK))
-        {
-            stateManager.SetState(CharacterState.neutralState);
-        }
-        else if(stateManager.SetState(new StateEffect(CharacterState.States.MOVING, 0f)))
+        Debug.Log("Has state moving: " + stateManager.HasState(CharacterState.States.MOVING));
+        if((h != 0 || v != 0) && (stateManager.SetState(new StateEffect(CharacterState.States.MOVING, Mathf.Infinity, null)) || isMoving))
         {
             // Set the movement vector based on the axis input.
             movementVector = new Vector3(h, 0f, v);
@@ -58,6 +56,10 @@ public abstract class Character : MonoBehaviour {
             // Move the player to it's current position plus the movement.
             playerRigidbody.MovePosition(transform.position + movementVector);
         }
+        else if((h == 0 && v == 0) && isMoving)
+        {
+            stateManager.SetNeutralState();
+        }
     }
 
     protected void abilityInput()
@@ -65,9 +67,9 @@ public abstract class Character : MonoBehaviour {
 
         if (controller.getFire())
         {
-            if (stateManager.SetState(abilities.mainAbility.stateEffect))
+            if (stateManager.SetState(abilities.mainAbility.preAttackState))
             {
-                abilities.mainAbility.Cast();
+                //stateManager.SetState(abilities.mainAbility.attackState;
             }
         }
         //TODO: Add code for other buttons here

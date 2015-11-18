@@ -17,7 +17,9 @@ public class DoubleTap : ProjectileAbility {
         //The time before you are allowed to move, in this case after second bullet fires.
         float totalStopTime = windup + doubleTapInterval;
 
-        stateEffect = new StateEffect(CharacterState.States.BASIC_ATTACK, totalStopTime);
+        preAttackState = new StateEffect(CharacterState.States.PRE_ATTACK, windup, Cast);
+        attackState = new StateEffect(CharacterState.States.BASIC_ATTACK, doubleTapInterval, null);
+        
 
         projectile = (Resources.Load("Characters/Bob/Abilities/DoubleTap/DoubleTapProjectile") as GameObject).GetComponent<Rigidbody>();
         projectileSpeed = 25f;
@@ -27,6 +29,7 @@ public class DoubleTap : ProjectileAbility {
     public override void Cast()
     {
         //this is probably dumb
+        
         StartCoroutine(shoot());
     }
 
