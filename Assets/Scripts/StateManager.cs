@@ -7,7 +7,7 @@ public class StateManager{
     public Character statefulChar;
 
     public StateEffect currentState {
-        get; private set;
+        get; set;
     }
 
     public StateManager(Character c)
@@ -21,8 +21,9 @@ public class StateManager{
     /// <returns>True if state was added, false if not</returns>
     public bool SetState(StateEffect state)
     {
-        var canStateBeSet = CharacterState.CompareStates(state.state, currentState.state) > 0;
-        Debug.Log(canStateBeSet);
+        //Debug.Log("newState: " + state.state + ", currentState: " + currentState.state);
+        bool canStateBeSet = CharacterState.CompareStates(state.state, currentState.state) > 0;
+        //Debug.Log(canStateBeSet);
         if (canStateBeSet)
         {
             currentState = state;
@@ -32,10 +33,16 @@ public class StateManager{
 
 
     public void Update(float deltaTime)
-    {     
-        if(currentState.duration - deltaTime > 0)
+    {
+        if(currentState.duration == Mathf.Infinity)
         {
-            currentState = new StateEffect(currentState.state, currentState.duration - deltaTime);
+            return;
+        }
+
+        float newDuration = currentState.duration - deltaTime;
+        if (newDuration > 0)
+        {
+            currentState = new StateEffect(currentState.state, newDuration);
         }
         else
         {

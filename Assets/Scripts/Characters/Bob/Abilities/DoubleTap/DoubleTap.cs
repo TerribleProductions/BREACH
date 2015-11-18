@@ -10,14 +10,17 @@ public class DoubleTap : ProjectileAbility {
     // Use this for initialization
     void Start () {
         cooldown = 0.5f;
+        windup = 0.2f;
         globalCooldown = 1f;
         name = "Double Tap";
         description = "Shoots 2 bullets yo";
+        //The time before you are allowed to move, in this case after second bullet fires.
+        float totalStopTime = windup + doubleTapInterval;
 
-        stateEffect = new StateEffect(CharacterState.States.BASIC_ATTACK, cooldown);
+        stateEffect = new StateEffect(CharacterState.States.BASIC_ATTACK, totalStopTime);
 
         projectile = (Resources.Load("Characters/Bob/Abilities/DoubleTap/DoubleTapProjectile") as GameObject).GetComponent<Rigidbody>();
-        projectileSpeed = 100f;
+        projectileSpeed = 25f;
 	}
 
 
@@ -28,7 +31,8 @@ public class DoubleTap : ProjectileAbility {
     }
 
     private IEnumerator shoot()
-    {       
+    {
+        yield return new WaitForSeconds(windup);
         spawnProjectile(projectile, projectileSpeed, projectileRange);
         yield return new WaitForSeconds(doubleTapInterval);
         spawnProjectile(projectile, projectileSpeed, projectileRange);

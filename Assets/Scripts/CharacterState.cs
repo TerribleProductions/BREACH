@@ -12,25 +12,27 @@ public static class CharacterState
     /// The ordering of this enum decides precedence of the state
     /// </summary>
     public enum States
-    {
-        
-        MOVING,
-        BASIC_ATTACK,
-        SPECIAL_ATTACK,
-        IMMOBILE,
-        INACTIVE,
+    { 
+        MOVING = 0,
+        BASIC_ATTACK = 1,
+        SPECIAL_ATTACK = 2,
+        IMMOBILE = 3,
+        INACTIVE = 4,
         NEUTRAL //This can alwas be applied, but should never be explicitly be assigned
     }
 
     public static int CompareStates(States a, States b)
     {
-        Debug.Log((int)a - (int)b);
+        int dif = (int)a - (int)b;
         if(a == States.NEUTRAL || b == States.NEUTRAL)
         {
             return 1;
+        }else if(a == b)
+        {
+            return 0;
         }
-        
-        return (int)a - (int)b;
+
+        return dif;
     }
 
 

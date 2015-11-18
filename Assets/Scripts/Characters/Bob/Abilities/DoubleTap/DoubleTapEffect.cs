@@ -7,6 +7,18 @@ public class DoubleTapEffect : MonoBehaviour {
 	void Start () {
 	
 	}
+
+    void OnCollisionEnter()
+    {
+        Debug.Log("hit someting!");
+        var enemy = GetComponent<Character>();
+        if(enemy != null)
+        {
+            Debug.Log("Hit enemy!");
+            enemy.hp = -50;
+        }
+        Destroy(gameObject);
+    }
 	
 	// Update is called once per frame
 	void Update () {

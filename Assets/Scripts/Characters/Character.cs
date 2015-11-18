@@ -36,7 +36,6 @@ public abstract class Character : MonoBehaviour {
         stateManager.SetState(CharacterState.neutralState);
         playerRigidbody = GetComponent<Rigidbody>();
         //movementVector = new Vector3(0, 0, 0);
-        playerNumber = 1;
         controller = new ControlInterface(playerNumber);
     }
 
@@ -44,7 +43,7 @@ public abstract class Character : MonoBehaviour {
     {
         float h = controller.getMovementHorizontal();
         float v = controller.getMovementVertical();
-        if(h == 0 && v == 0)
+        if(h == 0 && v == 0 && !stateManager.HasState(CharacterState.States.BASIC_ATTACK))
         {
             stateManager.SetState(CharacterState.neutralState);
         }

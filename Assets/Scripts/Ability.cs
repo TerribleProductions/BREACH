@@ -11,6 +11,7 @@ public abstract class Ability : MonoBehaviour {
     public float castTime { get; set; }
     public StateEffect stateEffect { get; set; }
     public List<StateEffect> selfEffects { get; set; }
+    public float windup { get; set; }
     //There should probably be some type variable that is an enum sort of like "projectile/self cast/passive etc.."
 
     public abstract void Cast();
