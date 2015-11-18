@@ -8,7 +8,7 @@ public abstract class Character : MonoBehaviour {
         public CharAbilities(Ability mainAbility, Ability secondaryAbility, Ability defensiveAbility)
         {
             this.mainAbility = mainAbility;
-            this.secondaryAbility = mainAbility;
+            this.secondaryAbility = secondaryAbility;
             this.defensiveAbility = defensiveAbility;
         }
         public Ability mainAbility;
@@ -66,10 +66,12 @@ public abstract class Character : MonoBehaviour {
 
         if (controller.getFire())
         {
-            if (stateManager.SetState(abilities.mainAbility.stateChain))
-            {
-                //stateManager.SetState(abilities.mainAbility.attackState;
-            }
+            stateManager.SetState(abilities.mainAbility.stateChain);
+        }
+        if (controller.getFire2())
+        {
+            stateManager.SetState(abilities.secondaryAbility.stateChain);
+
         }
         //TODO: Add code for other buttons here
     }

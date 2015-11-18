@@ -31,4 +31,9 @@ public class KeyboardInterface {
 	public bool getFire() {
 		return Input.GetButton(playerId + " fire");
 	}
+
+    public bool getFire2()
+    {
+        return Input.GetButton(playerId + " fire2");
+    }
 }

@@ -3,10 +3,20 @@ using System.Collections;
 
 public class Quickshot : ProjectileAbility {
 
-	// Use this for initialization
-	void Start () {
-        cooldown = 0.5f;
-        globalCooldown = 1f;
+    public override StateEffect stateChain
+    {
+        get
+        {
+            //Always return a new chain in case it was mutated
+            var preAttackState = new StateEffect(CharacterState.States.SPECIAL_ATTACK, windup, Cast);
+
+            return preAttackState;
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
+        windup = 0.1f;
         name = "QuickShot";
         description = "Shoots 1 bullet yo";
 
