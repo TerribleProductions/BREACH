@@ -6,10 +6,45 @@ using System.Linq;
 /// </summary>
 public class StateEffect
 {
-    public StateEffect(CharacterState.States state, float duration, Callback callback)
+
+    public delegate void Callback();
+
+    public Callback callback = null;
+
+    public StateEffect nextState = null;
+    public CharacterState.States state{ get; private set; }
+    public float duration { get; set; } = Mathf.Infinity;
+
+    public override string ToString()
+    {
+        return state.ToString();
+    }
+
+    /// <summary>
+    /// Constructs a state effect that lasts until another state is applied
+    /// </summary>
+    /// <param name="state"></param>
+    public StateEffect(CharacterState.States state)
     {
         this.state = state;
+    }
+    /// <summary>
+    /// Constructs a state effect that lasts for some duration
+    /// </summary>
+    /// <param name="state"></param>
+    /// <param name="duration"></param>
+    public StateEffect(CharacterState.States state, float duration) : this(state)
+    {
         this.duration = duration;
+    }
+    /// <summary>
+    /// Constructs a single state effect containing a primitive state, a duration for the state, and a potential callback that is called at the end of the state.
+    /// </summary>
+    /// <param name="state">Primite state</param>
+    /// <param name="duration">Duration of state.</param>
+    /// <param name="callback">Function to be called at end of state</param>
+    public StateEffect(CharacterState.States state, float duration, Callback callback) : this(state, duration)
+    {
         this.callback = callback;
     }
     /// <summary>
@@ -47,23 +82,7 @@ public class StateEffect
         return new StateEffect(a, b);
     }
 
-    public delegate void Callback();
 
-    public Callback callback;
-
-    public StateEffect nextState;
-    public CharacterState.States state {
-        get; private set;
-    }
-    public float duration
-    {
-        get; set;
-    }
-
-    public override string ToString()
-    {
-        return state.ToString();
-    }
 
 }
 

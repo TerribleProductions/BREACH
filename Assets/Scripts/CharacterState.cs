@@ -6,7 +6,7 @@ using System.Collections;
 public static class CharacterState
 {
 
-    public static StateEffect neutralState = new StateEffect(CharacterState.States.NEUTRAL, Mathf.Infinity, null);
+    public static StateEffect neutralState = new StateEffect(CharacterState.States.NEUTRAL);
 
     /// <summary>
     /// The ordering of this enum decides precedence of the state

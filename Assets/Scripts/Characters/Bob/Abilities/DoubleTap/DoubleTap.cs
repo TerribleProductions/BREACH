@@ -11,7 +11,7 @@ public class DoubleTap : ProjectileAbility {
         {
             //Always return a new chain in case it was mutated
             var preAttackState = new StateEffect(CharacterState.States.PRE_ATTACK, windup, Cast);
-            var attackState = new StateEffect(CharacterState.States.BASIC_ATTACK, doubleTapInterval, null);
+            var attackState = new StateEffect(CharacterState.States.BASIC_ATTACK, doubleTapInterval);
             
             return preAttackState + attackState;
         } }
