@@ -9,8 +9,7 @@ public abstract class Ability : MonoBehaviour {
     public string abilityName { get; set;} 
     public string description { get; set; }
     public float castTime { get; set; }
-    public StateEffect attackState { get; set; }
-    public StateEffect preAttackState { get; set; }
+    public virtual StateEffect stateChain { get; set; }
     public float windup { get; set; }
     //There should probably be some type variable that is an enum sort of like "projectile/self cast/passive etc.."
 

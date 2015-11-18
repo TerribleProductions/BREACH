@@ -19,10 +19,10 @@ public class Bob : Character {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-
+        stateManager.Update(Time.deltaTime);
         moveInput();
         abilityInput();
-        stateManager.Update(Time.deltaTime);
+        
        
         //Debug.Log(stateManager.currentState.state);
 	

@@ -44,7 +44,6 @@ public abstract class Character : MonoBehaviour {
         bool isMoving = stateManager.HasState(CharacterState.States.MOVING);
         float h = controller.getMovementHorizontal();
         float v = controller.getMovementVertical();
-        Debug.Log("Has state moving: " + stateManager.HasState(CharacterState.States.MOVING));
         if((h != 0 || v != 0) && (stateManager.SetState(new StateEffect(CharacterState.States.MOVING, Mathf.Infinity, null)) || isMoving))
         {
             // Set the movement vector based on the axis input.
@@ -67,7 +66,7 @@ public abstract class Character : MonoBehaviour {
 
         if (controller.getFire())
         {
-            if (stateManager.SetState(abilities.mainAbility.preAttackState))
+            if (stateManager.SetState(abilities.mainAbility.stateChain))
             {
                 //stateManager.SetState(abilities.mainAbility.attackState;
             }

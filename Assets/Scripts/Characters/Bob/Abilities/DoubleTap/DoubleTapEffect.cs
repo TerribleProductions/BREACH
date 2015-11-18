@@ -8,12 +8,9 @@ public class DoubleTapEffect : MonoBehaviour {
     {
         
         var enemy = collider.gameObject;
-        Debug.Log(enemy.name);
-        Debug.Log(owner.name);
         if (enemy != null && !enemy.name.Equals(owner.name) && !enemy.name.Equals("Floor") )
         {
             var enemyChar = enemy.GetComponent<Character>();
-            Debug.Log("Hit enemy!");
             //enemyChar.hp -= 50;
             Destroy(gameObject);
         }

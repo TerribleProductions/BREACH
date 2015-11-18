@@ -26,40 +26,61 @@ public class StateManager{
         {
             throw new Exception("Cannot assign neutral state from here");
         }
+
         bool canStateBeSet = CharacterState.CompareStates(state.state, currentState.state) > 0;
-        Debug.Log(CharacterState.CompareStates(state.state, currentState.state));
         if (canStateBeSet)
         {
-            Debug.Log("Setting state to: " + state.state);
+            Debug.Log("Setting state to " + state + "current state "+currentState);
             currentState = state;
+            setFloatText();
         }
         return canStateBeSet;
     }
 
-
+    /// <summary>
+    /// Updates the duration of the current state. If another state is in the chain, it will swap the state to that, otherwise it reverts to neutral state.
+    /// </summary>
+    /// <param name="deltaTime">Time passed since last update</param>
     public void Update(float deltaTime)
     {
-        Debug.Log("CurrentState: "+currentState.state);
+        //Ignore states without duration
         if(currentState.duration == Mathf.Infinity)
         {
             return;
         }
 
         float newDuration = currentState.duration - deltaTime;
-        Debug.Log(newDuration);
         if (newDuration > 0)
         {
-            currentState = new StateEffect(currentState.state, newDuration, currentState.callback);
+            currentState.duration = newDuration;
         }
         else
         {
             if(currentState.callback != null)
             {
-                Debug.Log("Calling callback");
                 currentState.callback();
             }
-            Debug.Log("asdf");
-            SetNeutralState();
+            var nextState = currentState.nextState;
+            if (nextState != null)
+            {
+                //This does not allow for arbitrary precedence in state chains. Can be changed by allowing bypass in SetState
+                SetState(nextState);
+            }
+            else
+            { 
+                SetNeutralState();
+            }
+            
+        }
+        
+    }
+
+    private void setFloatText()
+    {
+        
+        if(statefulChar != null && currentState != null)
+        {
+            statefulChar.gameObject.GetComponent<TextMesh>().text = currentState.ToString();
         }
         
     }
@@ -68,6 +89,7 @@ public class StateManager{
     {
         Debug.Log("Setting neutral state");
         currentState = CharacterState.neutralState;
+        setFloatText();
     }
 
 
