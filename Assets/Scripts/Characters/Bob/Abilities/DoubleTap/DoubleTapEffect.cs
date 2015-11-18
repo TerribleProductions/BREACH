@@ -12,6 +12,8 @@ public class DoubleTapEffect : MonoBehaviour {
 	void Update () {
 
         //Do stuff to player in here, like damage and adding buff to self.
+
+        
 	
 	}
 }

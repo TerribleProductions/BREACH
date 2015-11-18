@@ -1,50 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bob : MonoBehaviour {
-
-    float globalTimer = 0;
-
-    struct charAbilities
-    {
-        public Ability mainAbility;
-        public Ability secondaryAbility;
-        public Ability defensiveAbility;
-    }
-    
-    charAbilities abilities; 
+public class Bob : Character {
 
 	// Use this for initialization
-	void Start () {
-        abilities = new charAbilities();
-        abilities.mainAbility = gameObject.AddComponent<DoubleTap>();
-        abilities.secondaryAbility = gameObject.AddComponent<Quickshot>();
-        abilities.defensiveAbility = gameObject.AddComponent<EnforcerKick>();
+	protected override void  Awake () {
+        base.Awake();
+        moveSpeed = 15f;
+        var mainAbility = gameObject.AddComponent<DoubleTap>();
+        var secondaryAbility = gameObject.AddComponent<Quickshot>();
+        var defensiveAbility = gameObject.AddComponent<EnforcerKick>();
+
+        abilities = new CharAbilities(mainAbility, secondaryAbility, defensiveAbility);
 	}
+
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-
-        globalTimer += Time.deltaTime;
-
-        if(globalTimer > 0.4f)
-        {
-            
-            if (Input.GetButton("Fire1"))
-            {
-                globalTimer = 0f;
-                abilities.mainAbility.Cast();
-            }
-            if (Input.GetButton("Fire2"))
-            {
-                globalTimer = 0f;
-                abilities.defensiveAbility.Cast();
-            }
-            
-        }
-
-        
+        moveInput();
+        abilityInput();
+        stateManager.Update(Time.deltaTime);
+        Debug.Log(stateManager.currentState.state);
 	
 	}
 }
