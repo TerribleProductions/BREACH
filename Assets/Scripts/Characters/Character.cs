@@ -24,6 +24,7 @@ public abstract class Character : MonoBehaviour {
     public Rigidbody playerRigidbody { get; set; }
 
     protected StateManager stateManager { get; set; }
+    public  BuffManager buffManager { get; set; }
 
     protected ControlInterface controller { get; set; }
     protected CharAbilities abilities { get; set; }
@@ -33,9 +34,9 @@ public abstract class Character : MonoBehaviour {
     protected virtual void Awake()
     {
         stateManager = new StateManager(this);
+        buffManager = new BuffManager(this);
         stateManager.SetNeutralState();
         playerRigidbody = GetComponent<Rigidbody>();
-        //movementVector = new Vector3(0, 0, 0);
         controller = new ControlInterface(playerNumber);
     }
 

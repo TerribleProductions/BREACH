@@ -28,7 +28,7 @@ public class DoubleTap : ProjectileAbility {
 
         //This is to avoid having to drag and drop projectile prefab. 
         projectile = (Resources.Load("Characters/Bob/Abilities/DoubleTap/DoubleTapProjectile") as GameObject).GetComponent<Rigidbody>();
-        projectileSpeed = 25f;
+        projectileSpeed = 50f;
 	}
 
 

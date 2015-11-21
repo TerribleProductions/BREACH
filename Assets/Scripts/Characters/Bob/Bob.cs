@@ -8,9 +8,10 @@ public class Bob : Character {
 	protected override void  Awake () {
         base.Awake();
         moveSpeed = 15f;
+
         var mainAbility = gameObject.AddComponent<DoubleTap>();
         var secondaryAbility = gameObject.AddComponent<Quickshot>();
-        var defensiveAbility = gameObject.AddComponent<EnforcerKick>();
+        var defensiveAbility = gameObject.AddComponent<EnforcerKick > ();
         controller = new ControlInterface(playerNumber);
 
         abilities = new CharAbilities(mainAbility, secondaryAbility, defensiveAbility);
@@ -20,10 +21,10 @@ public class Bob : Character {
 	// Update is called once per frame
 	void FixedUpdate () {
         //Not sure if order matters here.
+        Debug.Log(buffManager.buffs);
         stateManager.Update(Time.deltaTime);
+        buffManager.Update(Time.deltaTime);
         moveInput();
         abilityInput();
-        
-	
 	}
 }
