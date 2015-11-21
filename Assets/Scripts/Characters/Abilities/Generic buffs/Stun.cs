@@ -29,7 +29,7 @@ public class Stun : Buff
     {
         //This creates a weird coupling between states and buffs since states remove themselves after their duration, so unapply becomes useless.
         //Could be done by having infinte states and unapllying in unapply. Dont know what is best.
-        target.stateManager.SetState(stunState);
+        target.SetState(stunState);
     }
 
     public void Unapply(Character target)

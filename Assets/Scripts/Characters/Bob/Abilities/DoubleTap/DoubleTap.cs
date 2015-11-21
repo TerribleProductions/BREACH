@@ -35,7 +35,6 @@ public class DoubleTap : ProjectileAbility {
     public override void Cast()
     {
         //this is probably dumb
-        Debug.Log("Shooting double tap");
         StartCoroutine(shoot());
     }
 

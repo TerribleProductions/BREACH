@@ -15,10 +15,15 @@ public abstract class Character : MonoBehaviour {
         public Ability secondaryAbility;
         public Ability defensiveAbility;
     }
+    #region resources
     public float hp { get; set; }
     public float maxHp { get; set; }
-    
+    public float energy { get; set; }
+    public float energyRegeneration { get; set; }
     public float moveSpeed { get; set; }
+    #endregion
+
+
     public int playerNumber { get; set; }
     public Vector3 movementVector { get; set; }
     public Rigidbody playerRigidbody { get; set; }
@@ -40,12 +45,13 @@ public abstract class Character : MonoBehaviour {
         controller = new ControlInterface(playerNumber);
     }
 
+    #region input
     protected void moveInput()
     {
-        bool isMoving = stateManager.HasState(CharacterState.States.MOVING);
+        bool isMoving = HasState(CharacterState.States.MOVING);
         float h = controller.getMovementHorizontal();
         float v = controller.getMovementVertical();
-        if((h != 0 || v != 0) && (stateManager.SetState(new StateEffect(CharacterState.States.MOVING)) || isMoving))
+        if((h != 0 || v != 0) && (SetState(new StateEffect(CharacterState.States.MOVING)) || isMoving))
         {
             // Set the movement vector based on the axis input.
             movementVector = new Vector3(h, 0f, v);
@@ -67,14 +73,56 @@ public abstract class Character : MonoBehaviour {
 
         if (controller.getFire())
         {
-            stateManager.SetState(abilities.mainAbility.stateChain);
+            SetState(abilities.mainAbility.stateChain);
         }
         if (controller.getFire2())
         {
-            stateManager.SetState(abilities.secondaryAbility.stateChain);
+            SetState(abilities.secondaryAbility.stateChain);
 
         }
         //TODO: Add code for other buttons here
     }
+    #endregion
+
+    #region Mutators
+
+    public void DamageCharacter(float amount)
+    {
+        hp -= amount;
+    }
+
+    public void AddBuff(Buff buff)
+    {
+        buffManager.AddBuff(buff);
+    }
+
+    public bool SetState(StateEffect state)
+    {
+        return stateManager.SetState(state);
+    }
+
+    public bool HasState(CharacterState.States state)
+    {
+        return stateManager.HasState(state);
+    }
+
+    public void SapEnergy(float amount)
+    {
+        energy -= amount;
+    }
+    /// <summary>
+    /// Regenerates energyRegeneration amount. Should be called every x tick?
+    /// </summary>
+    public void RegenEnergy()
+    {
+        energy += energyRegeneration;
+    }
+
+    public void MultiplyMovespeed(float amount)
+    {
+        moveSpeed *= amount;
+    }
+
+    #endregion
 
 }

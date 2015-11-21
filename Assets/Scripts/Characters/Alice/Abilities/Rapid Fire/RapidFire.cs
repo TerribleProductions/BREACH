@@ -43,7 +43,9 @@ public class RapidFire : ProjectileAbility {
         if (timer <= 0)
         {
             spawnProjectile(projectile, projectileSpeed, 100f);
-            gameObject.GetComponent<Character>().buffManager.AddBuff(new Slow(0.4f, 0.3f, false));
+
+            //Slow movespeed to simulate some kind of channeling
+            gameObject.GetComponent<Character>().AddBuff(new Slow(0.4f, 0.3f, false));
         }
         
     }

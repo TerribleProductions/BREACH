@@ -21,11 +21,11 @@ public class Slow : Buff {
     public void Apply(Character target)
     {
         originalSpeed = target.moveSpeed;
-        target.moveSpeed *= slowPercent;
+        target.MultiplyMovespeed(slowPercent);
     }
 
     public void Unapply(Character target)
     {
-        target.moveSpeed *= 1 / slowPercent;
+        target.MultiplyMovespeed(1 / slowPercent);
     }
 }

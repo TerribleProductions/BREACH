@@ -23,8 +23,8 @@ public class DoubleTapEffect : AbilityEffect {
             if (enemyChar != null)
             {
                 Debug.Log(enemyChar);
-                enemyChar.buffManager.AddBuff(buff);
-                enemyChar.hp -= 50;
+                enemyChar.AddBuff(buff);
+                enemyChar.DamageCharacter(50);
                
             }
             Destroy(gameObject);
