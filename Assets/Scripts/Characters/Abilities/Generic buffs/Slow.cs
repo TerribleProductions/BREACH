@@ -9,11 +9,13 @@ public class Slow : Buff {
     public float duration {
         get; set;
     }
+    public bool stackable{get; set;}
 
-    public Slow(float slowPercent, float duration)
+    public Slow(float slowPercent, float duration, bool stackable)
     {
         this.duration = duration;
         this.slowPercent = slowPercent;
+        this.stackable = stackable;
     }
 
     public void Apply(Character target)

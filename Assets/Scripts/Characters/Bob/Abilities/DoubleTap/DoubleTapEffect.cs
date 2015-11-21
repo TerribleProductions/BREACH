@@ -7,7 +7,7 @@ public class DoubleTapEffect : AbilityEffect {
     {
         get
         {
-            return new Slow(0.7f, 2);
+            return new Slow(0.7f, 2, true);
         }
     }
 

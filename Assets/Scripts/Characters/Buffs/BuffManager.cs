@@ -16,8 +16,26 @@ public class BuffManager {
 
     public void AddBuff(Buff buff)
     {
+        
+
+        if (buffs.Contains(buff))
+        {
+            if (buff.stackable)
+            {
+                buff.Apply(self); //Apply the effect of the buff again since it stacks;
+            }
+            else
+            {
+                buffs.Remove(buff); //refresh duration of buff
+            }
+        }
+        else
+        {
+            buff.Apply(self);
+        }
         buffs.Add(buff);
-        buff.Apply(self);
+
+
     }
 
     //Update buffs per frame

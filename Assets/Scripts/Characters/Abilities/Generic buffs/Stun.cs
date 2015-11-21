@@ -10,6 +10,7 @@ public class Stun : Buff
     {
         get; set;
     }
+    public bool stackable { get; set; }
 
     private StateEffect stunState {
         get
@@ -18,9 +19,10 @@ public class Stun : Buff
         }
     }
 
-    public Stun(float duration)
+    public Stun(float duration, bool stackable)
     {
         this.duration = duration;
+        this.stackable = stackable;
     }
 
     public void Apply(Character target)
