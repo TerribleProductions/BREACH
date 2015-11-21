@@ -23,7 +23,7 @@ public abstract class Character : MonoBehaviour {
     public Vector3 movementVector { get; set; }
     public Rigidbody playerRigidbody { get; set; }
 
-    protected StateManager stateManager { get; set; }
+    public StateManager stateManager { get; private set; }
     public  BuffManager buffManager { get; set; }
 
     protected ControlInterface controller { get; set; }

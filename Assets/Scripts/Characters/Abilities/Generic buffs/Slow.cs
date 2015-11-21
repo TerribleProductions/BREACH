@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class DoubleTapSlow : Buff {
+public class Slow : Buff {
 
     public float slowPercent = 0.7f; //So 30% slow
     public float originalSpeed;
@@ -10,9 +10,10 @@ public class DoubleTapSlow : Buff {
         get; set;
     }
 
-    public DoubleTapSlow()
+    public Slow(float slowPercent, float duration)
     {
-        duration = 3f;
+        this.duration = duration;
+        this.slowPercent = slowPercent;
     }
 
     public void Apply(Character target)
