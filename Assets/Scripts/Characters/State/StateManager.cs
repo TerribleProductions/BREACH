@@ -46,6 +46,10 @@ public class StateManager{
         //Ignore states without duration
         if(currentState.duration == Mathf.Infinity)
         {
+            if(currentState.callback != null)
+            {
+                currentState.callback();
+            }
             return;
         }
 

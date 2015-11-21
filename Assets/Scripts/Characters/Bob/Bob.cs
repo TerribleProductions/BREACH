@@ -21,7 +21,6 @@ public class Bob : Character {
 	// Update is called once per frame
 	void FixedUpdate () {
         //Not sure if order matters here.
-        Debug.Log(buffManager.buffs);
         stateManager.Update(Time.deltaTime);
         buffManager.Update(Time.deltaTime);
         moveInput();

@@ -17,6 +17,7 @@ public static class CharacterState
         MOVING,
         PRE_ATTACK, 
         BASIC_ATTACK,
+        CHANNELING,
         SPECIAL_ATTACK,
         IMMOBILE,
         INACTIVE,

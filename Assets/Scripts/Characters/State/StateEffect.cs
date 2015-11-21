@@ -78,6 +78,11 @@ public class StateEffect
         this.nextState = tailStates;
     }
 
+    public StateEffect(CharacterState.States state, Callback callback) : this(state, 0f, callback)
+    {
+
+    }
+
     public static StateEffect operator +(StateEffect a, StateEffect b)
     {
         return new StateEffect(a, b);
