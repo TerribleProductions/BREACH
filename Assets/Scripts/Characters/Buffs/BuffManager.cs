@@ -52,6 +52,7 @@ public class BuffManager {
             buff.duration -= deltaTime;
         }
 
+        //The new list list is there because casting will throw an exception, and "as" defaults to null, while this defaults to the empty list.
         var finishedBuffs = new List<Buff>(buffs.Where(buff =>
         {
             return buff.duration < 0;

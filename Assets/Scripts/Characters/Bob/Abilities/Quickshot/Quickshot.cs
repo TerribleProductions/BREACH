@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Quickshot : ProjectileAbility {
 
+    public override float energyCost { get; set; }
+
     public override StateEffect stateChain
     {
         get

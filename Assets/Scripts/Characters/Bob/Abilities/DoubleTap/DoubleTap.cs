@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class DoubleTap : ProjectileAbility {
 
     float timer;
     float doubleTapInterval = 0.1f;
+    public override float energyCost { get; set; }
 
     public override StateEffect stateChain { get
         {
@@ -20,7 +22,7 @@ public class DoubleTap : ProjectileAbility {
     void Awake () {
         cooldown = 0.5f;
         windup = 0.2f;
-        globalCooldown = 1f;
+        energyCost = 40f;
         name = "Double Tap";
         description = "Shoots 2 bullets yo";
         //The time before you are allowed to move, in this case after second bullet fires.

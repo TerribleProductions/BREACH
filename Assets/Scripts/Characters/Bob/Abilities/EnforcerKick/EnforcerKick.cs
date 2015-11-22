@@ -4,8 +4,13 @@ using System;
 
 public class EnforcerKick : MeleeAbility {
 
-	// Use this for initialization
-	void Start () {
+    public override float energyCost
+    {
+        get; set;
+    }
+
+    // Use this for initialization
+    void Start () {
         area = 1f;
         range = transform.forward;
 	}

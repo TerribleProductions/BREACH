@@ -9,6 +9,10 @@ public class Bob : Character {
         base.Awake();
         moveSpeed = 15f;
 
+        maxEnergy = 100;
+        energy = maxEnergy;
+        energyRegeneration = 20f;
+
         var mainAbility = gameObject.AddComponent<DoubleTap>();
         var secondaryAbility = gameObject.AddComponent<Quickshot>();
         var defensiveAbility = gameObject.AddComponent<EnforcerKick > ();
@@ -25,5 +29,6 @@ public class Bob : Character {
         buffManager.Update(Time.deltaTime);
         moveInput();
         abilityInput();
+        RegenEnergy();
 	}
 }

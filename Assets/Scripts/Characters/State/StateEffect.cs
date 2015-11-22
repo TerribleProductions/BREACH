@@ -78,7 +78,7 @@ public class StateEffect
         this.nextState = tailStates;
     }
 
-    public StateEffect(CharacterState.States state, Callback callback) : this(state, 0f, callback)
+    public StateEffect(CharacterState.States state, Callback callback) : this(state, Mathf.Infinity, callback)
     {
 
     }
