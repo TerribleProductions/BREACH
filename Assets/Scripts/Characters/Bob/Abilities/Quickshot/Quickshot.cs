@@ -10,7 +10,7 @@ public class Quickshot : ProjectileAbility {
         get
         {
             //Always return a new chain in case it was mutated
-            var preAttackState = new StateEffect(CharacterState.States.SPECIAL_ATTACK, windup, Cast);
+            var preAttackState = new StateEffect(CharacterState.SPECIAL_ATTACK, windup, null, Cast, null);
 
             return preAttackState;
         }

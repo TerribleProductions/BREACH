@@ -16,7 +16,7 @@ public class Stun : Buff
     private StateEffect stunState {
         get
         {
-            return new StateEffect(CharacterState.States.INACTIVE, duration);
+            return new StateEffect(CharacterState.INACTIVE, duration);
         }
     }
 

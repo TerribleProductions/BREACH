@@ -13,7 +13,7 @@ public class RapidFire : ProjectileAbility {
         get
         {
             //Always return a new chain in case it was mutated
-            var attackState = new StateEffect(CharacterState.States.CHANNELING, Mathf.Infinity, null, Cast, null);
+            var attackState = new StateEffect(CharacterState.CHANNELING, Mathf.Infinity, null, Cast, null);
             return attackState;
         }
     }
@@ -39,7 +39,7 @@ public class RapidFire : ProjectileAbility {
     {
         Debug.Log("Button released");
         //This is kinda iffy, should try to avoid this coupling somehow.
-        gameObject.GetComponent<Character>().stateManager.SetNeutralState();
+        gameObject.GetComponent<Character>().SetState(CharacterState.neutralStateEffect);
     }
 
     public override void Cast()

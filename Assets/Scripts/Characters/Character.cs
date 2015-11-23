@@ -53,10 +53,10 @@ public abstract class Character : MonoBehaviour {
     #region input
     protected void moveInput()
     {
-        bool isMoving = HasState(CharacterState.States.MOVING);
+        bool isMoving = HasState(CharacterState.MOVING);
         float h = controller.getMovementHorizontal();
         float v = controller.getMovementVertical();
-        if((h != 0 || v != 0) && (SetState(new StateEffect(CharacterState.States.MOVING)) || isMoving || HasState(CharacterState.States.CHANNELING)))
+        if((h != 0 || v != 0) && (SetState(new StateEffect(CharacterState.MOVING, Mathf.Infinity)) || isMoving || HasState(CharacterState.CHANNELING)))
         {
             // Set the movement vector based on the axis input.
             movementVector = new Vector3(h, 0f, v);
@@ -122,7 +122,7 @@ public abstract class Character : MonoBehaviour {
         return stateManager.SetState(state);
     }
 
-    public bool HasState(CharacterState.States state)
+    public bool HasState(State state)
     {
         return stateManager.HasState(state);
     }

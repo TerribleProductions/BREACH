@@ -12,7 +12,7 @@ public class AimMode : Ability
     {
         get
         {
-            return new StateEffect(CharacterState.States.CHANNELING, Mathf.Infinity, null, Cast, null);
+            return new StateEffect(CharacterState.CHANNELING, Mathf.Infinity, null, Cast, null);
         }
     }
 
@@ -26,7 +26,7 @@ public class AimMode : Ability
     public override void TriggerUp()
     {
         aimLine.enabled = false;
-        self.stateManager.SetNeutralState();
+        self.SetState(CharacterState.neutralStateEffect);
     }
 
     public override void Cast()
