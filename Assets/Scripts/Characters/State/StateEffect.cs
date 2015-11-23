@@ -44,10 +44,10 @@ public class StateEffect
     }
 
 
-    public StateEffect(State state2, float duration, Callback preEffect, Callback duringEffect, Callback postEffect)
+    public StateEffect(State state, float duration, Callback preEffect, Callback duringEffect, Callback postEffect)
     {
         
-        this.state = state2;
+        this.state = state;
         this.duration = duration;
         this.preEffect = preEffect;
         this.duringEffect = duringEffect;

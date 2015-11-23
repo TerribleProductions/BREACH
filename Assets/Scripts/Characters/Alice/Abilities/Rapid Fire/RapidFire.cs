@@ -37,7 +37,6 @@ public class RapidFire : ProjectileAbility {
 
     public override void TriggerUp()
     {
-        Debug.Log("Button released");
         //This is kinda iffy, should try to avoid this coupling somehow.
         gameObject.GetComponent<Character>().SetState(CharacterState.neutralStateEffect);
     }

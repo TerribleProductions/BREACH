@@ -10,6 +10,8 @@ public class AimModeBuff : Buff
 
     public override bool stackable { get; set; }
 
+    private Buff aimModeSlow = new Slow(0.4f, Mathf.Infinity, false, "aimModeSlow");
+
     public AimModeBuff()
     {
         buffName = "aimModeBuff";
@@ -21,10 +23,12 @@ public class AimModeBuff : Buff
     public override void Apply(Character target)
     {
         target.GetComponent<AimMode>().aimLine.enabled = true;
+        target.AddBuff(aimModeSlow);
     }
 
     public override void Unapply(Character target)
     {
         target.GetComponent<AimMode>().aimLine.enabled = false;
+        target.RemoveBuff(aimModeSlow);
     }
 }
