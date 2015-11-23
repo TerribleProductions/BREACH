@@ -2353,6 +2353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energy: 0
+  moveSpeed: 0
   regenTick: .5
   regenTimer: 0
   playerNumber: 2

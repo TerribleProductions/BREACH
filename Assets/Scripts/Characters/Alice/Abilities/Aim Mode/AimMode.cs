@@ -5,42 +5,46 @@ using System;
 public class AimMode : Ability
 {
     public override float energyCost { get; set; }
-    private LineRenderer aimLine;
+    public LineRenderer aimLine;
     Character self;
+    AimModeBuff buff;
 
     public override StateEffect stateChain
     {
         get
         {
-            return new StateEffect(CharacterState.CHANNELING, Mathf.Infinity, null, Cast, null);
+            return new StateEffect(CharacterState.NEUTRAL, Mathf.Infinity, null, Cast, null);
         }
     }
 
     public void Awake()
     {
+        buff = new AimModeBuff();
         self = gameObject.GetComponent<Character>();
         aimLine = self.gameObject.AddComponent<LineRenderer>();
         aimLine.enabled = false;
+        aimLine.SetWidth(0.1f, 0.1f);
     }
 
     public override void TriggerUp()
     {
-        aimLine.enabled = false;
-        self.SetState(CharacterState.neutralStateEffect);
+        self.RemoveBuff(buff);
     }
 
     public override void Cast()
     {
-        aimLine.enabled = true;
-        self.AddBuff(new Slow(0.5f, 0.5f, false, "aimModeSlow"));
+        self.AddBuff(buff);
     }
 
-    public void Update()
+    void Update()
     {
         if (aimLine.enabled)
         {
             var startPos = self.transform.position;
-            var endPos = self.transform.forward * 40;
+            startPos.y = 1.2f;
+            var endPos = startPos + self.transform.forward * 20;
+            endPos.y = 1.2f;
+            Debug.Log(endPos);
             aimLine.SetPosition(0, startPos);
             aimLine.SetPosition(1, endPos);
         }

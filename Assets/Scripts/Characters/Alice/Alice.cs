@@ -15,7 +15,6 @@ public class Alice : Character {
         energy = maxEnergy;
         energyRegeneration = 20f;
         
-
         var mainAbility = gameObject.AddComponent<RapidFire>();
         var secondaryAbility = gameObject.AddComponent<AimMode>();
         controller = new ControlInterface(playerNumber);

@@ -117,6 +117,11 @@ public abstract class Character : MonoBehaviour {
         buffManager.AddBuff(buff);
     }
 
+    public void RemoveBuff(Buff buff)
+    {
+        buffManager.RemoveBuff(buff);
+    }
+
     public bool SetState(StateEffect state)
     {
         return stateManager.SetState(state);

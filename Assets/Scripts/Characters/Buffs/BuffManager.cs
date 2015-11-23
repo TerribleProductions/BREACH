@@ -65,4 +65,9 @@ public class BuffManager {
         buffs = new List<Buff>(buffs.Except(finishedBuffs));
     }
 
+    public bool RemoveBuff(Buff buff)
+    {
+        return buffs.Remove(buff);
+    }
+
 }
