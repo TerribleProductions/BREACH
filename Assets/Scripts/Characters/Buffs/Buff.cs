@@ -1,12 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-public interface Buff {
+public abstract class Buff : IEquatable<Buff>
+{
 
-    float duration { get; set; }
+    public abstract string buffName { get; set; }
+    public abstract float duration { get; set; }
 
-    bool stackable { get; set; }
+    public abstract bool stackable { get; set; }
 
-    void Apply(Character target);
-    void Unapply(Character target);
+    public abstract void Apply(Character target);
+
+    public bool Equals(Buff other)
+    {
+        return this.buffName.Equals(other.buffName);
+    }
+
+    public abstract void Unapply(Character target);
+
 }

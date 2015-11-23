@@ -17,7 +17,6 @@ public class BuffManager {
     public void AddBuff(Buff buff)
     {
         
-
         if (buffs.Contains(buff))
         {
             if (buff.stackable)
@@ -34,7 +33,6 @@ public class BuffManager {
             buff.Apply(self);
         }
         buffs.Add(buff);
-
 
     }
 

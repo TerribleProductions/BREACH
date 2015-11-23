@@ -6,26 +6,30 @@ public class Slow : Buff {
 
     public float slowPercent = 0.7f; //So 30% slow
     public float originalSpeed;
-    public float duration {
+    public override float duration {
         get; set;
     }
-    public bool stackable{get; set;}
 
-    public Slow(float slowPercent, float duration, bool stackable)
+    public override string buffName { get; set; }
+    public override bool stackable{get; set;}
+
+    public Slow(float slowPercent, float duration, bool stackable, string name)
     {
         this.duration = duration;
         this.slowPercent = slowPercent;
         this.stackable = stackable;
+        this.buffName = name;
     }
 
-    public void Apply(Character target)
+    public override void Apply(Character target)
     {
         originalSpeed = target.moveSpeed;
         target.MultiplyMovespeed(slowPercent);
     }
 
-    public void Unapply(Character target)
+    public override void Unapply(Character target)
     {
         target.MultiplyMovespeed(1 / slowPercent);
     }
+
 }

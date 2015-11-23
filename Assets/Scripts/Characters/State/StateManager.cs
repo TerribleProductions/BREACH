@@ -32,9 +32,20 @@ public class StateManager{
         if (canStateBeSet)
         {
             currentState = state;
+            //Exececute effect that is at start of state.
+            ExecuteEffect(currentState.preEffect);
+            
             setFloatText();
         }
         return canStateBeSet;
+    }
+
+    private void ExecuteEffect(StateEffect.Callback effect)
+    {
+        if(effect != null)
+        {
+            effect();
+        }
     }
 
     /// <summary>
@@ -46,10 +57,7 @@ public class StateManager{
         //Ignore states without duration
         if(currentState.duration == Mathf.Infinity)
         {
-            if(currentState.callback != null)
-            {
-                currentState.callback();
-            }
+            ExecuteEffect(currentState.duringEffect);
             return;
         }
 
@@ -60,10 +68,7 @@ public class StateManager{
         }
         else
         {
-            if(currentState.callback != null)
-            {
-                currentState.callback();
-            }
+            ExecuteEffect(currentState.postEffect);
             var nextState = currentState.nextState;
             if (nextState != null)
             {

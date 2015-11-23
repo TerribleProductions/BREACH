@@ -13,19 +13,19 @@ public class RapidFire : ProjectileAbility {
         get
         {
             //Always return a new chain in case it was mutated
-            var attackState = new StateEffect(CharacterState.States.CHANNELING, Cast);
+            var attackState = new StateEffect(CharacterState.States.CHANNELING, Mathf.Infinity, null, Cast, null);
             return attackState;
         }
     }
     void Awake()
     {
-        cooldown = 0.1f;
+        cooldown = 0.125f;
         timer = cooldown;
 
         energyCost = 10f;
 
         projectile = (Resources.Load("Characters/Alice/Abilities/RapidFire/RapidFireProjectile") as GameObject).GetComponent<Rigidbody>();
-        projectileSpeed = 40f;
+        projectileSpeed = 30f;
     }
 
     void FixedUpdate()
@@ -34,10 +34,6 @@ public class RapidFire : ProjectileAbility {
         timer -= Time.deltaTime;
     }
 
-    public void TriggerDown()
-    {
-        Cast();
-    }
 
     public override void TriggerUp()
     {
@@ -56,7 +52,7 @@ public class RapidFire : ProjectileAbility {
             spawnProjectile(projectile, projectileSpeed, 100f);
 
             //Slow movespeed to simulate some kind of channeling
-            gameObject.GetComponent<Character>().AddBuff(new Slow(0.4f, 0.3f, false));
+            gameObject.GetComponent<Character>().AddBuff(new Slow(0.4f, cooldown*2, false, "rapidFireSlow"));
         }
         
     }

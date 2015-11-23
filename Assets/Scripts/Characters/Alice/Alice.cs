@@ -5,6 +5,7 @@ public class Alice : Character {
 
     public int playerNumber = 1;
 
+
     // Use this for initialization
     protected override void Awake()
     {
@@ -15,8 +16,8 @@ public class Alice : Character {
         energyRegeneration = 20f;
         
 
-        var mainAbility = gameObject.AddComponent<RapidFire>();
-        var secondaryAbility = gameObject.AddComponent<Quickshot>();
+        var mainAbility = gameObject.AddComponent<AimMode>();
+        var secondaryAbility = gameObject.AddComponent<RapidFire>();
         controller = new ControlInterface(playerNumber);
 
         abilities = new CharAbilities(mainAbility, secondaryAbility, null);

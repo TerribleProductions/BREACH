@@ -21,7 +21,7 @@ public abstract class Character : MonoBehaviour {
     public float energy;
     public float energyRegeneration { get; set; }
     public float maxEnergy { get; set; }
-    public float moveSpeed { get; set; }
+    public float moveSpeed;
     #endregion
 
     public float regenTick = 0.5f;
@@ -83,7 +83,7 @@ public abstract class Character : MonoBehaviour {
                 if (SetState(abilities.mainAbility.stateChain))
                 {
                     //This is a design issue, energy will be drained here for now
-                    SapEnergy(abilities.mainAbility.energyCost);
+                    //SapEnergy(abilities.mainAbility.energyCost);
                 }
                 
             }

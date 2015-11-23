@@ -9,7 +9,9 @@ public class StateEffect
 
     public delegate void Callback();
 
-    public Callback callback = null;
+    public Callback postEffect = null;
+    public Callback duringEffect = null;
+    public Callback preEffect = null;
 
     public StateEffect nextState = null;
     public CharacterState.States state{ get; private set; }
@@ -43,9 +45,9 @@ public class StateEffect
     /// <param name="state">Primite state</param>
     /// <param name="duration">Duration of state.</param>
     /// <param name="callback">Function to be called at end of state</param>
-    public StateEffect(CharacterState.States state, float duration, Callback callback) : this(state, duration)
+    public StateEffect(CharacterState.States state, float duration, Callback postEffect) : this(state, duration)
     {
-        this.callback = callback;
+        this.postEffect = postEffect;
     }
     /// <summary>
     /// Constructs a new statechain of in sequence a,b
@@ -56,7 +58,7 @@ public class StateEffect
     {
         this.state = a.state;
         this.duration = a.duration;
-        this.callback = a.callback;
+        this.postEffect = a.postEffect;
         this.nextState = b;
     }
     /// <summary>
@@ -74,13 +76,23 @@ public class StateEffect
         });
         this.state = head.state;
         this.duration = head.duration;
-        this.callback = head.callback;
+        this.postEffect = head.postEffect;
         this.nextState = tailStates;
     }
 
-    public StateEffect(CharacterState.States state, Callback callback) : this(state, Mathf.Infinity, callback)
+    public StateEffect(CharacterState.States state, Callback postEffect) : this(state, Mathf.Infinity, postEffect)
     {
 
+    }
+
+    public StateEffect(CharacterState.States state, float duration, Callback postEffect, Callback duringEffect) : this(state, duration, postEffect)
+    {
+        this.duringEffect = duringEffect;
+    }
+
+    public StateEffect(CharacterState.States state, float duration, Callback preEffect, Callback duringEffect, Callback postEffect) : this(state, duration, preEffect, duringEffect)
+    {
+        this.postEffect = postEffect;
     }
 
     public static StateEffect operator +(StateEffect a, StateEffect b)
