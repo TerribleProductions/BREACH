@@ -70,6 +70,19 @@ public class BuffManager {
         return buffs.Remove(buff);
     }
 
+    public void RemoveDebuffs()
+    {
+        var debuffs = buffs.Where(buff =>
+        {
+            return buff.debuff;
+        });
+        foreach(Buff debuff in debuffs)
+        {
+            debuff.Unapply(self);
+        }
+        buffs = new List<Buff>(buffs.Except(debuffs));
+    }
+
     public bool HasBuff(Buff buff)
     {
         return buffs.Contains(buff);

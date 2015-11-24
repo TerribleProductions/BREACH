@@ -7,7 +7,10 @@ public class AimModeBuff : Buff
     public override string buffName { get; set; }
 
     public override float duration { get; set; }
-
+    public override bool debuff { get
+        {
+            return false;
+        } }
     public override bool stackable { get; set; }
 
     private Buff aimModeSlow = new Slow(0.4f, Mathf.Infinity, false, "aimModeSlow");

@@ -10,6 +10,13 @@ public class Stun : Buff
     {
         get; set;
     }
+    public override bool debuff
+    {
+        get
+        {
+            return false;
+        }
+    }
     public override bool stackable { get; set; }
     public override string buffName { get; set; }
 

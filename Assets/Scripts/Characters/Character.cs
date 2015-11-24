@@ -110,6 +110,11 @@ public abstract class Character : MonoBehaviour {
 
     #region Mutators
 
+    public void ClearAllDebuffs()
+    {
+        buffManager.RemoveDebuffs();
+    }
+
     public void DamageCharacter(float amount)
     {
         hp -= amount;

@@ -9,7 +9,13 @@ public class Slow : Buff {
     public override float duration {
         get; set;
     }
-
+    public override bool debuff
+    {
+        get
+        {
+            return true;
+        }
+    }
     public override string buffName { get; set; }
     public override bool stackable{get; set;}
 
