@@ -73,6 +73,19 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
+    protected void Turn()
+    {
+        float h = controller.getLookHorizontal();
+        float v = controller.getLookVertical();
+
+        Vector3 newDirection = Vector3.Normalize(new Vector3(h, 0.0f, v));
+
+        if (!controller.equalsZero(newDirection))
+        {
+            transform.forward = newDirection;
+        }
+    }
+
     protected void abilityInput()
     {
         

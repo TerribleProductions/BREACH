@@ -28,5 +28,6 @@ public class Bob : Character {
         moveInput();
         abilityInput();
         RegenEnergy();
+        Turn();
 	}
 }

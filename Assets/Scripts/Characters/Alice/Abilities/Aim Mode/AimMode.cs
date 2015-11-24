@@ -17,8 +17,9 @@ public class AimMode : Ability
         }
     }
 
-    public void Awake()
+    void Awake()
     {
+        base.Init();
         buff = new AimModeBuff();
         self = gameObject.GetComponent<Character>();
         aimLine = self.gameObject.AddComponent<LineRenderer>();

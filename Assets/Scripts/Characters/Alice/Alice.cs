@@ -14,7 +14,7 @@ public class Alice : Character {
         energyRegeneration = 20f;
         
         var mainAbility = gameObject.AddComponent<RapidFire>();
-        var secondaryAbility = gameObject.AddComponent<Reflect>();
+        var secondaryAbility = gameObject.AddComponent<AimMode>();
         controller = new ControlInterface(playerNumber);
 
         abilities = new CharAbilities(mainAbility, secondaryAbility, null);
@@ -30,5 +30,6 @@ public class Alice : Character {
         buffManager.Update(Time.deltaTime);
         moveInput();
         abilityInput();
+        Turn();
     }
 }
