@@ -29,6 +29,7 @@ public class Slow : Buff {
 
     public override void Unapply(Character target)
     {
+        //This is wrong
         target.MultiplyMovespeed(1 / slowPercent);
     }
 

@@ -12,8 +12,9 @@ public class DoubleTapEffect : AbilityEffect {
     }
 
 
-    void OnTriggerEnter(Collider collider)
+    void OnCollisionEnter(Collision collision)
     {
+        var collider = collision.collider;
         var enemyChar = GetHitCharacter(collider);
         if (enemyChar != null)
         {

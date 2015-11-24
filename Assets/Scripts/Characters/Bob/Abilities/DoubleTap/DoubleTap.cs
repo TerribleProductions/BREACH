@@ -52,3 +52,4 @@ public class DoubleTap : ProjectileAbility {
         spawnProjectile(projectile, projectileSpeed, projectileRange);
     }
 }
+    

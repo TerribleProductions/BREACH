@@ -23,6 +23,10 @@ public abstract class Ability : MonoBehaviour {
         Cast();
     }
 
+    public void Init()
+    {
+        abilityOwner = gameObject.GetComponent<Character>();
+    }
 
     public abstract void Cast();
     public void CastIfPossible()

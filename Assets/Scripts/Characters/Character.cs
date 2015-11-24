@@ -16,7 +16,7 @@ public abstract class Character : MonoBehaviour {
         public Ability defensiveAbility;
     }
     #region resources
-    public float hp { get; set; }
+    public float hp;
     public float maxHp { get; set; }
     public float energy;
     public float energyRegeneration { get; set; }

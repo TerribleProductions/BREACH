@@ -8,8 +8,11 @@ public abstract class AbilityEffect : MonoBehaviour{
 
     public Character GetHitCharacter(Collider collider)
     {
-        //TODO: Fix this
         var enemy = collider.gameObject;
+        if(enemy.layer == 9)
+        {
+            return null;
+        }
         Character enemyChar = null;
         if (enemy != null)
         {
