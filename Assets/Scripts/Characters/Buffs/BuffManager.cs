@@ -70,4 +70,9 @@ public class BuffManager {
         return buffs.Remove(buff);
     }
 
+    public bool HasBuff(Buff buff)
+    {
+        return buffs.Contains(buff);
+    }
+
 }

@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 public abstract class Ability : MonoBehaviour {
     //TODO: Clean up variables to only the necessary ones
-    public float cooldown { get; set; }
+    protected float cooldown;
     public string abilityName { get; set;} 
     public string description { get; set; }
-    public float castTime { get; set; }
+    public Character abilityOwner { get; set; }
     public virtual StateEffect stateChain { get; set; }
     public float windup { get; set; }
 
@@ -23,10 +23,20 @@ public abstract class Ability : MonoBehaviour {
         Cast();
     }
 
+
     public abstract void Cast();
+    public void CastIfPossible()
+    {
+        if (abilityOwner.CanSetState(stateChain))
+        {
+            if (abilityOwner.CanSapEnergy(energyCost))
+            {
+                abilityOwner.SetState(stateChain); //Since this is within one frame there shouldnt be any race conditions....
+            }
+        }
+    }
 
-    
 
-	
-	
+
+
 }

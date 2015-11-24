@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class Bob : Character {
-    //Unity cant serialize abstract classes so this is a temporary solution to this. Only this variable needs to be exposed, so its not a prio to fix.
-    public int playerNumber = 1;
 	// Use this for initialization
 	protected override void  Awake () {
         base.Awake();

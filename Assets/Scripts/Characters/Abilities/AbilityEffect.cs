@@ -4,6 +4,19 @@ using System.Collections;
 public abstract class AbilityEffect : MonoBehaviour{
 
     public GameObject owner;
-    public abstract Buff buff {get;  }
-	
+
+
+    public Character GetHitCharacter(Collider collider)
+    {
+        //TODO: Fix this
+        var enemy = collider.gameObject;
+        Character enemyChar = null;
+        if (enemy != null)
+        {
+            enemyChar = enemy.GetComponent<Character>();
+        }
+        Destroy(gameObject);
+        return enemyChar;
+    }
+
 }

@@ -4,14 +4,20 @@ using System;
 
 public class RapidFireEffect : AbilityEffect
 {
-    public override Buff buff
+
+    public float damage = 10f;
+
+
+    //TODO: Add collision code here
+    void OnTriggerEnter(Collider collider)
     {
-        get
+        var enemyChar = GetHitCharacter(collider);
+        if(enemyChar != null)
         {
-            throw new NotImplementedException();
+            enemyChar.DamageCharacter(damage);
         }
     }
 
-    //TODO: Add collision code here
+
 }
 

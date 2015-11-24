@@ -25,6 +25,8 @@ public class DoubleTap : ProjectileAbility {
         energyCost = 40f;
         name = "Double Tap";
         description = "Shoots 2 bullets yo";
+
+        abilityOwner = gameObject.GetComponent<Character>();
         //The time before you are allowed to move, in this case after second bullet fires.
         float totalStopTime = windup + doubleTapInterval;
 
@@ -36,8 +38,11 @@ public class DoubleTap : ProjectileAbility {
 
     public override void Cast()
     {
-        //this is probably dumb
-        StartCoroutine(shoot());
+        if (abilityOwner.SapEnergy(energyCost))
+        {
+            StartCoroutine(shoot());
+        }
+        
     }
 
     private IEnumerator shoot()
@@ -46,6 +51,4 @@ public class DoubleTap : ProjectileAbility {
         yield return new WaitForSeconds(doubleTapInterval);
         spawnProjectile(projectile, projectileSpeed, projectileRange);
     }
-
-
 }

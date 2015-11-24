@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Quickshot : ProjectileAbility {
 
@@ -31,5 +32,5 @@ public class Quickshot : ProjectileAbility {
     {
         spawnProjectile(projectile, projectileSpeed, projectileRange);
     }
-	
+
 }

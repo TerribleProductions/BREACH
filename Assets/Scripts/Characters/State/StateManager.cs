@@ -34,6 +34,11 @@ public class StateManager{
         return canStateBeSet;
     }
 
+    public bool CanSetState(StateEffect stateEffect)
+    {
+        return stateEffect.state.HasPrecedence(currentStateEffect.state);
+    }
+
     private void ExecuteEffect(StateEffect.Callback effect)
     {
         if(effect != null)

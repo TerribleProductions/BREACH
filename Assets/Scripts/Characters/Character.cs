@@ -27,7 +27,7 @@ public abstract class Character : MonoBehaviour {
     public float regenTick = 0.5f;
     public float regenTimer;
 
-    public int playerNumber { get; set; }
+    public int playerNumber;
     public Vector3 movementVector { get; set; }
     public Rigidbody playerRigidbody { get; set; }
 
@@ -75,22 +75,13 @@ public abstract class Character : MonoBehaviour {
 
     protected void abilityInput()
     {
-
+        
         if (controller.getFire())
         {
-            if(energy >= abilities.mainAbility.energyCost)
-            {
-                if (SetState(abilities.mainAbility.stateChain))
-                {
-                    //This is a design issue, energy will be drained here for now
-                    //SapEnergy(abilities.mainAbility.energyCost);
-                }
-                
-            }
+            abilities.mainAbility.CastIfPossible();
             
         }
 
-        //fix this shit
         if(controller.getFireUp())
         {
             abilities.mainAbility.TriggerUp();
@@ -98,8 +89,7 @@ public abstract class Character : MonoBehaviour {
         }
         if (controller.getFire2())
         {
-            SetState(abilities.secondaryAbility.stateChain);
-
+            abilities.secondaryAbility.CastIfPossible();
         }
         //TODO: Add code for other buttons here
     }
@@ -127,22 +117,26 @@ public abstract class Character : MonoBehaviour {
         return stateManager.SetState(state);
     }
 
-    public bool HasState(State state)
-    {
-        return stateManager.HasState(state);
-    }
 
-    public void SapEnergy(float amount)
+
+    public bool SapEnergy(float amount)
     {
-        energy -= amount;
+        float newEnergy = energy - amount;
+        if(newEnergy >= 0)
+        {
+            energy = newEnergy;
+            return true;
+        }
+        return false;
     }
     /// <summary>
     /// Regenerates energyRegeneration amount. Should be called every x tick?
     /// </summary>
     public void RegenEnergy()
     {
-        if(energy == maxEnergy)
+        if(energy >= maxEnergy)
         {
+            energy = maxEnergy;
             return;
         }
         if(regenTimer <= 0)
@@ -164,6 +158,28 @@ public abstract class Character : MonoBehaviour {
         moveSpeed *= amount;
     }
 
+    #endregion
+
+    #region getters
+    public bool HasState(State state)
+    {
+        return stateManager.HasState(state);
+    }
+
+    public bool HasBuff(Buff buff)
+    {
+        return buffManager.HasBuff(buff);
+    }
+
+    public bool CanSetState(StateEffect state)
+    {
+        return stateManager.CanSetState(state);
+    }
+
+    public bool CanSapEnergy(float amount)
+    {
+        return amount <= energy;
+    }
     #endregion
 
 }

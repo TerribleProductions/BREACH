@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DoubleTapEffect : AbilityEffect {
 
-    public override Buff buff
+    public Buff buff
     {
         get
         {
@@ -14,21 +14,12 @@ public class DoubleTapEffect : AbilityEffect {
 
     void OnTriggerEnter(Collider collider)
     {
-        //TODO: Fix this
-        var enemy = collider.gameObject;
-        if (enemy != null) { 
-            var enemyChar = enemy.GetComponent<Character>();
-            
-            Debug.Log(enemyChar);
-            if (enemyChar != null)
-            {
-                Debug.Log(enemyChar);
-                enemyChar.AddBuff(buff);
-                enemyChar.DamageCharacter(50);
-               
-            }
-            Destroy(gameObject);
+        var enemyChar = GetHitCharacter(collider);
+        if (enemyChar != null)
+        {
+            enemyChar.AddBuff(buff);
+            enemyChar.DamageCharacter(50);
         }
-
     }
+
 }
