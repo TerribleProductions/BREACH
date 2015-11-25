@@ -5,22 +5,17 @@ using System.Collections.Generic;
 public abstract class Ability : MonoBehaviour {
     //TODO: Clean up variables to only the necessary ones
     protected float cooldown;
-    public string abilityName { get; set;} 
-    public string description { get; set; }
+    public abstract string abilityName { get; set; } 
+    public abstract  string description { get; set; }
     public Character abilityOwner { get; set; }
-    public virtual StateEffect stateChain { get; set; }
-    public float windup { get; set; }
+    public abstract StateEffect stateChain { get; }
+    public abstract float windup { get; set; }
 
     public abstract float energyCost { get; set; }
 
     public virtual void TriggerUp()
     {
         return;
-    }
-
-    public void TriggerDown()
-    {
-        Cast();
     }
 
     public void Init()

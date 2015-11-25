@@ -17,6 +17,20 @@ public class AimMode : Ability
         }
     }
 
+    public override string abilityName
+    {
+        get; set;
+    }
+    public override string description
+    {
+        get; set;
+    }
+
+    public override float windup
+    {
+        get; set;
+    }
+
     void Awake()
     {
         base.Init();

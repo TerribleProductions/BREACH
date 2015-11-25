@@ -21,6 +21,22 @@ public class RapidFire : ProjectileAbility {
             return attackState;
         }
     }
+
+    public override string abilityName
+    {
+        get; set;
+    }
+
+    public override string description
+    {
+        get; set;
+    }
+
+    public override float windup
+    {
+        get; set;
+    }
+
     void Awake()
     {
         cooldown = 0.125f;

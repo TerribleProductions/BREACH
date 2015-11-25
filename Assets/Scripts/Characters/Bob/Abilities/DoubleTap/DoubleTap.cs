@@ -18,6 +18,21 @@ public class DoubleTap : ProjectileAbility {
             return preAttackState + attackState;
         } }
 
+    public override string abilityName
+    {
+        get; set;
+    }
+
+    public override string description
+    {
+        get; set;
+    }
+
+    public override float windup
+    {
+        get; set;
+    }
+
     // Use this for initialization
     void Awake () {
         cooldown = 0.5f;

@@ -9,6 +9,29 @@ public class EnforcerKick : MeleeAbility {
         get; set;
     }
 
+    public override string abilityName
+    {
+        get; set;
+    }
+
+    public override string description
+    {
+        get; set;
+    }
+
+    public override StateEffect stateChain
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public override float windup
+    {
+        get; set;
+    }
+
     // Use this for initialization
     void Start () {
         area = 1f;

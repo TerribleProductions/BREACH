@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System;
 
 public class Reflect : Ability
 {
@@ -18,6 +19,21 @@ public class Reflect : Ability
             return new StateEffect(CharacterState.CHANNELING, 1f, Cast, null, TriggerUp);
         }
 
+    }
+
+    public override string abilityName
+    {
+        get; set;
+    }
+
+    public override string description
+    {
+        get; set;
+    }
+
+    public override float windup
+    {
+        get; set;
     }
 
     public override void Cast()

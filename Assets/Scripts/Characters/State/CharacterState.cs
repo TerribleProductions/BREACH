@@ -44,9 +44,6 @@ public static class CharacterState
 
     public static StateEffect neutralStateEffect = new StateEffect(NEUTRAL, Mathf.Infinity, null, null, null);
 
-    /// <summary>
-    /// The ordering of this enum decides precedence of the state
-    /// </summary>
     public enum States
     {
         NEUTRAL,

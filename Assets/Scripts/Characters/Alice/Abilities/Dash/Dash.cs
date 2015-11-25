@@ -5,7 +5,10 @@ using System;
 public class Dash : MovementAbility {
 
 
-    public override float energyCost { get; set; }
+    public override float energyCost
+    {
+        get; set;
+    }
     public override float maxRange
     {
         get
@@ -20,11 +23,21 @@ public class Dash : MovementAbility {
         {
             return new StateEffect(CharacterState.SPECIAL_ATTACK, 0.05f, null, null, Cast);
         }
+    }
 
-        set
-        {
-            base.stateChain = value;
-        }
+    public override string abilityName
+    {
+        get; set;
+    }
+
+    public override string description
+    {
+        get; set;
+    }
+
+    public override float windup
+    {
+        get; set;
     }
 
     // Use this for initialization

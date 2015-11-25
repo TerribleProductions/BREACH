@@ -5,7 +5,6 @@ public abstract class AbilityEffect : MonoBehaviour{
 
     public GameObject owner;
 
-
     public Character GetHitCharacter(Collider collider)
     {
         var enemy = collider.gameObject;

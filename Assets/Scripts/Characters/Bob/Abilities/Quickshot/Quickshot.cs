@@ -17,6 +17,21 @@ public class Quickshot : ProjectileAbility {
         }
     }
 
+    public override string abilityName
+    {
+        get; set;
+    }
+
+    public override string description
+    {
+        get; set;
+    }
+
+    public override float windup
+    {
+        get; set;
+    }
+
     // Use this for initialization
     void Start () {
         windup = 0.1f;
