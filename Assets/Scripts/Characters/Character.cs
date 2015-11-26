@@ -1,5 +1,6 @@
-﻿    using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour {
 
@@ -31,6 +32,9 @@ public abstract class Character : MonoBehaviour {
 
     public float moveSpeedMultiplier { get; set; }
     #endregion
+
+	public Slider healthSlider;
+	public Slider energySlider;
 
     public float regenTick = 0.5f;
     public float regenTimer;
@@ -159,6 +163,7 @@ public abstract class Character : MonoBehaviour {
         if(newEnergy >= 0)
         {
             energy = newEnergy;
+			energySlider.value = energy;
             return true;
         }
         return false;
@@ -184,7 +189,8 @@ public abstract class Character : MonoBehaviour {
             regenTimer = regenTick;
         }
         regenTimer -= Time.deltaTime;
-        
+
+		energySlider.value = energy;
     }
 
     public void MultiplyMovespeed(float amount)
