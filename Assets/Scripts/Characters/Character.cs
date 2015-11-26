@@ -116,6 +116,7 @@ public abstract class Character : MonoBehaviour {
         
         if (controllerInterface.getFire())
         {
+            Debug.Log("Getting " + playerNumber + " fire bumper");
             abilities.mainAbility.CastIfPossible();
             isUp = false;
             
@@ -138,6 +139,7 @@ public abstract class Character : MonoBehaviour {
         }
         if (controllerInterface.getAbility())
         {
+            
             abilities.defensiveAbility.CastIfPossible();
         }
         if (controllerInterface.getAbilitySecondary())
