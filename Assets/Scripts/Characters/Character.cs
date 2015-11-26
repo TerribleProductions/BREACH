@@ -116,18 +116,19 @@ public abstract class Character : MonoBehaviour {
         
         if (controllerInterface.getFire())
         {
-            abilities.mainAbility.CastIfPossible();
             isUp = false;
-            
+            abilities.mainAbility.CastIfPossible();
+
         }
-        if(controllerInterface.getFireUp() && !isUp)
+        Debug.Log(controllerInterface.getFire() );
+        if (!controllerInterface.getFire() && !isUp)
         {
             abilities.mainAbility.TriggerUp();
             isUp = true;
         }
         if (controllerInterface.getFireSecondaryUp() && !secIsUp)
         {
-            isUp = true;
+            secIsUp = true;
             abilities.secondaryAbility.TriggerUp();
         }
         if (controllerInterface.getFireSecondary())
