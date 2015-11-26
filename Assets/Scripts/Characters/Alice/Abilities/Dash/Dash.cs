@@ -13,7 +13,7 @@ public class Dash : MovementAbility {
     {
         get
         {
-            return 2f;
+            return 8f;
         }
     }
 
