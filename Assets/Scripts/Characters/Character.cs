@@ -58,6 +58,7 @@ public abstract class Character : MonoBehaviour {
         bool isMoving = HasState(CharacterState.MOVING);
         float h = controllerInterface.getMovementHorizontal();
         float v = controllerInterface.getMovementVertical();
+
         if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING)))
         {
             if (!HasState(CharacterState.MOVING))
@@ -68,7 +69,7 @@ public abstract class Character : MonoBehaviour {
             movementVector = new Vector3(h, 0f, v);
 
             // Normalise the movement vector and make it proportional to the speed per second.
-            movementVector = movementVector.normalized * moveSpeed * Time.deltaTime;
+            movementVector = movementVector * moveSpeed * Time.deltaTime;
 
             // Move the player to it's current position plus the movement.
             playerRigidbody.MovePosition(transform.position + movementVector);
