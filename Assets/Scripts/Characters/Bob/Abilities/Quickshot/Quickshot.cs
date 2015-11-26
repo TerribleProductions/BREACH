@@ -11,7 +11,7 @@ public class Quickshot : ProjectileAbility {
         get
         {
             //Always return a new chain in case it was mutated
-            var preAttackState = new StateEffect(CharacterState.SPECIAL_ATTACK, windup, null, Cast, null);
+            var preAttackState = new StateEffect(CharacterState.SPECIAL_ATTACK, windup, null, null, Cast);
 
             return preAttackState;
         }
@@ -33,10 +33,12 @@ public class Quickshot : ProjectileAbility {
     }
 
     // Use this for initialization
-    void Start () {
-        windup = 0.1f;
+    void Awake () {
+        Init();
+        windup = 0.2f;
         name = "QuickShot";
         description = "Shoots 1 bullet yo";
+        energyCost = 60f;
 
         projectile = (Resources.Load("Characters/Bob/Abilities/Quickshot/QuickshotProjectile") as GameObject).GetComponent<Rigidbody>();
         projectileSpeed = 150f;
@@ -45,7 +47,11 @@ public class Quickshot : ProjectileAbility {
 
     public override void Cast()
     {
-        spawnProjectile(projectile, projectileSpeed, projectileRange);
+        if (abilityOwner.SapEnergy(energyCost))
+        {
+            spawnProjectile(projectile, projectileSpeed, projectileRange);
+        }
+        
     }
 
 }
