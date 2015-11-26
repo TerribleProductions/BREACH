@@ -18,7 +18,9 @@ public class Cleanse : Ability
 
     public override StateEffect stateChain
     {
-		return new StateEffect(CharacterState.SPECIAL_ATTACK, windup, null, null, Cast);
+		get {
+			return new StateEffect (CharacterState.SPECIAL_ATTACK, windup, null, null, Cast);
+		}
     }
 
     public override float windup
