@@ -34,7 +34,7 @@ public class AimMode : Ability
     void Awake()
     {
         base.Init();
-        buff = new Slow(0.4f, Mathf.Infinity, false, "aimModeSlow");
+        buff = new AimModeBuff();
         self = gameObject.GetComponent<Character>();
         aimLine = self.gameObject.AddComponent<LineRenderer>();
         aimLine.enabled = false;
