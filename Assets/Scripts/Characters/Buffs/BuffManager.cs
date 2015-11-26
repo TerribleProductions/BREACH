@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class BuffManager {
 
@@ -10,7 +11,6 @@ public class BuffManager {
     public BuffManager(Character self)
     {
         buffs = new List<Buff>();
-        Debug.Log(buffs);
         this.self = self;
     }
 
@@ -24,7 +24,7 @@ public class BuffManager {
                 buff.Apply(self); //Apply the effect of the buff again since it stacks;
             }
             else
-            {
+            { 
                 buffs.Remove(buff); //refresh duration of buff
             }
         }
@@ -32,6 +32,7 @@ public class BuffManager {
         {
             buff.Apply(self);
         }
+
         buffs.Add(buff);
 
     }
@@ -44,19 +45,24 @@ public class BuffManager {
             return;
         }
 
+        for(int i = 0; i < buffs.Count; i++)
+        {
+            Debug.Log(i + " " + buffs[i].duration);
+        }
+
 
         foreach(Buff buff in buffs)
         {
             buff.duration -= deltaTime;
         }
 
-        //The new list list is there because casting will throw an exception, and "as" defaults to null, while this defaults to the empty list.
-        var finishedBuffs = new List<Buff>(buffs.Where(buff =>
+        var finishedBuffs = buffs.Where(buff =>
         {
-            return buff.duration < 0;
-        }));
+            return buff.duration <= 0;
+        });
 
-        foreach(var finishedBuff in finishedBuffs)
+
+        foreach(Buff finishedBuff in finishedBuffs)
         {
             finishedBuff.Unapply(self);
         }

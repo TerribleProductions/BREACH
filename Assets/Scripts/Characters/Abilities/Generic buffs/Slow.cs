@@ -5,7 +5,6 @@ using System;
 public class Slow : Buff {
 
     public float slowPercent = 0.7f; //So 30% slow
-    public float originalSpeed;
     public override float duration {
         get; set;
     }
@@ -29,13 +28,12 @@ public class Slow : Buff {
 
     public override void Apply(Character target)
     {
-        originalSpeed = target.moveSpeed;
         target.MultiplyMovespeed(slowPercent);
     }
 
     public override void Unapply(Character target)
     {
-        //This is wrong
+        Debug.Log(target.moveSpeedMultiplier);
         target.MultiplyMovespeed(1 / slowPercent);
     }
 

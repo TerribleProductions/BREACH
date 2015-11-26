@@ -15,7 +15,7 @@ public abstract class Buff : IEquatable<Buff>
 
     public bool Equals(Buff other)
     {
-        return this.buffName.Equals(other.buffName);
+        return this.buffName.Equals(other.buffName) && this.duration == other.duration;
     }
 
     public abstract void Unapply(Character target);

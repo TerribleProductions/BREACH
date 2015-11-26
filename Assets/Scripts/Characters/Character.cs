@@ -18,10 +18,18 @@ public abstract class Character : MonoBehaviour {
     #region resources
     public float hp;
     public float maxHp { get; set; }
-    public float energy;
+    public float energy
+    {
+        get; set;
+    }
     public float energyRegeneration { get; set; }
     public float maxEnergy { get; set; }
-    public float moveSpeed;
+    public float moveSpeed
+    {
+        get; set;
+    }
+
+    public float moveSpeedMultiplier { get; set; }
     #endregion
 
     public float regenTick = 0.5f;
@@ -49,6 +57,8 @@ public abstract class Character : MonoBehaviour {
         playerRigidbody = GetComponent<Rigidbody>();
         controllerInterface = new ControlInterface(playerNumber);
 
+        moveSpeedMultiplier = 1f;
+
         regenTimer = regenTick;
     }
 
@@ -58,7 +68,6 @@ public abstract class Character : MonoBehaviour {
         bool isMoving = HasState(CharacterState.MOVING);
         float h = controllerInterface.getMovementHorizontal();
         float v = controllerInterface.getMovementVertical();
-
         if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING)))
         {
             if (!HasState(CharacterState.MOVING))
@@ -69,7 +78,7 @@ public abstract class Character : MonoBehaviour {
             movementVector = new Vector3(h, 0f, v);
 
             // Normalise the movement vector and make it proportional to the speed per second.
-            movementVector = movementVector * moveSpeed * Time.deltaTime;
+            movementVector = movementVector.normalized * moveSpeed  * moveSpeedMultiplier * Time.deltaTime;
 
             // Move the player to it's current position plus the movement.
             playerRigidbody.MovePosition(transform.position + movementVector);
@@ -84,7 +93,7 @@ public abstract class Character : MonoBehaviour {
     {
         float h = controllerInterface.getLookHorizontal();
         float v = controllerInterface.getLookVertical();
-
+            
         Vector3 newDirection = Vector3.Normalize(new Vector3(h, 0.0f, v));
 
         if (!controllerInterface.equalsZero(newDirection))
@@ -180,7 +189,7 @@ public abstract class Character : MonoBehaviour {
 
     public void MultiplyMovespeed(float amount)
     {
-        moveSpeed *= amount;
+        moveSpeedMultiplier *= amount;
     }
 
     #endregion
