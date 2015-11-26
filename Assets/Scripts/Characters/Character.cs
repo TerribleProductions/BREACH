@@ -36,7 +36,7 @@ public abstract class Character : MonoBehaviour {
     public StateManager stateManager { get; private set; }
     public  BuffManager buffManager { get; set; }
 
-    protected ControlInterface controller { get; set; }
+    protected ControlInterface controllerInterface { get; set; }
     protected CharAbilities abilities { get; set; }
 
 
@@ -47,7 +47,7 @@ public abstract class Character : MonoBehaviour {
         buffManager = new BuffManager(this);
         stateManager.SetNeutralState();
         playerRigidbody = GetComponent<Rigidbody>();
-        controller = new ControlInterface(playerNumber);
+        controllerInterface = new ControlInterface(playerNumber);
 
         regenTimer = regenTick;
     }
@@ -56,8 +56,8 @@ public abstract class Character : MonoBehaviour {
     protected void moveInput()
     {
         bool isMoving = HasState(CharacterState.MOVING);
-        float h = controller.getMovementHorizontal();
-        float v = controller.getMovementVertical();
+        float h = controllerInterface.getMovementHorizontal();
+        float v = controllerInterface.getMovementVertical();
         if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING)))
         {
             if (!HasState(CharacterState.MOVING))
@@ -81,12 +81,12 @@ public abstract class Character : MonoBehaviour {
 
     protected void Turn()
     {
-        float h = controller.getLookHorizontal();
-        float v = controller.getLookVertical();
+        float h = controllerInterface.getLookHorizontal();
+        float v = controllerInterface.getLookVertical();
 
         Vector3 newDirection = Vector3.Normalize(new Vector3(h, 0.0f, v));
 
-        if (!controller.equalsZero(newDirection))
+        if (!controllerInterface.equalsZero(newDirection))
         {
             transform.forward = newDirection;
         }
@@ -95,18 +95,18 @@ public abstract class Character : MonoBehaviour {
     protected void abilityInput()
     {
         
-        if (controller.getFire())
+        if (controllerInterface.getFire())
         {
             abilities.mainAbility.CastIfPossible();
             
         }
 
-        if(controller.getFireUp())
+        if(controllerInterface.getFireUp())
         {
             abilities.mainAbility.TriggerUp();
             
         }
-        if (controller.getFire2())
+        if (controllerInterface.getFireSecondary())
         {
             abilities.secondaryAbility.CastIfPossible();
         }

@@ -15,11 +15,9 @@ public class Alice : Character {
         
         var mainAbility = gameObject.AddComponent<RapidFire>();
         var secondaryAbility = gameObject.AddComponent<Cleanse>();
-        controller = new ControlInterface(playerNumber);
 
         abilities = new CharAbilities(mainAbility, secondaryAbility, null);
     }
-
 
     // Update is called once per frame
     void FixedUpdate()

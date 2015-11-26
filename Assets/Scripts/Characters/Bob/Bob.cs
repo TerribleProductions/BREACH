@@ -14,7 +14,6 @@ public class Bob : Character {
         var mainAbility = gameObject.AddComponent<DoubleTap>();
         var secondaryAbility = gameObject.AddComponent<Quickshot>();
         var defensiveAbility = gameObject.AddComponent<EnforcerKick > ();
-        controller = new ControlInterface(playerNumber);
 
         abilities = new CharAbilities(mainAbility, secondaryAbility, defensiveAbility);
 	}
