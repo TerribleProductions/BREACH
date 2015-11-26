@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoubleTapEffect : MonoBehaviour {
+public class DoubleTapEffect : AbilityEffect {
 
-    public GameObject owner { get; set; }
-    void OnTriggerEnter(Collider collider)
+    public Buff buff
     {
-        
-        var enemy = collider.gameObject;
-        if (enemy != null && !enemy.name.Equals(owner.name) && !enemy.name.Equals("Floor") )
+        get
         {
-            var enemyChar = enemy.GetComponent<Character>();
-            //enemyChar.hp -= 50;
-            Destroy(gameObject);
+            return new Slow(0.7f, 2, true, "doubleTapSlow");
         }
-        
     }
-	
-	// Update is called once per frame
-	void Update () {
 
-        //Do stuff to player in here, like damage and adding buff to self.
 
-        
-	
-	}
+    void OnCollisionEnter(Collision collision)
+    {
+        var collider = collision.collider;
+        var enemyChar = GetHitCharacter(collider);
+        if (enemyChar != null)
+        {
+            enemyChar.AddBuff(buff);
+            enemyChar.DamageCharacter(50);
+        }
+    }
+
 }
