@@ -53,6 +53,15 @@ public class AimMode : Ability
         aimLine.enabled = true;
     }
 
+    public override void CastIfPossible()
+    {
+        if (!abilityOwner.HasBuff(buff))
+        {
+            base.CastIfPossible();
+        }
+        
+    }
+
     void Update()
     {
         if (aimLine.enabled)

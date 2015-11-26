@@ -116,12 +116,12 @@ public abstract class Character : MonoBehaviour {
         
         if (controllerInterface.getFire())
         {
-            Debug.Log("Getting " + playerNumber + " fire bumper");
             abilities.mainAbility.CastIfPossible();
             isUp = false;
+            Debug.Log("hello");
             
         }
-
+        Debug.Log("RIGHT TRIGGER INPUT: "+Input.GetAxisRaw("joystick 1 10th axis"));
         if(controllerInterface.getFireUp() && !isUp)
         {
             abilities.mainAbility.TriggerUp();

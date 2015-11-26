@@ -117,50 +117,53 @@ public class GamepadInterface {
 	public bool isRightStickClicked() {
 		return (Input.GetButton(playerId + " button 9"));
 	}
-	
-	
-	/* TRIGGERS */
-	
+
+
+    /* TRIGGERS */
+
+    string leftTriggerAxis = " 9th axis";
+    string rightTriggerAxis = " 10th axis";
+
 	// Returns the value of the left trigger axis
 	public float getLeftTrigger() {
-		return Input.GetAxisRaw(playerId + " 3rd axis");
+		return Input.GetAxisRaw(playerId + leftTriggerAxis);
 	}
 	
 	// Returns whether the left trigger is pressed
 	public bool isLeftTriggerPressed() {
-		return (Input.GetAxisRaw(playerId + " 3rd axis") < -axisDeadzone);
+		return getLeftTrigger() < -axisDeadzone;
 	}
 
 
 	
 	// Returns whether the left trigger is only soft pressed
 	public bool isLeftTriggerSoftPressed() {
-		return (Input.GetAxisRaw(playerId + " 3rd axis") > axisDeadzone && Input.GetAxisRaw(playerId + " 3rd axis") < triggerHardPressTreshhold);
+		return getLeftTrigger() > axisDeadzone && getLeftTrigger() < triggerHardPressTreshhold;
 	}
 	
 	// Returns whether the left trigger is only hard pressed
 	public bool isLeftTriggerHardPressed() {
-		return (Input.GetAxisRaw(playerId + " 3rd axis") > triggerHardPressTreshhold);
+        return getLeftTrigger() > triggerHardPressTreshhold;
 	}
 	
 	// Returns the value of the right trigger axis
 	public float getRightTrigger() {
-		return -Input.GetAxisRaw(playerId + " 3rd axis");
+		return -Input.GetAxisRaw(playerId + rightTriggerAxis);
 	}
 	
 	// Returns whether the right trigger is pressed
 	public bool isRightTriggerPressed() {
-		return (Input.GetAxisRaw(playerId + " 3rd axis") > axisDeadzone);
+		return getRightTrigger() > axisDeadzone;
 	}
 	
 	// Returns whether the right trigger is only soft pressed
 	public bool isRightTriggerSoftPressed() {
-		return (Input.GetAxisRaw(playerId + " 3rd axis") < -axisDeadzone && Input.GetAxisRaw(playerId + " 3rd axis") > -triggerHardPressTreshhold);
+		return getRightTrigger() < -axisDeadzone && getRightTrigger() > -triggerHardPressTreshhold;
 	}
 	
 	// Returns whether the right trigger is only hard pressed
 	public bool isRightTriggerHardPressed() {
-		return (Input.GetAxisRaw(playerId + " 3rd axis") < -triggerHardPressTreshhold);
+		return getRightTrigger() < -triggerHardPressTreshhold;
 	}
 	
 	

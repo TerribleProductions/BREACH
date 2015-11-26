@@ -45,10 +45,6 @@ public class BuffManager {
             return;
         }
 
-        for(int i = 0; i < buffs.Count; i++)
-        {
-            Debug.Log(i + " " + buffs[i].duration);
-        }
 
 
         foreach(Buff buff in buffs)

@@ -2590,7 +2590,7 @@ MonoBehaviour:
   energySlider: {fileID: 1139716729}
   regenTick: .5
   regenTimer: 0
-  playerNumber: 2
+  playerNumber: 1
 --- !u!1 &911121908
 GameObject:
   m_ObjectHideFlags: 0
@@ -4175,6 +4175,10 @@ Prefab:
       propertyPath: energySlider
       value: 
       objectReference: {fileID: 2034336414}
+    - target: {fileID: 11486996, guid: 4e5a0d387dc27394b81600988ad0216f, type: 2}
+      propertyPath: playerNumber
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e5a0d387dc27394b81600988ad0216f, type: 2}
   m_IsPrefabParent: 0
