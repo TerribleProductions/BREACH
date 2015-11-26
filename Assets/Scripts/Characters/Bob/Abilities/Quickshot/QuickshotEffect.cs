@@ -1,17 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class QuickshotEffect : MonoBehaviour {
+public class QuickshotEffect : AbilityEffect {
 
-    //Will do something when it hits a player
+    void OnCollisionEnter(Collision collision)
+    {
+        var enemyChar = GetHitCharacter(collision.collider);
+    }
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

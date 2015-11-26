@@ -130,6 +130,8 @@ public class GamepadInterface {
 	public bool isLeftTriggerPressed() {
 		return (Input.GetAxisRaw(playerId + " 3rd axis") < -axisDeadzone);
 	}
+
+
 	
 	// Returns whether the left trigger is only soft pressed
 	public bool isLeftTriggerSoftPressed() {

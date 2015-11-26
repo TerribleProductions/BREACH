@@ -5,11 +5,10 @@ using System;
 
 public class StateManager{
 
+    //Not sure this is needed
     public Character statefulChar;
 
-    public StateEffect currentState {
-        get; set;
-    }
+    public StateEffect currentStateEffect = CharacterState.neutralStateEffect;
 
     public StateManager(Character c)
     {
@@ -20,21 +19,32 @@ public class StateManager{
     /// </summary>
     /// <param name="state"></param>
     /// <returns>True if state was added, false if not</returns>
-    public bool SetState(StateEffect state)
+    public bool SetState(StateEffect stateEffect)
     {
-        if((int)state.state == 0)
-        {
-            throw new Exception("Cannot assign neutral state from here");
-        }
-
-        bool canStateBeSet = CharacterState.CompareStates(state.state, currentState.state) > 0;
+        Debug.Log(stateEffect.state);
+        var canStateBeSet = stateEffect.state.HasPrecedence(currentStateEffect.state);
         if (canStateBeSet)
         {
-            Debug.Log("Setting state to " + state + "current state "+currentState);
-            currentState = state;
+            currentStateEffect = stateEffect;
+            //Exececute effect that is at start of state.
+            ExecuteEffect(currentStateEffect.preEffect);
+            
             setFloatText();
         }
         return canStateBeSet;
+    }
+
+    public bool CanSetState(StateEffect stateEffect)
+    {
+        return stateEffect.state.HasPrecedence(currentStateEffect.state);
+    }
+
+    private void ExecuteEffect(StateEffect.Callback effect)
+    {
+        if(effect != null)
+        {
+            effect();
+        }
     }
 
     /// <summary>
@@ -44,23 +54,21 @@ public class StateManager{
     public void Update(float deltaTime)
     {
         //Ignore states without duration
-        if(currentState.duration == Mathf.Infinity)
+        if(currentStateEffect.duration == Mathf.Infinity)
         {
+            ExecuteEffect(currentStateEffect.duringEffect);
             return;
         }
 
-        float newDuration = currentState.duration - deltaTime;
+        float newDuration = currentStateEffect.duration - deltaTime;
         if (newDuration > 0)
         {
-            currentState.duration = newDuration;
+            currentStateEffect.duration = newDuration;
         }
         else
         {
-            if(currentState.callback != null)
-            {
-                currentState.callback();
-            }
-            var nextState = currentState.nextState;
+            ExecuteEffect(currentStateEffect.postEffect);
+            var nextState = currentStateEffect.nextState;
             if (nextState != null)
             {
                 //This does not allow for arbitrary precedence in state chains. Can be changed by allowing bypass in SetState
@@ -78,25 +86,22 @@ public class StateManager{
     private void setFloatText()
     {
         
-        if(statefulChar != null && currentState != null)
+        if(statefulChar != null && currentStateEffect != null)
         {
-            statefulChar.gameObject.GetComponent<TextMesh>().text = currentState.ToString();
+            statefulChar.gameObject.GetComponent<TextMesh>().text = currentStateEffect.ToString();
         }
         
     }
 
     public void SetNeutralState()
     {
-        Debug.Log("Setting neutral state");
-        currentState = CharacterState.neutralState;
-        setFloatText();
+        SetState(CharacterState.neutralStateEffect);
     }
 
 
-    public bool HasState(CharacterState.States state)
+    public bool HasState(State state)
     {
-        int a = CharacterState.CompareStates(state, currentState.state);
-        return  a == 0;
+        return currentStateEffect.state.Equals(state);
     }
 
 
