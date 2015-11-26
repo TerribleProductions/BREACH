@@ -25,13 +25,11 @@ public class AimModeBuff : Buff
 
     public override void Apply(Character target)
     {
-        target.GetComponent<AimMode>().aimLine.enabled = true;
         target.AddBuff(aimModeSlow);
     }
 
     public override void Unapply(Character target)
     {
-        target.GetComponent<AimMode>().aimLine.enabled = false;
         target.RemoveBuff(aimModeSlow);
     }
 }

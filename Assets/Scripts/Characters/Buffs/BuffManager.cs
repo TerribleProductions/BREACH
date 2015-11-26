@@ -73,7 +73,12 @@ public class BuffManager {
 
     public bool RemoveBuff(Buff buff)
     {
-        return buffs.Remove(buff);
+        var removed = buffs.Remove(buff);
+        if (removed)
+        {
+            buff.Unapply(self);
+        }
+        return removed;
     }
 
     public void RemoveDebuffs()

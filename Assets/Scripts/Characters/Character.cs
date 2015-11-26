@@ -6,15 +6,17 @@ public abstract class Character : MonoBehaviour {
 
     public struct CharAbilities
     {
-        public CharAbilities(Ability mainAbility, Ability secondaryAbility, Ability defensiveAbility)
+        public CharAbilities(Ability mainAbility, Ability secondaryAbility, Ability defensiveAbility, Ability movementAbility)
         {
             this.mainAbility = mainAbility;
             this.secondaryAbility = secondaryAbility;
             this.defensiveAbility = defensiveAbility;
+            this.movementAbility = movementAbility;
         }
         public Ability mainAbility;
         public Ability secondaryAbility;
         public Ability defensiveAbility;
+        public Ability movementAbility;
     }
     #region resources
     public float hp;
@@ -106,23 +108,41 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
+    bool isUp = false;
+    bool secIsUp = false;
+
     protected void abilityInput()
     {
         
         if (controllerInterface.getFire())
         {
             abilities.mainAbility.CastIfPossible();
+            isUp = false;
             
         }
 
-        if(controllerInterface.getFireUp())
+        if(controllerInterface.getFireUp() && !isUp)
         {
             abilities.mainAbility.TriggerUp();
-            
+            isUp = true;
+        }
+        if (controllerInterface.getFireSecondaryUp() && !secIsUp)
+        {
+            isUp = true;
+            abilities.secondaryAbility.TriggerUp();
         }
         if (controllerInterface.getFireSecondary())
         {
             abilities.secondaryAbility.CastIfPossible();
+            secIsUp = false;
+        }
+        if (controllerInterface.getAbility())
+        {
+            abilities.defensiveAbility.CastIfPossible();
+        }
+        if (controllerInterface.getAbilitySecondary())
+        {
+            abilities.movementAbility.CastIfPossible();
         }
         //TODO: Add code for other buttons here
     }

@@ -40,10 +40,13 @@ public class Dash : MovementAbility {
         get; set;
     }
 
+    
+
     // Use this for initialization
     void Awake () {
         energyCost = 50f;
         abilityOwner = gameObject.GetComponent<Character>();
+        
 	}
 	
 

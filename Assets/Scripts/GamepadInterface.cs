@@ -211,6 +211,7 @@ public class GamepadInterface {
 	
 	// Returns whether the left bumper is pressed
 	public bool isLeftBumperPressed() {
+        
 		return Input.GetButton(playerId + " button 4");
 	}
 	

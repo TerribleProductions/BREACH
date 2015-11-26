@@ -7,13 +7,13 @@ public class AimMode : Ability
     public override float energyCost { get; set; }
     public LineRenderer aimLine;
     Character self;
-    AimModeBuff buff;
+    Buff buff;
 
     public override StateEffect stateChain
     {
         get
         {
-            return new StateEffect(CharacterState.NEUTRAL, Mathf.Infinity, null, Cast, null);
+            return new StateEffect(CharacterState.NEUTRAL, Mathf.Infinity, Cast, null, null);
         }
     }
 
@@ -34,7 +34,7 @@ public class AimMode : Ability
     void Awake()
     {
         base.Init();
-        buff = new AimModeBuff();
+        buff = new Slow(0.4f, Mathf.Infinity, false, "aimModeSlow");
         self = gameObject.GetComponent<Character>();
         aimLine = self.gameObject.AddComponent<LineRenderer>();
         aimLine.enabled = false;
@@ -44,11 +44,13 @@ public class AimMode : Ability
     public override void TriggerUp()
     {
         self.RemoveBuff(buff);
+        aimLine.enabled = false;
     }
 
     public override void Cast()
     {
         self.AddBuff(buff);
+        aimLine.enabled = true;
     }
 
     void Update()
@@ -59,7 +61,6 @@ public class AimMode : Ability
             startPos.y = 1.1f; //Otherwise ray is rendered beneath the floor sometimes
             var endPos = startPos + self.transform.forward * 20;
             endPos.y = 1.1f;
-            Debug.Log(endPos);
             aimLine.SetPosition(0, startPos);
             aimLine.SetPosition(1, endPos);
         }
