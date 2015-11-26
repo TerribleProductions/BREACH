@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class KeyboardInterface {
@@ -32,7 +32,7 @@ public class KeyboardInterface {
 		return Input.GetButton(playerId + " fire");
 	}
 
-    public bool getFire2()
+    public bool getFireSecondary()
     {
         return Input.GetButton(playerId + " fire2");
     }

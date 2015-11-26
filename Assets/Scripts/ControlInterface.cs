@@ -61,14 +61,14 @@ public class ControlInterface {
 		return (gamepadInterface.isRightTriggerPressed () || keyboardInterface.getFire ());
 	}
 
-    public bool getFire2()
+    public bool getFireSecondary()
     {
-        return (gamepadInterface.isLeftTriggerPressed() || keyboardInterface.getFire2());
+        return (gamepadInterface.isLeftTriggerPressed() || keyboardInterface.getFireSecondary());
     }
 
     public bool getFireUp()
     {
-        return keyboardInterface.getFireUp();
+		return (keyboardInterface.getFireUp() || !gamepadInterface.isRightTriggerPressed ());
     }
 
 	public bool equalsZero(float f) {
