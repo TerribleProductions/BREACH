@@ -68,7 +68,7 @@ public class ControlInterface {
 
     public bool getFireUp()
     {
-		return (keyboardInterface.getFireUp() || !gamepadInterface.isRightTriggerPressed ());
+		return (keyboardInterface.getFireUp() || (!gamepadInterface.isRightTriggerPressed () && !keyboardInterface.getFire ()));
     }
 
 	public bool equalsZero(float f) {
