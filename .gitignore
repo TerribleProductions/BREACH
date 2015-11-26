@@ -32,3 +32,7 @@ obj/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Unity builds
+BREACH.exe
+BREACH_Data/
