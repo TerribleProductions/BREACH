@@ -45,10 +45,6 @@ public class BuffManager {
             return;
         }
 
-        for(int i = 0; i < buffs.Count; i++)
-        {
-            Debug.Log(i + " " + buffs[i].duration);
-        }
 
 
         foreach(Buff buff in buffs)
@@ -73,7 +69,12 @@ public class BuffManager {
 
     public bool RemoveBuff(Buff buff)
     {
-        return buffs.Remove(buff);
+        var removed = buffs.Remove(buff);
+        if (removed)
+        {
+            buff.Unapply(self);
+        }
+        return removed;
     }
 
     public void RemoveDebuffs()

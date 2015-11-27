@@ -71,7 +71,12 @@ public class ControlInterface {
 		return (keyboardInterface.getFireUp() || (!gamepadInterface.isRightTriggerPressed () && !keyboardInterface.getFire ()));
     }
 
-	public bool getAbility() {
+    public bool getFireSecondaryUp()
+    {
+        return (keyboardInterface.getFireUp2() || (!gamepadInterface.isLeftTriggerPressed() && !keyboardInterface.getFireSecondary()));
+    }
+
+    public bool getAbility() {
 		return (gamepadInterface.isLeftBumperPressed () || keyboardInterface.getAbility ());
 	}
 
