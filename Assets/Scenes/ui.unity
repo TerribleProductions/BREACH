@@ -2375,6 +2375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
+  energy: 0
   healthSlider: {fileID: 1598718556}
   energySlider: {fileID: 1873263205}
   regenTick: .5
