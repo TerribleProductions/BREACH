@@ -21,10 +21,7 @@ public abstract class Character : MonoBehaviour {
     #region resources
     public float hp;
     public float maxHp { get; set; }
-    public float energy
-    {
-        get; set;
-    }
+    public float energy;
     public float energyRegeneration { get; set; }
     public float maxEnergy { get; set; }
     public float moveSpeed
@@ -38,7 +35,7 @@ public abstract class Character : MonoBehaviour {
 	public Slider healthSlider;
 	public Slider energySlider;
 
-    public float regenTick = 0.5f;
+    public float regenTick = 0.05f;
     public float regenTimer;
 
     StateEffect moveState = new StateEffect(CharacterState.MOVING, Mathf.Infinity);
@@ -62,7 +59,7 @@ public abstract class Character : MonoBehaviour {
         stateManager.SetNeutralState();
         playerRigidbody = GetComponent<Rigidbody>();
         controllerInterface = new ControlInterface(playerNumber);
-
+        regenTick = 0.05f;
         moveSpeedMultiplier = 1f;
 
         regenTimer = regenTick;
@@ -205,7 +202,7 @@ public abstract class Character : MonoBehaviour {
             {
                 energy = maxEnergy;
             }
-            energy += energyRegeneration;
+            energy += energyRegeneration*regenTick;
             
             regenTimer = regenTick;
         }
