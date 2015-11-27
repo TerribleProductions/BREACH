@@ -21,7 +21,6 @@ public class StateManager{
     /// <returns>True if state was added, false if not</returns>
     public bool SetState(StateEffect stateEffect)
     {
-        Debug.Log(stateEffect.state);
         var canStateBeSet = stateEffect.state.HasPrecedence(currentStateEffect.state);
         if (canStateBeSet)
         {

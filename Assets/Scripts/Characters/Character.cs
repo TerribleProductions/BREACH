@@ -59,7 +59,7 @@ public abstract class Character : MonoBehaviour {
         stateManager.SetNeutralState();
         playerRigidbody = GetComponent<Rigidbody>();
         controllerInterface = new ControlInterface(playerNumber);
-        regenTick = 0.05f;
+        regenTick = 0.2f;
         moveSpeedMultiplier = 1f;
 
         regenTimer = regenTick;
@@ -88,7 +88,11 @@ public abstract class Character : MonoBehaviour {
         }
         else if((h == 0 && v == 0) && isMoving)
         {
-            stateManager.SetNeutralState();
+            if (!HasState(CharacterState.NEUTRAL))
+            {
+                stateManager.SetNeutralState();
+            }
+            
         }
     }
 
@@ -117,7 +121,6 @@ public abstract class Character : MonoBehaviour {
             abilities.mainAbility.CastIfPossible();
 
         }
-        Debug.Log(controllerInterface.getFire() );
         if (!controllerInterface.getFire() && !isUp)
         {
             abilities.mainAbility.TriggerUp();
