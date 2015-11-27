@@ -182,11 +182,107 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
+    m_Name: player 1 fire2
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: left shift
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 1
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: player 2 fire
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: right ctrl
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 1
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: player 2 fire2
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: right shift
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 1
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: player 1 ability
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: q
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 1
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: player 2 ability
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: u
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 1
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: player 1 abilitySecondary
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: e
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 1
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: player 2 abilitySecondary
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: o
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
@@ -590,7 +686,7 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: .00100000005
+    dead: .100000001
     sensitivity: 1
     snap: 0
     invert: 1
@@ -606,7 +702,7 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: .00100000005
+    dead: .100000001
     sensitivity: 1
     snap: 0
     invert: 1
@@ -622,7 +718,7 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: .00100000005
+    dead: .200000003
     sensitivity: 1
     snap: 0
     invert: 1
@@ -638,7 +734,7 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: .00100000005
+    dead: .200000003
     sensitivity: 1
     snap: 0
     invert: 1
@@ -654,7 +750,7 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: .00100000005
+    dead: .200000003
     sensitivity: 1
     snap: 0
     invert: 1
@@ -670,7 +766,7 @@ InputManager:
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
-    dead: .00100000005
+    dead: .200000003
     sensitivity: 1
     snap: 0
     invert: 1

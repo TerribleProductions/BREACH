@@ -61,9 +61,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22456678}
-  - 114: {fileID: 11400004}
   - 54: {fileID: 5400000}
-  - 114: {fileID: 11400002}
   - 136: {fileID: 13600000}
   - 82: {fileID: 8200002}
   - 114: {fileID: 11486996}
@@ -441,37 +439,6 @@ MonoBehaviour:
   range: 100
   faceLight: {fileID: 10800002}
   player: 1
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b2268f9c7df8764aa2e92dbf55b5ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: 1
-  speed: 6
---- !u!114 &11400004
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32067ea884548644b13cf9baddd4573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingHealth: 100
-  currentHealth: 0
-  healthSlider: {fileID: 0}
-  damageImage: {fileID: 0}
-  deathClip: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}
-  flashSpeed: 5
-  flashColour: {r: 1, g: 0, b: 0, a: .0980392173}
 --- !u!114 &11486996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -530,7 +497,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
+  m_Radius: .600000024
   m_Height: 1.20000005
   m_Direction: 1
   m_Center: {x: .200000003, y: .600000024, z: 0}
@@ -1762,6 +1729,10 @@ Prefab:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: a8e97dde7d205ba47bdf7c4730b97d31, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: .600000024
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100006}

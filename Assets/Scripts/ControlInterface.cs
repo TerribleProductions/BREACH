@@ -61,6 +61,24 @@ public class ControlInterface {
 		return (gamepadInterface.isRightTriggerPressed () || keyboardInterface.getFire ());
 	}
 
+    public bool getFireSecondary()
+    {
+        return (gamepadInterface.isLeftTriggerPressed() || keyboardInterface.getFireSecondary());
+    }
+
+    public bool getFireUp()
+    {
+		return (keyboardInterface.getFireUp() || (!gamepadInterface.isRightTriggerPressed () && !keyboardInterface.getFire ()));
+    }
+
+	public bool getAbility() {
+		return (gamepadInterface.isLeftBumperPressed () || keyboardInterface.getAbility ());
+	}
+
+	public bool getAbilitySecondary() {
+		return (gamepadInterface.isRightBumperPressed () || keyboardInterface.getAbilitySecondary ());
+	}
+
 	public bool equalsZero(float f) {
 		if ((Mathf.Abs (f) - epsilon) < 0.0f) {
 			return true;
