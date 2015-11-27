@@ -35,8 +35,6 @@ public abstract class Character : MonoBehaviour {
 	public Slider healthSlider;
 	public Slider energySlider;
 
-    public float regenTick = 0.05f;
-    public float regenTimer;
 
     StateEffect moveState = new StateEffect(CharacterState.MOVING, Mathf.Infinity);
 
@@ -59,10 +57,10 @@ public abstract class Character : MonoBehaviour {
         stateManager.SetNeutralState();
         playerRigidbody = GetComponent<Rigidbody>();
         controllerInterface = new ControlInterface(playerNumber);
-        regenTick = 0.2f;
+        
         moveSpeedMultiplier = 1f;
-
-        regenTimer = regenTick;
+        hp = 100f;
+        
     }
 
     #region input
@@ -71,7 +69,7 @@ public abstract class Character : MonoBehaviour {
         bool isMoving = HasState(CharacterState.MOVING);
         float h = controllerInterface.getMovementHorizontal();
         float v = controllerInterface.getMovementVertical();
-        if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING)))
+        if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING) || HasState(CharacterState.BASIC_ATTACK) ||HasState(CharacterState.PRE_ATTACK)))
         {
             if (!HasState(CharacterState.MOVING))
             {
@@ -159,6 +157,7 @@ public abstract class Character : MonoBehaviour {
     public void DamageCharacter(float amount)
     {
         hp -= amount;
+        healthSlider.value = hp;        
     }
 
     public void AddBuff(Buff buff)
@@ -199,17 +198,12 @@ public abstract class Character : MonoBehaviour {
             energy = maxEnergy;
             return;
         }
-        if(regenTimer <= 0)
+        if (energy > maxEnergy)
         {
-            if (energy > maxEnergy)
-            {
-                energy = maxEnergy;
-            }
-            energy += energyRegeneration*regenTick;
-            
-            regenTimer = regenTick;
+            energy = maxEnergy;
         }
-        regenTimer -= Time.deltaTime;
+        energy += energyRegeneration*Time.deltaTime;
+            
 
 		energySlider.value = energy;
     }

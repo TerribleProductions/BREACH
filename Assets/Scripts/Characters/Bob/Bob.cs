@@ -9,7 +9,7 @@ public class Bob : Character {
 
         maxEnergy = 100;
         energy = maxEnergy;
-        energyRegeneration = 20f;
+        energyRegeneration = 66f;
 
         var mainAbility = gameObject.AddComponent<DoubleTap>();
         var secondaryAbility = gameObject.AddComponent<AimMode>();
