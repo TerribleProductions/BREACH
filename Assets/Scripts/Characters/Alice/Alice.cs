@@ -14,9 +14,11 @@ public class Alice : Character {
         energyRegeneration = 20f;
         
         var mainAbility = gameObject.AddComponent<RapidFire>();
-        var secondaryAbility = gameObject.AddComponent<Cleanse>();
+        var secondaryAbility = gameObject.AddComponent<AimMode>();
+        var movementAbility = gameObject.AddComponent<Dash>();
+        var defensiveAbility = gameObject.AddComponent<Reflect>();
 
-        abilities = new CharAbilities(mainAbility, secondaryAbility, null);
+        abilities = new CharAbilities(mainAbility, secondaryAbility, movementAbility, defensiveAbility);
     }
 
     // Update is called once per frame

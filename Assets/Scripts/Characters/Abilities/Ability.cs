@@ -24,7 +24,7 @@ public abstract class Ability : MonoBehaviour {
     }
 
     public abstract void Cast();
-    public void CastIfPossible()
+    public virtual void CastIfPossible()
     {
         if (abilityOwner.CanSetState(stateChain))
         {

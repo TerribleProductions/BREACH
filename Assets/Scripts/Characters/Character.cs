@@ -6,23 +6,22 @@ public abstract class Character : MonoBehaviour {
 
     public struct CharAbilities
     {
-        public CharAbilities(Ability mainAbility, Ability secondaryAbility, Ability defensiveAbility)
+        public CharAbilities(Ability mainAbility, Ability secondaryAbility, Ability defensiveAbility, Ability movementAbility)
         {
             this.mainAbility = mainAbility;
             this.secondaryAbility = secondaryAbility;
             this.defensiveAbility = defensiveAbility;
+            this.movementAbility = movementAbility;
         }
         public Ability mainAbility;
         public Ability secondaryAbility;
         public Ability defensiveAbility;
+        public Ability movementAbility;
     }
     #region resources
     public float hp;
     public float maxHp { get; set; }
-    public float energy
-    {
-        get; set;
-    }
+    public float energy;
     public float energyRegeneration { get; set; }
     public float maxEnergy { get; set; }
     public float moveSpeed
@@ -36,7 +35,7 @@ public abstract class Character : MonoBehaviour {
 	public Slider healthSlider;
 	public Slider energySlider;
 
-    public float regenTick = 0.5f;
+    public float regenTick = 0.05f;
     public float regenTimer;
 
     StateEffect moveState = new StateEffect(CharacterState.MOVING, Mathf.Infinity);
@@ -60,7 +59,7 @@ public abstract class Character : MonoBehaviour {
         stateManager.SetNeutralState();
         playerRigidbody = GetComponent<Rigidbody>();
         controllerInterface = new ControlInterface(playerNumber);
-
+        regenTick = 0.2f;
         moveSpeedMultiplier = 1f;
 
         regenTimer = regenTick;
@@ -89,7 +88,11 @@ public abstract class Character : MonoBehaviour {
         }
         else if((h == 0 && v == 0) && isMoving)
         {
-            stateManager.SetNeutralState();
+            if (!HasState(CharacterState.NEUTRAL))
+            {
+                stateManager.SetNeutralState();
+            }
+            
         }
     }
 
@@ -106,23 +109,41 @@ public abstract class Character : MonoBehaviour {
         }
     }
 
+    bool isUp = false;
+    bool secIsUp = false;
+
     protected void abilityInput()
     {
         
         if (controllerInterface.getFire())
         {
+            isUp = false;
             abilities.mainAbility.CastIfPossible();
-            
-        }
 
-        if(controllerInterface.getFireUp())
+        }
+        if (!controllerInterface.getFire() && !isUp)
         {
             abilities.mainAbility.TriggerUp();
-            
+            isUp = true;
+        }
+        if (controllerInterface.getFireSecondaryUp() && !secIsUp)
+        {
+            secIsUp = true;
+            abilities.secondaryAbility.TriggerUp();
         }
         if (controllerInterface.getFireSecondary())
         {
             abilities.secondaryAbility.CastIfPossible();
+            secIsUp = false;
+        }
+        if (controllerInterface.getAbility())
+        {
+            
+            abilities.defensiveAbility.CastIfPossible();
+        }
+        if (controllerInterface.getAbilitySecondary())
+        {
+            abilities.movementAbility.CastIfPossible();
         }
         //TODO: Add code for other buttons here
     }
@@ -184,7 +205,7 @@ public abstract class Character : MonoBehaviour {
             {
                 energy = maxEnergy;
             }
-            energy += energyRegeneration;
+            energy += energyRegeneration*regenTick;
             
             regenTimer = regenTick;
         }
