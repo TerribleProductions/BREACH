@@ -12,10 +12,11 @@ public class Bob : Character {
         energyRegeneration = 20f;
 
         var mainAbility = gameObject.AddComponent<DoubleTap>();
-        var secondaryAbility = gameObject.AddComponent<Quickshot>();
-        var defensiveAbility = gameObject.AddComponent<EnforcerKick > ();
+        var secondaryAbility = gameObject.AddComponent<AimMode>();
+        var movementAbility = gameObject.AddComponent<Dash>();
+        var defensiveAbility = gameObject.AddComponent<Quickshot>();
 
-        abilities = new CharAbilities(mainAbility, secondaryAbility, defensiveAbility);
+        abilities = new CharAbilities(mainAbility, secondaryAbility, movementAbility, defensiveAbility);
 	}
 
 	
