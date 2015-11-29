@@ -8,8 +8,8 @@ public class Dash : MovementAbility {
 
 	private Vector3 lastUsePosition;
 	private float timeSinceLastUse;
-	TrailRenderer trailRenderer;
-
+	private TrailRenderer trailRenderer;
+	
 	private float currentTime;
 	private Vector3 direction;
 
@@ -69,13 +69,13 @@ public class Dash : MovementAbility {
     {
         if (abilityOwner.SapEnergy(energyCost))
         {
+			direction = abilityOwner.movementVector;
 			lastUsePosition = abilityOwner.transform.position;
 			timeSinceLastUse = Time.timeSinceLevelLoad;
 
+			// Enable trails
 			trailRenderer.enabled = true;
 
-			direction = abilityOwner.movementVector;
-			
 			if (direction.magnitude < 0.01) {
 				direction = abilityOwner.transform.forward;
 			}
