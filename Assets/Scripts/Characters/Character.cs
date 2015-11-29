@@ -71,14 +71,16 @@ public abstract class Character : MonoBehaviour {
         bool isMoving = HasState(CharacterState.MOVING);
         float h = controllerInterface.getMovementHorizontal();
         float v = controllerInterface.getMovementVertical();
+
+		// Set the movement vector based on the axis input.
+		movementVector = new Vector3(h, 0f, v);
+
         if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING)))
         {
             if (!HasState(CharacterState.MOVING))
             {
                 SetState(moveState);
             }
-            // Set the movement vector based on the axis input.
-            movementVector = new Vector3(h, 0f, v);
 
             // Normalise the movement vector and make it proportional to the speed per second.
             movementVector = movementVector.normalized * moveSpeed  * moveSpeedMultiplier * Time.deltaTime;
