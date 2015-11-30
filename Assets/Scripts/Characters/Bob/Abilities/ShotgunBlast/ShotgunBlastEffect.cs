@@ -5,6 +5,7 @@ public class ShotgunBlastEffect : AbilityEffect {
 
     private float maxRangeInTime;
     private float timer;
+    private float damage = 5f;
 
     void Awake()
     {
@@ -26,7 +27,8 @@ public class ShotgunBlastEffect : AbilityEffect {
         var enemy = GetHitCharacter(collision.collider);
         if(enemy != null)
         {
-            enemy.transform.position -= -transform.forward;
+            enemy.DamageCharacter(damage);
+            //enemy.transform.position -= -transform.forward;
             enemy.AddBuff(new Slow(0.75f, 0.3f, true, "shotgunSlow"));
             Destroy(gameObject);
         }

@@ -4,17 +4,6 @@ using System;
 
 public class Cleanse : Ability
 {
-    public override string abilityName
-    {
-        get; set;
-    }
-
-    public override string description
-    {
-        get; set;
-    }
-
-    public override float energyCost { get; set; }
 
     public override StateEffect stateChain
     {
@@ -23,10 +12,6 @@ public class Cleanse : Ability
 		}
     }
 
-    public override float windup
-    {
-        get; set;
-    }
 
     public override void Cast()
     {

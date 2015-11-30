@@ -4,7 +4,18 @@ using System;
 
 public class Dash : MovementAbility {
 
-	private float movementTime = 0.200f; // Movement time in seconds
+    public override StateEffect stateChain
+    {
+        get
+        {
+            var preState = new StateEffect(CharacterState.PRE_ATTACK, windup, Cast, null, null);
+            var castState = new StateEffect(CharacterState.SPECIAL_ATTACK, movementTime, null, MoveStep, PostEffect);
+
+            return preState + castState;
+        }
+    }
+
+    private float movementTime = 0.200f; // Movement time in seconds
 
 	private Vector3 lastUsePosition;
 	private float timeSinceLastUse;
@@ -12,66 +23,35 @@ public class Dash : MovementAbility {
 	
 	private float currentTime;
 	private Vector3 direction;
+    private Vector3 targetPoint;
+    private float range;
 
 	// Use this for initialization
 	void Awake () {
+        Init();
 		energyCost = 50f;
-		abilityOwner = gameObject.GetComponent<Character>();
 		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();
+
+        range = 8f;
 	}
 
-	void FixedUpdate (){
-		currentTime = Time.timeSinceLevelLoad;
-
-		if ((currentTime - timeSinceLastUse) < movementTime) {
-			MoveDirectionDistance (abilityOwner, maxRange);
-		} else {
-			trailRenderer.enabled = false;
-		}
+	void MoveStep (){
+        Vector3 moveStep = Vector3.MoveTowards(transform.position, targetPoint, range * movementTime);
+        MoveToPoint(abilityOwner, moveStep);
 	}
 
-    public override float energyCost
+    void PostEffect()
     {
-        get; set;
-    }
-    public override float maxRange
-    {
-        get
-        {
-            return 8f;
-        }
-    }
-
-    public override StateEffect stateChain
-    {
-        get
-        {
-            return new StateEffect(CharacterState.SPECIAL_ATTACK, 0.05f, null, null, Cast);
-        }
-    }
-
-    public override string abilityName
-    {
-        get; set;
-    }
-
-    public override string description
-    {
-        get; set;
-    }
-
-    public override float windup
-    {
-        get; set;
+        trailRenderer.enabled = false;
     }
 
 	public override void Cast()
     {
         if (abilityOwner.SapEnergy(energyCost))
         {
-			direction = abilityOwner.movementVector;
-			lastUsePosition = abilityOwner.transform.position;
-			timeSinceLastUse = Time.timeSinceLevelLoad;
+			direction = abilityOwner.movementVector.normalized;
+            Debug.Log(direction);
+            targetPoint = transform.position + direction * range;
 
 			// Enable trails
 			trailRenderer.enabled = true;
@@ -79,16 +59,8 @@ public class Dash : MovementAbility {
 			if (direction.magnitude < 0.01) {
 				direction = abilityOwner.transform.forward;
 			}
-
-            MoveDirectionDistance(abilityOwner, maxRange);
         }
         
     }
-
-	public override void MoveDirectionDistance(Character character, float distance)
-	{
-		float movementPercent = (currentTime - timeSinceLastUse) / movementTime;
-		character.transform.position = lastUsePosition + direction.normalized * distance * movementPercent;
-	}
 
 }

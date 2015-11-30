@@ -53,10 +53,11 @@ public class StateManager{
     /// <param name="deltaTime">Time passed since last update</param>
     public void Update(float deltaTime)
     {
+        ExecuteEffect(currentStateEffect.duringEffect);
         //Ignore states without duration
-        if(currentStateEffect.duration == Mathf.Infinity)
+        if (currentStateEffect.duration == Mathf.Infinity)
         {
-            ExecuteEffect(currentStateEffect.duringEffect);
+            
             return;
         }
 

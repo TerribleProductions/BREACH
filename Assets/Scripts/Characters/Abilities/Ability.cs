@@ -4,14 +4,16 @@ using System.Collections.Generic;
 
 public abstract class Ability : MonoBehaviour {
     //TODO: Clean up variables to only the necessary ones
-    protected float cooldown;
-    public abstract string abilityName { get; set; } 
-    public abstract  string description { get; set; }
-    public Character abilityOwner { get; set; }
+    
     public abstract StateEffect stateChain { get; }
-    public abstract float windup { get; set; }
 
-    public abstract float energyCost { get; set; }
+    protected float cooldown;
+    protected Character abilityOwner;
+    protected float windup;
+
+    public string abilityName;
+    public string description;
+    public float energyCost;
 
     public virtual void TriggerUp()
     {
@@ -26,7 +28,7 @@ public abstract class Ability : MonoBehaviour {
     public abstract void Cast();
     public virtual void CastIfPossible()
     {
-        if (abilityOwner.CanSetState(stateChain))
+         if (abilityOwner.CanSetState(stateChain))
         {
             if (abilityOwner.CanSapEnergy(energyCost))
             {

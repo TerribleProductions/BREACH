@@ -4,11 +4,6 @@ using System;
 using System.Linq;
 
 public class ShotgunBlast : ProjectileAbility {
-    public override string abilityName { get; set; }
-
-    public override string description { get; set; }
-
-    public override float energyCost { get; set; }
 
     public override StateEffect stateChain
     {
@@ -18,12 +13,11 @@ public class ShotgunBlast : ProjectileAbility {
         }
     }
 
-    public override float windup { get; set; }
 
     private int projectileAmount;
     private float speed;
     private Quaternion[] rotations;
-
+    
     void Awake()
     {
         Init();
@@ -41,6 +35,7 @@ public class ShotgunBlast : ProjectileAbility {
         
     public override void Cast()
     {
+        abilityOwner.AddBuff(new Slow(0.4f, 0.25f, false, "shotgunShootSlow"));
         foreach(var rotation in rotations)
         {
             var p = spawnProjectileAngle(projectile, speed, 0, rotation);

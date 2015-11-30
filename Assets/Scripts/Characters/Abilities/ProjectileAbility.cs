@@ -26,7 +26,7 @@ public abstract class ProjectileAbility : Ability {
     {
         var p = spawnProjectile(proj, pSpeed, pRange);
         p.transform.forward = dir * p.transform.forward;
-        Debug.Log(p.transform.forward);
+        Debug.Log(p.transform.forward); 
         p.velocity = p.transform.forward * pSpeed;
         return p;
     }

@@ -22,7 +22,7 @@ namespace CompleteProject
 
         void FixedUpdate ()
         {
-			float minCameraDistance = 7f;
+			float minCameraDistance = 12f;
 
 			// How far the characters are from each other
 			float characterDistance = Vector3.Distance (target.transform.position, target2.transform.position);

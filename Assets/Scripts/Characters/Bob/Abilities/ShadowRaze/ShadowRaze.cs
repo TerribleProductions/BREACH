@@ -3,11 +3,6 @@ using System.Collections;
 using System;
 
 public class ShadowRaze : Ability {
-    public override string abilityName { get; set; }
-
-    public override string description { get; set; }
-
-    public override float energyCost { get; set; }
 
     public override StateEffect stateChain
     {
@@ -17,7 +12,6 @@ public class ShadowRaze : Ability {
         }
     }
 
-    public override float windup { get; set; }
 
     private bool charging;
     private float explosionDuration;

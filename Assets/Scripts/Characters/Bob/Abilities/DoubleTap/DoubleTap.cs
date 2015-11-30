@@ -7,7 +7,6 @@ public class DoubleTap : ProjectileAbility {
 
     float timer;
     float doubleTapInterval = 0.1f;
-    public override float energyCost { get; set; }
 
     public override StateEffect stateChain { get
         {
@@ -16,22 +15,9 @@ public class DoubleTap : ProjectileAbility {
             var attackState = new StateEffect(CharacterState.BASIC_ATTACK, doubleTapInterval, Cast, null, null);
             
             return preAttackState + attackState;
-        } }
-
-    public override string abilityName
-    {
-        get; set;
+        }
     }
 
-    public override string description
-    {
-        get; set;
-    }
-
-    public override float windup
-    {
-        get; set;
-    }
 
     public override void CastIfPossible()
     {

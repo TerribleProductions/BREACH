@@ -4,15 +4,7 @@ using System;
 
 public abstract class MovementAbility : Ability
 {
-    public override abstract float energyCost
-    {
-        get; set;
-    }
-
-    public abstract float maxRange
-    {
-        get;
-    }
+    public float maxRange;
 
     public override abstract void Cast();
 
@@ -21,5 +13,4 @@ public abstract class MovementAbility : Ability
         character.transform.position = point;
     }
 
-	public abstract void MoveDirectionDistance(Character character, float distance);
 }

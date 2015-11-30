@@ -4,7 +4,6 @@ using System;
 
 public class Quickshot : ProjectileAbility {
 
-    public override float energyCost { get; set; }
 
     public override StateEffect stateChain
     {
@@ -17,20 +16,7 @@ public class Quickshot : ProjectileAbility {
         }
     }
 
-    public override string abilityName
-    {
-        get; set;
-    }
 
-    public override string description
-    {
-        get; set;
-    }
-
-    public override float windup
-    {
-        get; set;
-    }
 
     // Use this for initialization
     void Awake () {

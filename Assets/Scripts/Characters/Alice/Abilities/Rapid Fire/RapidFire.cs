@@ -7,8 +7,6 @@ public class RapidFire : ProjectileAbility {
 
     private float timer;
 
-    public override float energyCost { get; set; }
-
     private float aimModeDamageMultiplier = 1.5f;
     private float aimModeVelocityModifier = 1.5f;
 
@@ -22,23 +20,9 @@ public class RapidFire : ProjectileAbility {
         }
     }
 
-    public override string abilityName
-    {
-        get; set;
-    }
-
-    public override string description
-    {
-        get; set;
-    }
-
-    public override float windup
-    {
-        get; set;
-    }
-
     void Awake()
     {
+        Init();
         cooldown = 0.125f;
         timer = cooldown;
 

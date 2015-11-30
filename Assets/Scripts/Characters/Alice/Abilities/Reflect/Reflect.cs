@@ -5,9 +5,6 @@ using System;
 
 public class Reflect : Ability
 {
-    public override float energyCost { get {
-            return 50f;
-                } set { } }
 
     private bool active = false;
     private float radius = 2f;
@@ -16,25 +13,11 @@ public class Reflect : Ability
     {
         get
         {
-            return new StateEffect(CharacterState.CHANNELING, 1f, Cast, null, TriggerUp);
+            return new StateEffect(CharacterState.CHANNELING, windup, Cast, null, TriggerUp);
         }
 
     }
 
-    public override string abilityName
-    {
-        get; set;
-    }
-
-    public override string description
-    {
-        get; set;
-    }
-
-    public override float windup
-    {
-        get; set;
-    }
 
     public override void Cast()
     {
@@ -52,6 +35,8 @@ public class Reflect : Ability
     void Awake()
     {
         base.Init();
+        energyCost = 50f;
+        windup = 1f;
     }
 
     void FixedUpdate()
