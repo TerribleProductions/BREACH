@@ -7,8 +7,10 @@ public class RapidFire : ProjectileAbility {
 
     private float timer;
 
-    private float aimModeDamageMultiplier = 1.5f;
-    private float aimModeVelocityModifier = 1.5f;
+    private Rigidbody quickShotProjectile;
+    private float quickShotProjectileSpeed;
+    private float quickShotCooldown;
+    private float quickShotEnergyCost;
 
     public override StateEffect stateChain
     {
@@ -24,14 +26,18 @@ public class RapidFire : ProjectileAbility {
     {
         Init();
         cooldown = 0.125f;
-        timer = cooldown;
+        quickShotCooldown = 0.6f;
+        timer = 0;
 
         energyCost = 10f;
 
         abilityOwner = gameObject.GetComponent<Character>();
 
         projectile = (Resources.Load("Characters/Alice/Abilities/RapidFire/RapidFireProjectile") as GameObject).GetComponent<Rigidbody>();
+        quickShotProjectile = (Resources.Load("Characters/Bob/Abilities/Quickshot/QuickshotProjectile") as GameObject).GetComponent<Rigidbody>();
         projectileSpeed = 30f;
+        quickShotProjectileSpeed = 75f;
+        quickShotEnergyCost = 40f;
     }
 
     void FixedUpdate()
@@ -51,21 +57,31 @@ public class RapidFire : ProjectileAbility {
 
     public override void Cast()
     {
-        
-        if (timer <= 0 && abilityOwner.SapEnergy(energyCost))
+        if(timer <= 0)
         {
-            timer = cooldown;
-
-            var p = spawnProjectile(projectile, projectileSpeed, 100f);
-            if(abilityOwner.HasBuff(new AimModeBuff()))
+            if (abilityOwner.HasBuff(new AimModeBuff()))
             {
-                var abilityEffect = p.GetComponent<RapidFireEffect>();
-                abilityEffect.damage *= aimModeDamageMultiplier;
-                p.velocity *= aimModeVelocityModifier;
+                if (abilityOwner.SapEnergy(quickShotEnergyCost))
+                {
+                    spawnProjectile(quickShotProjectile, quickShotProjectileSpeed, 100f);
+                    timer = quickShotCooldown;
+                }
             }
-            //Slow movespeed to simulate some kind of channeling
-            abilityOwner.AddBuff(new Slow(0.4f, cooldown*2, false, "rapidFireSlow"));
+            else
+            {
+                if (abilityOwner.SapEnergy(energyCost))
+                {
+                    spawnProjectile(projectile, projectileSpeed, 100f);
+                    timer = cooldown;
+                }
+            }
+
+            abilityOwner.AddBuff(new Slow(0.4f, cooldown * 2, false, "rapidFireSlow"));
         }
+        
+       
+        
+        
         
     }
 }

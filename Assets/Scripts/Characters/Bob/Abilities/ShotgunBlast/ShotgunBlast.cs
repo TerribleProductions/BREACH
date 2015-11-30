@@ -27,6 +27,7 @@ public class ShotgunBlast : ProjectileAbility {
         projectileAmount = 4;
 
         rotations = new Quaternion[projectileAmount];
+        //How much the forward vector should be rotated for each shot
         for(int i = 0; i < projectileAmount; i++)
         {
             rotations[i] = Quaternion.Euler(0, i * 40 / projectileAmount, 0);
