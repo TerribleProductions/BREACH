@@ -17,7 +17,7 @@ public abstract class AbilityEffect : MonoBehaviour{
         {
             enemyChar = enemy.GetComponent<Character>();
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
         return enemyChar;
     }
 

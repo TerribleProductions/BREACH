@@ -17,7 +17,18 @@ public class ShotgunBlastEffect : AbilityEffect {
 
         if(timer >= maxRangeInTime)
         {
-            //Destroy(gameObject);
+                Destroy(gameObject);
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        var enemy = GetHitCharacter(collision.collider);
+        if(enemy != null)
+        {
+            enemy.transform.position -= -transform.forward;
+            enemy.AddBuff(new Slow(0.75f, 0.3f, true, "shotgunSlow"));
+            Destroy(gameObject);
         }
     }
 

@@ -26,12 +26,12 @@ public class ShadowRaze : Ability {
     private float area;
     private float speed;
     private GameObject distanceEffect;
+    private Light distanceEffectLight;
     private GameObject explosionEffect;
     private float damage;
 
     public override void Cast()
     {
-        Debug.Log("hej");
         var objectsInExplosion = Physics.OverlapSphere(distance, area);
         Debug.Log(objectsInExplosion);
         foreach(Collider obj in objectsInExplosion)
@@ -48,8 +48,8 @@ public class ShadowRaze : Ability {
     {
         charging = false;
         explosionDuration = 0.6f;
-        distanceEffect.GetComponent<Light>().range = 5f;
-        distanceEffect.SetActive(false);
+        distanceEffectLight.range = area;
+        Destroy(distanceEffect, 0.1f);
         abilityOwner.SetState(CharacterState.neutralStateEffect);
     }
 
@@ -67,8 +67,10 @@ public class ShadowRaze : Ability {
         charging = true;
         explosionDuration = 0;
         distance = transform.position+transform.forward;
-        distanceEffect.SetActive(true);
-        distanceEffect.GetComponent<Light>().range = 1f;
+        var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffect") as GameObject);
+        distanceEffect = (GameObject)Instantiate(distanceEffectPrefab, transform.position, transform.rotation);
+        distanceEffectLight = distanceEffect.GetComponent<Light>();
+        distanceEffectLight.range = 1f;
         distanceEffect.transform.position = distance;
         maxDistance = transform.position + transform.forward * 8f;
     }
@@ -82,7 +84,10 @@ public class ShadowRaze : Ability {
         explosionDuration = 0.6f;
         var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffect") as GameObject);
         distanceEffect = (GameObject)Instantiate(distanceEffectPrefab, transform.position, transform.rotation);
-        distanceEffect.SetActive(false);
+        distanceEffectLight = distanceEffect.GetComponent<Light>();
+        distanceEffectLight.range = 0;
+
+        //distanceEffect.SetActive(false);
 
     }
 	
@@ -94,5 +99,6 @@ public class ShadowRaze : Ability {
             distance = Vector3.MoveTowards(distance, maxDistance, step);
             distanceEffect.transform.position = distance;
         } 
+        
 	}
 }

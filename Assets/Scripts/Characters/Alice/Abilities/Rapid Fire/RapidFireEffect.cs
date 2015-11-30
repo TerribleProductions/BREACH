@@ -13,6 +13,7 @@ public class RapidFireEffect : AbilityEffect
     {
         var collider = collision.collider;
         var enemyChar = GetHitCharacter(collider);
+        Destroy(gameObject);
         if(enemyChar != null)
         {
             enemyChar.DamageCharacter(damage);
