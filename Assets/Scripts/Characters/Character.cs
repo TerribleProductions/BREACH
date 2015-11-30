@@ -35,8 +35,6 @@ public abstract class Character : MonoBehaviour {
 	public Slider healthSlider;
 	public Slider energySlider;
 
-    public float regenTick = 0.05f;
-    public float regenTimer;
 
     StateEffect moveState = new StateEffect(CharacterState.MOVING, Mathf.Infinity);
 
@@ -59,10 +57,10 @@ public abstract class Character : MonoBehaviour {
         stateManager.SetNeutralState();
         playerRigidbody = GetComponent<Rigidbody>();
         controllerInterface = new ControlInterface(playerNumber);
-        regenTick = 0.2f;
+        
         moveSpeedMultiplier = 1f;
-
-        regenTimer = regenTick;
+        hp = 100f;
+        
     }
 
     #region input
@@ -75,7 +73,8 @@ public abstract class Character : MonoBehaviour {
 		// Set the movement vector based on the axis input.
 		movementVector = new Vector3(h, 0f, v);
 
-        if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING)))
+        if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING) || HasState(CharacterState.BASIC_ATTACK) ||HasState(CharacterState.PRE_ATTACK)))
+
         {
             if (!HasState(CharacterState.MOVING))
             {
@@ -105,7 +104,7 @@ public abstract class Character : MonoBehaviour {
             
         Vector3 newDirection = Vector3.Normalize(new Vector3(h, 0.0f, v));
 
-        if (!controllerInterface.equalsZero(newDirection))
+        if (!controllerInterface.equalsZero(newDirection) && !HasState(CharacterState.IMMOBILE) && !HasState(CharacterState.INACTIVE))
         {
             transform.forward = newDirection;
         }
@@ -161,6 +160,7 @@ public abstract class Character : MonoBehaviour {
     public void DamageCharacter(float amount)
     {
         hp -= amount;
+        healthSlider.value = hp;        
     }
 
     public void AddBuff(Buff buff)
@@ -201,17 +201,12 @@ public abstract class Character : MonoBehaviour {
             energy = maxEnergy;
             return;
         }
-        if(regenTimer <= 0)
+        if (energy > maxEnergy)
         {
-            if (energy > maxEnergy)
-            {
-                energy = maxEnergy;
-            }
-            energy += energyRegeneration*regenTick;
-            
-            regenTimer = regenTick;
+            energy = maxEnergy;
         }
-        regenTimer -= Time.deltaTime;
+        energy += energyRegeneration*Time.deltaTime;
+            
 
 		energySlider.value = energy;
     }

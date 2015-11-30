@@ -8,10 +8,10 @@ public class Alice : Character {
     protected override void Awake()
     {
         base.Awake();
-        moveSpeed = 15f;
+        moveSpeed = 12f;
         maxEnergy = 100;
         energy = maxEnergy;
-        energyRegeneration = 20f;
+        energyRegeneration = 66f;
         
         var mainAbility = gameObject.AddComponent<RapidFire>();
         var secondaryAbility = gameObject.AddComponent<AimMode>();

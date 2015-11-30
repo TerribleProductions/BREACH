@@ -104,8 +104,8 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Time: .100000001
-  m_StartWidth: .200000003
-  m_EndWidth: .200000003
+  m_StartWidth: .150000006
+  m_EndWidth: .0199999996
   m_Colors:
     m_Color[0]:
       serializedVersion: 2
@@ -185,11 +185,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_StartWidth
-      value: .200000003
+      value: .150000006
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_EndWidth
-      value: .200000003
+      value: .0199999996
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_UseLightProbes

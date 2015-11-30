@@ -5,14 +5,14 @@ public class Bob : Character {
 	// Use this for initialization
 	protected override void  Awake () {
         base.Awake();
-        moveSpeed = 15f;
+        moveSpeed = 12f;
 
         maxEnergy = 100;
         energy = maxEnergy;
-        energyRegeneration = 20f;
+        energyRegeneration = 66f;
 
-        var mainAbility = gameObject.AddComponent<DoubleTap>();
-        var secondaryAbility = gameObject.AddComponent<AimMode>();
+        var mainAbility = gameObject.AddComponent<ShotgunBlast>();
+        var secondaryAbility = gameObject.AddComponent<ShadowRaze>();
         var movementAbility = gameObject.AddComponent<Dash>();
         var defensiveAbility = gameObject.AddComponent<Quickshot>();
 

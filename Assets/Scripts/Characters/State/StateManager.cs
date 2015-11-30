@@ -24,6 +24,7 @@ public class StateManager{
         var canStateBeSet = stateEffect.state.HasPrecedence(currentStateEffect.state);
         if (canStateBeSet)
         {
+            ExecuteEffect(currentStateEffect.postEffect);
             currentStateEffect = stateEffect;
             //Exececute effect that is at start of state.
             ExecuteEffect(currentStateEffect.preEffect);
@@ -66,7 +67,7 @@ public class StateManager{
         }
         else
         {
-            ExecuteEffect(currentStateEffect.postEffect);
+            
             var nextState = currentStateEffect.nextState;
             if (nextState != null)
             {
