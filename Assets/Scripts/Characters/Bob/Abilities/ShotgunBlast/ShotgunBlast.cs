@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Linq;
 
 public class ShotgunBlast : ProjectileAbility {
     public override string abilityName { get; set; }
@@ -21,6 +22,7 @@ public class ShotgunBlast : ProjectileAbility {
 
     private int projectileAmount;
     private float speed;
+    private Quaternion[] rotations;
 
     void Awake()
     {
@@ -28,15 +30,20 @@ public class ShotgunBlast : ProjectileAbility {
         projectile = (Resources.Load("Characters/Bob/Abilities/ShotgunBlast/ShotgunBlastProjectile") as GameObject).GetComponent<Rigidbody>();
         speed = 30f;
         energyCost = 30f;
-        projectileAmount = 4;   
-    }
+        projectileAmount = 4;
 
+        rotations = new Quaternion[projectileAmount];
+        for(int i = 0; i < projectileAmount; i++)
+        {
+            rotations[i] = Quaternion.Euler(0, i * 40 / projectileAmount, 0);
+        }
+    }
+        
     public override void Cast()
     {
-
-        for(int i = -projectileAmount/2; i < projectileAmount/2; i++){
-            Quaternion dir = Quaternion.Euler(0, i * 20 / projectileAmount, 0);
-            spawnProjectileAngle(projectile, speed, 0, dir);
+        foreach(var rotation in rotations)
+        {
+            var p = spawnProjectileAngle(projectile, speed, 0, rotation);
         }
     }
 

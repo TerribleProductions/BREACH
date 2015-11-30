@@ -17,7 +17,7 @@ public class ShotgunBlastEffect : AbilityEffect {
 
         if(timer >= maxRangeInTime)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

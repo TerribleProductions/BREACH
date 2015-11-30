@@ -1,0 +1,211 @@
+fileFormatVersion: 2
+guid: 966dedab40a2b1e49ac5fa03e49e079d
+timeCreated: 1448889713
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Barrel
+    100002: Barrel.001
+    100004: Barrel.002
+    100006: Barrel.003
+    100008: Barrel.004
+    100010: Brokenpillar
+    100012: Buff
+    100014: Buff.001
+    100016: Buff.002
+    100018: //RootNode
+    100020: Cylinder
+    100022: Cylinder.001
+    100024: Cylinder.002
+    100026: Door
+    100028: Fallenpillar
+    100030: Gate
+    100032: Pillar
+    100034: Pillar.001
+    100036: Pillar.002
+    100038: Pillar.003
+    100040: Pillar.004
+    100042: Staircase
+    100044: Wagon
+    100046: Wall
+    400000: Barrel
+    400002: Barrel.001
+    400004: Barrel.002
+    400006: Barrel.003
+    400008: Barrel.004
+    400010: Brokenpillar
+    400012: Buff
+    400014: Buff.001
+    400016: Buff.002
+    400018: //RootNode
+    400020: Cylinder
+    400022: Cylinder.001
+    400024: Cylinder.002
+    400026: Door
+    400028: Fallenpillar
+    400030: Gate
+    400032: Pillar
+    400034: Pillar.001
+    400036: Pillar.002
+    400038: Pillar.003
+    400040: Pillar.004
+    400042: Staircase
+    400044: Wagon
+    400046: Wall
+    2300000: Barrel
+    2300002: Barrel.001
+    2300004: Barrel.002
+    2300006: Barrel.003
+    2300008: Barrel.004
+    2300010: Brokenpillar
+    2300012: Buff
+    2300014: Buff.001
+    2300016: Buff.002
+    2300018: Cylinder
+    2300020: Cylinder.001
+    2300022: Cylinder.002
+    2300024: Door
+    2300026: Fallenpillar
+    2300028: Gate
+    2300030: Pillar
+    2300032: Pillar.001
+    2300034: Pillar.002
+    2300036: Pillar.003
+    2300038: Pillar.004
+    2300040: Staircase
+    2300042: Wagon
+    2300044: Wall
+    3300000: Barrel
+    3300002: Barrel.001
+    3300004: Barrel.002
+    3300006: Barrel.003
+    3300008: Barrel.004
+    3300010: Brokenpillar
+    3300012: Buff
+    3300014: Buff.001
+    3300016: Buff.002
+    3300018: Cylinder
+    3300020: Cylinder.001
+    3300022: Cylinder.002
+    3300024: Door
+    3300026: Fallenpillar
+    3300028: Gate
+    3300030: Pillar
+    3300032: Pillar.001
+    3300034: Pillar.002
+    3300036: Pillar.003
+    3300038: Pillar.004
+    3300040: Staircase
+    3300042: Wagon
+    3300044: Wall
+    4300000: Cylinder.002
+    4300002: Pillar.004
+    4300004: Barrel.004
+    4300006: Barrel.003
+    4300008: Barrel.002
+    4300010: Barrel.001
+    4300012: Cylinder.001
+    4300014: Door
+    4300016: Buff.002
+    4300018: Buff.001
+    4300020: Buff
+    4300022: Fallenpillar
+    4300024: Pillar.003
+    4300026: Pillar.001
+    4300028: Pillar.002
+    4300030: Staircase
+    4300032: Wall
+    4300034: Pillar
+    4300036: Brokenpillar
+    4300038: Gate
+    4300040: Wagon
+    4300042: Cylinder
+    4300044: Barrel
+    6400000: Barrel
+    6400002: Barrel.001
+    6400004: Barrel.002
+    6400006: Barrel.003
+    6400008: Barrel.004
+    6400010: Brokenpillar
+    6400012: Buff
+    6400014: Buff.001
+    6400016: Buff.002
+    6400018: Cylinder
+    6400020: Cylinder.001
+    6400022: Cylinder.002
+    6400024: Door
+    6400026: Fallenpillar
+    6400028: Gate
+    6400030: Pillar
+    6400032: Pillar.001
+    6400034: Pillar.002
+    6400036: Pillar.003
+    6400038: Pillar.004
+    6400040: Staircase
+    6400042: Wagon
+    6400044: Wall
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
