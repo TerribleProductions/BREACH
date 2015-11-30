@@ -101,7 +101,7 @@ public abstract class Character : MonoBehaviour {
             
         Vector3 newDirection = Vector3.Normalize(new Vector3(h, 0.0f, v));
 
-        if (!controllerInterface.equalsZero(newDirection))
+        if (!controllerInterface.equalsZero(newDirection) && !HasState(CharacterState.IMMOBILE) && !HasState(CharacterState.INACTIVE))
         {
             transform.forward = newDirection;
         }

@@ -305,7 +305,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: BLUe
+  m_Text: Sniper
 --- !u!222 &153466950
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2656,7 +2656,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: reD
+  m_Text: breacher
 --- !u!222 &1084820665
 CanvasRenderer:
   m_ObjectHideFlags: 0
