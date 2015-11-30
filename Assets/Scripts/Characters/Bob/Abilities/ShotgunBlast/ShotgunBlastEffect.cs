@@ -9,8 +9,9 @@ public class ShotgunBlastEffect : AbilityEffect {
 
     void Awake()
     {
-        maxRangeInTime = 1f;
+        maxRangeInTime = 0.5f;
         timer = 0;
+        
     }
     void Update()
     {
@@ -18,7 +19,7 @@ public class ShotgunBlastEffect : AbilityEffect {
 
         if(timer >= maxRangeInTime)
         {
-                Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 

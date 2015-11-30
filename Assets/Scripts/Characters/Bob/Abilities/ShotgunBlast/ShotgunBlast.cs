@@ -23,7 +23,7 @@ public class ShotgunBlast : ProjectileAbility {
         Init();
         projectile = (Resources.Load("Characters/Bob/Abilities/ShotgunBlast/ShotgunBlastProjectile") as GameObject).GetComponent<Rigidbody>();
         speed = 30f;
-        energyCost = 30f;
+        energyCost = 35f;
         projectileAmount = 4;
 
         rotations = new Quaternion[projectileAmount];
@@ -36,11 +36,15 @@ public class ShotgunBlast : ProjectileAbility {
         
     public override void Cast()
     {
-        abilityOwner.AddBuff(new Slow(0.4f, 0.25f, false, "shotgunShootSlow"));
-        foreach(var rotation in rotations)
+        if (abilityOwner.SapEnergy(energyCost))
         {
-            var p = spawnProjectileAngle(projectile, speed, 0, rotation);
+            abilityOwner.AddBuff(new Slow(0.4f, 0.25f, false, "shotgunShootSlow"));
+            foreach (var rotation in rotations)
+            {
+                var p = spawnProjectileAngle(projectile, speed, 0, rotation);
+            }
         }
+        
     }
 
     
