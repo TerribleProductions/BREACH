@@ -5,11 +5,14 @@ using UnityEngine.UI;
 public class TimeManager : MonoBehaviour {
 
 	public Text timerText;
-	private float roundTime = 5f * 60f;
+	private float maxRoundTime = 3f * 60f; // Minutes x seconds
 	
 	void OnGUI () {
-		int minutes = ((int) (roundTime - Time.timeSinceLevelLoad)) / 60;
-		int seconds = ((int) (roundTime - Time.timeSinceLevelLoad)) % 60;
+		float roundTime = Time.timeSinceLevelLoad;
+		roundTime = Mathf.Clamp (roundTime, 0, maxRoundTime);
+
+		int minutes = ((int) (maxRoundTime - roundTime)) / 60;
+		int seconds = ((int) (maxRoundTime - roundTime)) % 60;
 
 		string minStr = minutes.ToString();
 		string secStr = seconds.ToString();

@@ -21,9 +21,5 @@ public abstract class MovementAbility : Ability
         character.transform.position = point;
     }
 
-    public void MoveDirectionDistance(Character character, float distance)
-    {
-        character.transform.position += character.transform.forward.normalized * distance;
-    }
-
+	public abstract void MoveDirectionDistance(Character character, float distance);
 }

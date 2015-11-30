@@ -4,6 +4,31 @@ using System;
 
 public class Dash : MovementAbility {
 
+	private float movementTime = 0.200f; // Movement time in seconds
+
+	private Vector3 lastUsePosition;
+	private float timeSinceLastUse;
+	private TrailRenderer trailRenderer;
+	
+	private float currentTime;
+	private Vector3 direction;
+
+	// Use this for initialization
+	void Awake () {
+		energyCost = 50f;
+		abilityOwner = gameObject.GetComponent<Character>();
+		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();
+	}
+
+	void FixedUpdate (){
+		currentTime = Time.timeSinceLevelLoad;
+
+		if ((currentTime - timeSinceLastUse) < movementTime) {
+			MoveDirectionDistance (abilityOwner, maxRange);
+		} else {
+			trailRenderer.enabled = false;
+		}
+	}
 
     public override float energyCost
     {
@@ -40,23 +65,30 @@ public class Dash : MovementAbility {
         get; set;
     }
 
-    
-
-    // Use this for initialization
-    void Awake () {
-        energyCost = 50f;
-        abilityOwner = gameObject.GetComponent<Character>();
-        
-	}
-	
-
-    public override void Cast()
+	public override void Cast()
     {
         if (abilityOwner.SapEnergy(energyCost))
         {
+			direction = abilityOwner.movementVector;
+			lastUsePosition = abilityOwner.transform.position;
+			timeSinceLastUse = Time.timeSinceLevelLoad;
+
+			// Enable trails
+			trailRenderer.enabled = true;
+
+			if (direction.magnitude < 0.01) {
+				direction = abilityOwner.transform.forward;
+			}
+
             MoveDirectionDistance(abilityOwner, maxRange);
         }
         
     }
+
+	public override void MoveDirectionDistance(Character character, float distance)
+	{
+		float movementPercent = (currentTime - timeSinceLastUse) / movementTime;
+		character.transform.position = lastUsePosition + direction.normalized * distance * movementPercent;
+	}
 
 }
