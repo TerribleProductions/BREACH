@@ -16,7 +16,7 @@ namespace CompleteProject
         void Start ()
         {
             // Calculate the initial offset.
-            offset = transform.position - target.position;
+            offset = transform.position;
         }
 
 

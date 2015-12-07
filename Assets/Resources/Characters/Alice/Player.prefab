@@ -450,6 +450,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a134afd797c14845851904b89d6fc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  energy: 0
+  healthSlider: {fileID: 0}
+  energySlider: {fileID: 0}
   playerNumber: 1
 --- !u!120 &12000000
 LineRenderer:

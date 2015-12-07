@@ -8,6 +8,7 @@ public class Bob : Character {
         moveSpeed = 12f;
 
         maxEnergy = 100;
+        maxHp = 100;
         energy = maxEnergy;
         energyRegeneration = 66f;
 

@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System;
 
 public abstract class Character : MonoBehaviour {
+
+
+    #region events
+    public delegate void CharacterDeathHandler(Character sender);
+    public event CharacterDeathHandler CharacterDeath;
+    #endregion
 
     public struct CharAbilities
     {
@@ -28,6 +35,7 @@ public abstract class Character : MonoBehaviour {
     {
         get; set;
     }
+    public bool dead = false;
 
     public float moveSpeedMultiplier { get; set; }
     #endregion
@@ -160,7 +168,26 @@ public abstract class Character : MonoBehaviour {
     public void DamageCharacter(float amount)
     {
         hp -= amount;
-        healthSlider.value = hp;        
+        healthSlider.value = hp;
+        if(hp <= 0 != dead)
+        {
+            KillCharacter();
+        }   
+    }
+
+    public void RespawnCharacter()
+    {
+        hp = maxHp;
+        dead = false;
+        healthSlider.value = hp;
+    }
+
+    public void KillCharacter()
+    {
+        if (!dead)
+        {
+            CharacterDeath(this);
+        }
     }
 
     public void AddBuff(Buff buff)
@@ -214,6 +241,11 @@ public abstract class Character : MonoBehaviour {
     public void MultiplyMovespeed(float amount)
     {
         moveSpeedMultiplier *= amount;
+    }
+
+    public void MoveToPoint(Vector3 point)
+    {
+        playerRigidbody.MovePosition(point);
     }
 
     #endregion

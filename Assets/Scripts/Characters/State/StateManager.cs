@@ -89,7 +89,12 @@ public class StateManager{
         
         if(statefulChar != null && currentStateEffect != null)
         {
-            statefulChar.gameObject.GetComponent<TextMesh>().text = currentStateEffect.ToString();
+            var textMesh = statefulChar.gameObject.GetComponent<TextMesh>();
+            if(textMesh != null)
+            {
+                textMesh.text = currentStateEffect.ToString();
+            }
+           
         }
         
     }

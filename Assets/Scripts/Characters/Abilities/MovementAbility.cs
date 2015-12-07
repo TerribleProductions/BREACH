@@ -10,7 +10,7 @@ public abstract class MovementAbility : Ability
 
     public void MoveToPoint(Character character, Vector3 point)
     {
-        character.transform.position = point;
+        character.MoveToPoint(point);
     }
 
 }
