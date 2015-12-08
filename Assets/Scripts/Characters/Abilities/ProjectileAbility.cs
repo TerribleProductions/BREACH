@@ -24,9 +24,9 @@ public abstract class ProjectileAbility : Ability {
 
     public Rigidbody spawnProjectileAngle(Rigidbody proj, float pSpeed, float pRange, Quaternion dir)
     {
-        var p = spawnProjectile(proj, pSpeed, pRange);
+        Rigidbody p = spawnProjectile(proj, pSpeed, pRange);
         p.transform.forward = dir * p.transform.forward;
-        Debug.Log(p.transform.forward); 
+		p.transform.position += p.transform.forward * 0.1f;
         p.velocity = p.transform.forward * pSpeed;
         return p;
     }

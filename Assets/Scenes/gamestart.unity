@@ -2433,6 +2433,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 1195375427}
   roundStartTimeText: {fileID: 1373637783}
+  playerOneSkills: {fileID: 1668807465}
+  playerTwoSkills: {fileID: 1550145036}
 --- !u!114 &1195375427
 MonoBehaviour:
   m_ObjectHideFlags: 0

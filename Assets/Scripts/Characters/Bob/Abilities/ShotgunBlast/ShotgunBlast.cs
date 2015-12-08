@@ -39,9 +39,9 @@ public class ShotgunBlast : ProjectileAbility {
         if (abilityOwner.SapEnergy(energyCost))
         {
             abilityOwner.AddBuff(new Slow(0.4f, 0.25f, false, "shotgunShootSlow"));
-            foreach (var rotation in rotations)
+			foreach(var rotation in rotations)
             {
-                var p = spawnProjectileAngle(projectile, speed, 0, rotation);
+                spawnProjectileAngle(projectile, speed, 0, rotation);
             }
         }
         

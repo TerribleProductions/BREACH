@@ -30,7 +30,7 @@ namespace CompleteProject
 			// The middle point of the two characters
 			Vector3 characterMidpoint = target.position + ((target2.position - target.position) / 2.0f);
 
-			float cameraDistance = Mathf.Max (minCameraDistance, characterDistance / 3f);
+			float cameraDistance = Mathf.Max (minCameraDistance, characterDistance / 2.5f);
 			Camera.main.orthographicSize = cameraDistance;
 
             // Create a postion the camera is aiming for based on the offset from the target.

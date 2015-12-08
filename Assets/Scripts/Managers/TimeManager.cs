@@ -6,16 +6,24 @@ public class TimeManager : MonoBehaviour {
 
 	public Text timerText;
 	public Text roundStartTimeText;
+
+	public RawImage playerOneSkills;
+	public RawImage playerTwoSkills;
+
 	private float maxRoundTime = 3f * 60f; // Minutes x seconds
-	private float roundStartTime = 11f; // Seconds to start round
+	private float roundStartTime = 16f; // Seconds to start round
+
+	private bool started = false;
 	
 	void OnGUI () {
 
 		float roundTime = Time.timeSinceLevelLoad;
 
-		if (hasGameStarted ()) {
+		if (hasRoundTimeStarted ()) {
 
-			roundStartTimeText.enabled = false;
+			if(!started){
+				startRound ();
+			}
 
 			roundTime = Mathf.Clamp (roundTime - roundStartTime, 0, maxRoundTime);
 
@@ -41,11 +49,20 @@ public class TimeManager : MonoBehaviour {
 		}
 	}
 
-	public bool hasGameStarted() {
+	private void startRound() {
+
+		roundStartTimeText.enabled = false;
+		playerOneSkills.enabled = false;
+		playerTwoSkills.enabled = false;
+
+		started = true;
+	}
+
+	public bool hasRoundTimeStarted() {
 		return Time.timeSinceLevelLoad + 1f >= roundStartTime;
 	}
 
-	public bool hasGameEnded() {
+	public bool hasRoundTimeEnded() {
 		return Time.timeSinceLevelLoad > maxRoundTime;
 	}
 }
