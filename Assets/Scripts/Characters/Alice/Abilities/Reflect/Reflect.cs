@@ -55,30 +55,16 @@ public class Reflect : Ability
 
     private IEnumerable<Rigidbody> projectilesInArea(Vector3 pos, float radius)
     {
-        return from obj in objectsInArea(pos, radius)
-                select obj.GetComponent<AbilityEffect>() into af
+        return from af in AbilityHelper.objectsInArea<AbilityEffect>(pos, radius)
                 where af != null && af.owner.GetComponent<Character>().playerNumber != abilityOwner.playerNumber
                 select af.GetComponent<Rigidbody>();
     }
 
-    private IEnumerable<GameObject> objectsInArea(Vector3 pos, float radius)
-    {
-        return from collider in Physics.OverlapSphere(pos, radius)
-               select collider.gameObject;
-    }
-
-    private IEnumerable<Character> charactersInArea(Vector3 pos, float radius)
-    {
-        return from go in objectsInArea(pos, radius)
-               select go.GetComponent<Character>() into c
-               where c != null && c.playerNumber != abilityOwner.playerNumber
-               select c;
-    }
 
     private void knockback()
     {
         
-        foreach(var c in charactersInArea(abilityOwner.transform.position, radius))
+        foreach(var c in AbilityHelper.objectsInAreaExceptOwner<Character>(abilityOwner.transform.position, radius, abilityOwner.playerNumber))
         {
             Debug.Log(c);
             c.DamageCharacter(knockbackDamage);

@@ -21,7 +21,7 @@ public class Charge : MovementAbility {
     private float duration;
     private Vector3 targetPoint;
     private float damage;
-    
+    private float radius;
     void Awake()
     {
         Init();
@@ -29,25 +29,20 @@ public class Charge : MovementAbility {
         duration = 0.4f;
         windup = 0.01f;
         damage = 25f;
+        radius = 2f;
     }
 
     void PostCast()
     {
-        var objectsInRange = Physics.OverlapSphere(transform.position, 2f);
-        foreach(var obj in objectsInRange)
+        foreach(var enemy in AbilityHelper.objectsInAreaExceptOwner<Character>(transform.position, radius, abilityOwner.playerNumber))
         {
-            var enemy = obj.GetComponent<Character>();
-            if ( enemy != null && enemy.playerNumber != abilityOwner.playerNumber)
-            {
-                enemy.DamageCharacter(damage);
-            }
+            enemy.DamageCharacter(damage);
         }
     }
 
     public override void Cast()
     {
         targetPoint = transform.position + transform.forward * range;
-        Debug.Log(targetPoint);
     }
 
     void MoveStep()
