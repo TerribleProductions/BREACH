@@ -6,8 +6,6 @@ public class SpawnManager : MonoBehaviour
 
     public List<GameObject> players;
 
-    Vector3 initialSpawnPos = new Vector3(0, 0, 0);
-
     string breacherResourcePath = "";
     string sniperResourcePath = "";
 
@@ -30,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     private void spawnCharacter(Character c)
     {
         Debug.Log("spawning char");
-        c.transform.position = initialSpawnPos; //Set to some random pos?
+        c.transform.position = c.initialPosition;
         c.RespawnCharacter();
     }
 

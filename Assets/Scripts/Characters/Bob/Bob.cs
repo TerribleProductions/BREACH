@@ -15,7 +15,7 @@ public class Bob : Character {
         var mainAbility = gameObject.AddComponent<ShotgunBlast>();
         var secondaryAbility = gameObject.AddComponent<ShadowRaze>();
         var movementAbility = gameObject.AddComponent<Dash>();
-        var defensiveAbility = gameObject.AddComponent<Quickshot>();
+        var defensiveAbility = gameObject.AddComponent<BreacherReflect>();
 
         abilities = new CharAbilities(mainAbility, secondaryAbility, movementAbility, defensiveAbility);
 	}

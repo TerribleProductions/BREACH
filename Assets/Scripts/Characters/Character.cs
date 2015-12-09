@@ -45,6 +45,7 @@ public abstract class Character : MonoBehaviour {
 
 
     StateEffect moveState = new StateEffect(CharacterState.MOVING, Mathf.Infinity);
+	public Vector3 initialPosition;
 
     public int playerNumber;
     public Vector3 movementVector { get; set; }
@@ -68,7 +69,7 @@ public abstract class Character : MonoBehaviour {
         
         moveSpeedMultiplier = 1f;
         hp = 100f;
-        
+		initialPosition = transform.position;
     }
 
     #region input

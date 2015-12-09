@@ -21,13 +21,14 @@ public class ShadowRaze : Ability {
     private float speed;
     private GameObject distanceEffect;
     private Light distanceEffectLight;
-    private GameObject explosionEffect;
     private float damage;
+
+	private Vector3 aboveGround = new Vector3(0f, 1f, 0f);
 
     public override void Cast()
     {
         var objectsInExplosion = Physics.OverlapSphere(distance, area);
-        Debug.Log(objectsInExplosion);
+        //zDebug.Log(objectsInExplosion);
         foreach(Collider obj in objectsInExplosion)
         {
             var enemy = obj.gameObject.GetComponent<Character>();
@@ -40,9 +41,14 @@ public class ShadowRaze : Ability {
 
     public override void TriggerUp()
     {
+
+		var explosionPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/Raze") as GameObject);
+		GameObject explosionEffect = (GameObject)Instantiate(explosionPrefab, distanceEffect.transform.position, distanceEffect.transform.rotation);
+		Destroy(explosionEffect, explosionEffect.GetComponent<ParticleSystem>().duration); 
+
         charging = false;
         explosionDuration = 0.6f;
-        distanceEffectLight.range = area;
+        //distanceEffectLight.range = area;
         Destroy(distanceEffect, 0.1f);
         abilityOwner.SetState(CharacterState.neutralStateEffect);
     }
@@ -60,28 +66,25 @@ public class ShadowRaze : Ability {
     {
         charging = true;
         explosionDuration = 0;
-        distance = transform.position+transform.forward;
-        var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffect") as GameObject);
-        distanceEffect = (GameObject)Instantiate(distanceEffectPrefab, transform.position, transform.rotation);
-        distanceEffectLight = distanceEffect.GetComponent<Light>();
-        distanceEffectLight.range = 1f;
+        distance = transform.position + transform.forward + aboveGround;
+        var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffectSphere") as GameObject);
+        distanceEffect = (GameObject)Instantiate(distanceEffectPrefab, distance, transform.rotation);
+        //distanceEffectLight = distanceEffect.GetComponent<Light>();
+        //distanceEffectLight.range = area;
         distanceEffect.transform.position = distance;
-        maxDistance = transform.position + transform.forward * 8f;
+        maxDistance = transform.position + aboveGround + transform.forward * 10f;
     }
 
     // Use this for initialization
     void Awake () {
         Init();
-        area = 2f;
-        speed = 8f;
+		energyCost = 66f;
+        area = 3f;
+        speed = 12f;
         damage = 40f;
         explosionDuration = 0.6f;
-        var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffect") as GameObject);
-        distanceEffect = (GameObject)Instantiate(distanceEffectPrefab, transform.position, transform.rotation);
-        distanceEffectLight = distanceEffect.GetComponent<Light>();
-        distanceEffectLight.range = 0;
+        var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffectSphere") as GameObject);
 
-        //distanceEffect.SetActive(false);
 
     }
 	
