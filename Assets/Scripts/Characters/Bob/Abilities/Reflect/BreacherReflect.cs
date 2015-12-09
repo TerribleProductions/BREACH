@@ -52,7 +52,7 @@ public class BreacherReflect : Ability
 			reflector.transform.position = transform.position;
             
             var objectsInArea = Physics.OverlapSphere(abilityOwner.transform.position, radius);
-            Debug.Log(objectsInArea);
+            //Debug.Log(objectsInArea);
             var projectilesInRadius = objectsInArea.Select(obj =>
             {
                 return obj.GetComponent<AbilityEffect>();

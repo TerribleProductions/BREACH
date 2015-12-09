@@ -6,6 +6,8 @@ public class SpawnManager : MonoBehaviour
 
     public List<GameObject> players;
 
+    Vector3 initialSpawnPos = new Vector3(0, 0, 0);
+
     string breacherResourcePath = "";
     string sniperResourcePath = "";
 

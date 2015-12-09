@@ -23,14 +23,15 @@ public class ShotgunBlast : ProjectileAbility {
         Init();
         projectile = (Resources.Load("Characters/Bob/Abilities/ShotgunBlast/ShotgunBlastProjectile") as GameObject).GetComponent<Rigidbody>();
         speed = 30f;
-        energyCost = 35f;
-        projectileAmount = 4;
+        energyCost = 50f;
+        projectileAmount = 6;
+		int spread = 40;
 
         rotations = new Quaternion[projectileAmount];
         //How much the forward vector should be rotated for each shot
         for(int i = 0; i < projectileAmount; i++)
         {
-            rotations[i] = Quaternion.Euler(0, i * 40 / projectileAmount, 0);
+            rotations[i] = Quaternion.Euler(0, -(spread / 2.0f) + (spread / projectileAmount) * i, 0);
         }
     }
         

@@ -13,7 +13,7 @@ public class AimModeBuff : Buff
         } }
     public override bool stackable { get; set; }
 
-    private Buff aimModeSlow = new Slow(0.4f, Mathf.Infinity, false, "aimModeSlow");
+    private Buff aimModeSlow = new Slow(0.05f, Mathf.Infinity, false, "aimModeSlow");
 
     public AimModeBuff()
     {

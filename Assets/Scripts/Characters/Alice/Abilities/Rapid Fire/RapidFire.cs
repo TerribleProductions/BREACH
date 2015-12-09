@@ -37,7 +37,7 @@ public class RapidFire : ProjectileAbility {
         quickShotProjectile = (Resources.Load("Characters/Bob/Abilities/Quickshot/QuickshotProjectile") as GameObject).GetComponent<Rigidbody>();
         projectileSpeed = 30f;
         quickShotProjectileSpeed = 75f;
-        quickShotEnergyCost = 40f;
+        quickShotEnergyCost = 60f;
     }
 
     void FixedUpdate()
@@ -78,10 +78,6 @@ public class RapidFire : ProjectileAbility {
 
             abilityOwner.AddBuff(new Slow(0.4f, cooldown * 2, false, "rapidFireSlow"));
         }
-        
-       
-        
-        
-        
+
     }
 }

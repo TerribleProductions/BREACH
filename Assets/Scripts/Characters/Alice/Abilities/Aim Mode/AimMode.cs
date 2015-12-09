@@ -22,6 +22,7 @@ public class AimMode : Ability
         base.Init();
         buff = new AimModeBuff();
         aimLine = abilityOwner.gameObject.AddComponent<LineRenderer>();
+		aimLine.material = (Material) Resources.Load ("Characters/Alice/Abilities/AimMode/SniperColorMaterial");
         aimLine.enabled = false;
         aimLine.SetWidth(0.1f, 0.1f);
     }
