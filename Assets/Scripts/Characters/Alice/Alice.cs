@@ -15,9 +15,9 @@ public class Alice : Character {
         maxHp = 100f;
         
         var mainAbility = gameObject.AddComponent<RapidFire>();
-        var secondaryAbility = gameObject.AddComponent<AimMode>();
+        var secondaryAbility = gameObject.AddComponent<Reflect>();
         var movementAbility = gameObject.AddComponent<Dash>();
-        var defensiveAbility = gameObject.AddComponent<Reflect>();
+        var defensiveAbility = gameObject.AddComponent<AimMode>();
 
         abilities = new CharAbilities(mainAbility, secondaryAbility, movementAbility, defensiveAbility);
     }

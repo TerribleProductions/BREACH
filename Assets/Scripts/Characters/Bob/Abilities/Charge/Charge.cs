@@ -10,7 +10,8 @@ public class Charge : MovementAbility {
         get
         {
             var preState = new StateEffect(CharacterState.SPECIAL_ATTACK, windup, Cast, null, null);
-            var castState = new StateEffect(CharacterState.IMMOBILE, duration, MoveStep, null, null);
+            var castState = new StateEffect(CharacterState.IMMOBILE, duration, null, MoveStep, PostCast);
+            //var postState = new StateEffect(CharacterState.IMMOBILE, 0.1f, null, null, null);
             return preState + castState;
         }
     }
@@ -24,10 +25,10 @@ public class Charge : MovementAbility {
     void Awake()
     {
         Init();
-        range = 3f;
-        duration = 0.2f;
-        windup = 0.3f;
-        damage = 40f;
+        range = 10f;
+        duration = 0.4f;
+        windup = 0.01f;
+        damage = 25f;
     }
 
     void PostCast()
@@ -36,7 +37,7 @@ public class Charge : MovementAbility {
         foreach(var obj in objectsInRange)
         {
             var enemy = obj.GetComponent<Character>();
-            if ( enemy != null)
+            if ( enemy != null && enemy.playerNumber != abilityOwner.playerNumber)
             {
                 enemy.DamageCharacter(damage);
             }
@@ -51,8 +52,13 @@ public class Charge : MovementAbility {
 
     void MoveStep()
     {
-        var nextPoint = Vector3.MoveTowards(transform.position, targetPoint, range);
-        PostCast();
+        var distanceTraveled = range - (targetPoint - transform.position).magnitude;
+        //exponential easing
+        float stepLength = range * 0.15f * Mathf.Pow(2, 10 * (distanceTraveled / range ) - 4);
+
+        var nextPoint = Vector3.MoveTowards(transform.position, targetPoint, stepLength);
+        Debug.Log(distanceTraveled);
+        
         MoveToPoint(abilityOwner, nextPoint);
     }
 }
