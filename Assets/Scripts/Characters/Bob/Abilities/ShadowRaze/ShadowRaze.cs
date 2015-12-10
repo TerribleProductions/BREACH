@@ -27,15 +27,10 @@ public class ShadowRaze : Ability {
 
     public override void Cast()
     {
-        var objectsInExplosion = Physics.OverlapSphere(distance, area);
-        //zDebug.Log(objectsInExplosion);
-        foreach(Collider obj in objectsInExplosion)
+
+        foreach(Character enemy in AbilityHelper.objectsInAreaExceptOwner<Character>(transform.position, area, abilityOwner.playerNumber))
         {
-            var enemy = obj.gameObject.GetComponent<Character>();
-            if(enemy != null)
-            {
-                enemy.DamageCharacter(damage);
-            }
+            enemy.DamageCharacter(damage);
         }
     }
 
@@ -72,6 +67,7 @@ public class ShadowRaze : Ability {
         //distanceEffectLight = distanceEffect.GetComponent<Light>();
         //distanceEffectLight.range = area;
         distanceEffect.transform.position = distance;
+
         maxDistance = transform.position + aboveGround + transform.forward * 20f;
     }
 

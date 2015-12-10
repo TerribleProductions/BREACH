@@ -22,8 +22,9 @@ public class ShotgunBlast : ProjectileAbility {
     {
         Init();
         projectile = (Resources.Load("Characters/Bob/Abilities/ShotgunBlast/ShotgunBlastProjectile") as GameObject).GetComponent<Rigidbody>();
-        speed = 30f;
-        energyCost = 50f;
+
+        speed = 40f;
+        energyCost = 40f;
         projectileAmount = 6;
 		int spread = 40;
 
