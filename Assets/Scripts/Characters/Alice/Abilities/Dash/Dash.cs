@@ -15,7 +15,7 @@ public class Dash : MovementAbility {
         }
     }
 
-    private float movementTime = 0.200f; // Movement time in seconds
+    private float movementTime = 0.400f; // Movement time in seconds
 
 	private TrailRenderer trailRenderer;
 	
@@ -27,13 +27,15 @@ public class Dash : MovementAbility {
 	// Use this for initialization
 	void Awake () {
         Init();
-		energyCost = 50f;
+		energyCost = 66f;
 		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();
 
-        range = 8f;
+        range = 10f;
 	}
 
 	void MoveStep (){
+
+		// TODO fix movement time
         Vector3 moveStep = Vector3.MoveTowards(transform.position, targetPoint, range * movementTime);
         MoveToPoint(abilityOwner, moveStep);
 	}

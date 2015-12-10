@@ -15,7 +15,7 @@ public class SniperReflect : Ability
     {
         get
         {
-            return new StateEffect(CharacterState.CHANNELING, windup, Cast, null, TriggerUp);
+            return new StateEffect(CharacterState.IMMOBILE, windup, Cast, null, TriggerUp);
         }
 
     }
@@ -38,7 +38,7 @@ public class SniperReflect : Ability
     {
         base.Init();
         energyCost = 70f;
-        windup = 0.5f;
+        windup = 1.0f;
 
 		var reflectorPrefab = Resources.Load ("Characters/Alice/Abilities/Reflect/Reflector");
 		reflector = Instantiate(reflectorPrefab, transform.position, transform.rotation) as GameObject;
