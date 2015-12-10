@@ -80,7 +80,8 @@ public class ShadowRaze : Ability {
         damage = 40f;
         explosionDuration = 0.6f;
         var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffectSphere") as GameObject);
-
+		distanceEffect = (GameObject)Instantiate(distanceEffectPrefab, distance, transform.rotation);
+		distanceEffect.SetActive (false);
 
     }
 	
