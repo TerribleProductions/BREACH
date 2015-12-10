@@ -10,7 +10,7 @@ public class Charge : MovementAbility {
         get
         {
             var preState = new StateEffect(CharacterState.SPECIAL_ATTACK, windup, Cast, null, null);
-            var castState = new StateEffect(CharacterState.IMMOBILE, duration, null, MoveStep, PostCast);
+            var castState = new StateEffect(CharacterState.CHANNELING_IMMOBILE, duration, null, MoveStep, PostCast);
             //var postState = new StateEffect(CharacterState.IMMOBILE, 0.1f, null, null, null);
             return preState + castState;
         }
@@ -33,6 +33,7 @@ public class Charge : MovementAbility {
         windup = 0.01f;
         damage = 25f;
         radius = 3f;
+        energyCost = 65f;
 
 		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();
     }
@@ -42,6 +43,7 @@ public class Charge : MovementAbility {
         foreach(var enemy in AbilityHelper.objectsInAreaExceptOwner<Character>(transform.position, radius, abilityOwner.playerNumber))
         {
             enemy.DamageCharacter(damage);
+            enemy.AddBuff(new Slow(0.1f, 0.75f, false, "chargeSlow"));
         }
 
 		trailRenderer.enabled = false;

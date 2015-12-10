@@ -32,7 +32,7 @@ public class State : IEquatable<State>
 public static class CharacterState
 {
 
-    public static State NEUTRAL = new State(States.NEUTRAL, States.NEUTRAL, States.MOVING, States.PRE_ATTACK, States.BASIC_ATTACK, States.SPECIAL_ATTACK, States.IMMOBILE, States.INACTIVE, States.CHANNELING);
+    public static State NEUTRAL = new State(States.NEUTRAL, States.NEUTRAL, States.MOVING, States.PRE_ATTACK, States.BASIC_ATTACK, States.SPECIAL_ATTACK, States.IMMOBILE, States.INACTIVE, States.CHANNELING, States.CHANNELING_IMMOBILE);
     public static State MOVING = new State(States.MOVING, States.NEUTRAL);
     public static State PRE_ATTACK = new State(States.PRE_ATTACK, States.NEUTRAL, States.MOVING);
     public static State BASIC_ATTACK = new State(States.BASIC_ATTACK, States.NEUTRAL, States.MOVING, States.PRE_ATTACK);
@@ -40,6 +40,7 @@ public static class CharacterState
     public static State IMMOBILE = new State(States.IMMOBILE, States.NEUTRAL, States.MOVING, States.PRE_ATTACK, States.BASIC_ATTACK, States.SPECIAL_ATTACK, States.IMMOBILE);
     public static State INACTIVE = new State(States.INACTIVE, States.NEUTRAL, States.MOVING, States.PRE_ATTACK, States.BASIC_ATTACK, States.SPECIAL_ATTACK, States.IMMOBILE, States.INACTIVE);
     public static State CHANNELING = new State(States.CHANNELING, States.PRE_ATTACK, States.NEUTRAL, States.BASIC_ATTACK, States.SPECIAL_ATTACK, States.MOVING);
+    public static State CHANNELING_IMMOBILE = new State(States.CHANNELING_IMMOBILE, States.PRE_ATTACK, States.NEUTRAL, States.BASIC_ATTACK, States.SPECIAL_ATTACK, States.MOVING);
 
 
     public static StateEffect neutralStateEffect = new StateEffect(NEUTRAL, Mathf.Infinity, null, null, null);
@@ -54,6 +55,7 @@ public static class CharacterState
         SPECIAL_ATTACK,
         IMMOBILE,
         INACTIVE,
+        CHANNELING_IMMOBILE
         
     }
 

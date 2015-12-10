@@ -9,7 +9,7 @@ public class ShotgunBlast : ProjectileAbility {
     {
         get
         {
-            return new StateEffect(CharacterState.BASIC_ATTACK, 0.3f, Cast, null, null);
+            return new StateEffect(CharacterState.BASIC_ATTACK, 0.3f, Cast, null, PostCast);
         }
     }
 
@@ -24,7 +24,7 @@ public class ShotgunBlast : ProjectileAbility {
         projectile = (Resources.Load("Characters/Bob/Abilities/ShotgunBlast/ShotgunBlastProjectile") as GameObject).GetComponent<Rigidbody>();
 
         speed = 40f;
-        energyCost = 40f;
+        energyCost = 50f;
         projectileAmount = 6;
 		int spread = 40;
 
@@ -35,12 +35,22 @@ public class ShotgunBlast : ProjectileAbility {
             rotations[i] = Quaternion.Euler(0, -(spread / 2.0f) + (spread / projectileAmount) * i, 0);
         }
     }
-        
+
     public override void Cast()
+    {
+        if (abilityOwner.CanSapEnergy(energyCost))
+        {
+            abilityOwner.AddBuff(new Slow(0.2f, 0.25f, false, "shotgunShootSlow"));
+        }
+        
+
+    }
+
+    public void PostCast()
     {
         if (abilityOwner.SapEnergy(energyCost))
         {
-            abilityOwner.AddBuff(new Slow(0.4f, 0.25f, false, "shotgunShootSlow"));
+            transform.position = transform.position - transform.forward/3;
 			foreach(var rotation in rotations)
             {
                 spawnProjectileAngle(projectile, speed, 0, rotation);
