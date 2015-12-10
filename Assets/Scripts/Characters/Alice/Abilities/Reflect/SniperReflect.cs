@@ -43,8 +43,8 @@ public class SniperReflect : Ability
         var reflectorPrefab = Resources.Load("Characters/Alice/Abilities/Reflect/Reflector");
         reflector = Instantiate(reflectorPrefab, transform.position + Vector3.up, transform.rotation) as GameObject;
 
-        energyCost = 50f;
-        windup = 0.6f;
+        energyCost = 70f;
+        windup = 0.8f;
     }
 
     void FixedUpdate()
