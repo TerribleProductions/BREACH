@@ -55,12 +55,22 @@ public class Charge : MovementAbility {
 
     public override void Cast()
     {
+
         if (abilityOwner.SapEnergy(energyCost))
         {
             targetPoint = transform.position + transform.forward * range;
             trailRenderer.enabled = true;
+
+			RaycastHit hit;
+			
+			if (Physics.Raycast(transform.position + Vector3.up,  transform.forward + Vector3.up, out hit, range)) {
+				if(hit.distance > 3f) {
+					targetPoint = transform.position + transform.forward * hit.distance * 0.5f; 
+				} else if(hit.distance <= 3f) {
+					targetPoint = transform.position;
+				}
+			}
         }
-        
     }
 
     void MoveStep()
