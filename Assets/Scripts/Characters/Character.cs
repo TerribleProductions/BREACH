@@ -189,6 +189,8 @@ public abstract class Character : MonoBehaviour {
         if (!dead)
         {
             CharacterDeath(this);
+			ClearAllDebuffs();
+			stateManager.SetNeutralState();
         }
     }
 

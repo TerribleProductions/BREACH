@@ -14,7 +14,7 @@ public class Stun : Buff
     {
         get
         {
-            return false;
+            return true;
         }
     }
     public override bool stackable { get; set; }
@@ -36,6 +36,9 @@ public class Stun : Buff
 
     public override void Apply(Character target)
     {
+		GameObject stun = target.transform.Find ("Stun").gameObject;
+		stun.SetActive (true);
+
         //This creates a weird coupling between states and buffs since states remove themselves after their duration, so unapply becomes useless.
         //Could be done by having infinte states and unapllying in unapply. Dont know what is best.
         target.SetState(stunState);
@@ -43,6 +46,7 @@ public class Stun : Buff
 
     public override void Unapply(Character target)
     {
-        
+		GameObject stun = target.transform.Find ("Stun").gameObject;
+		stun.SetActive (false);   
     }
 }
