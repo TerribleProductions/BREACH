@@ -22,6 +22,9 @@ public class Charge : MovementAbility {
     private Vector3 targetPoint;
     private float damage;
     private float radius;
+
+	private TrailRenderer trailRenderer;
+
     void Awake()
     {
         Init();
@@ -29,7 +32,9 @@ public class Charge : MovementAbility {
         duration = 0.4f;
         windup = 0.01f;
         damage = 25f;
-        radius = 2f;
+        radius = 3f;
+
+		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();
     }
 
     void PostCast()
@@ -38,11 +43,18 @@ public class Charge : MovementAbility {
         {
             enemy.DamageCharacter(damage);
         }
+
+		trailRenderer.enabled = false;
+
+		var chargeImpactPrefab = (Resources.Load("Characters/Bob/Abilities/Charge/Charge") as GameObject);
+		GameObject chargeImpact = (GameObject)Instantiate(chargeImpactPrefab, transform.position, transform.rotation);
+		Destroy(chargeImpact, 0.5f); 
     }
 
     public override void Cast()
     {
         targetPoint = transform.position + transform.forward * range;
+		trailRenderer.enabled = true;;
     }
 
     void MoveStep()
