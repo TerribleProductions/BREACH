@@ -4,7 +4,7 @@ using System.Linq;
 
 public static class AbilityHelper {
 
-	
+	//Could create something that would take a function and apply it to all objects, but dont know how to reflect side effect in type.
     public static IEnumerable<T> objectsInArea<T>(Vector3 pos, float radius)
     {
         return from collider in Physics.OverlapSphere(pos, radius)
