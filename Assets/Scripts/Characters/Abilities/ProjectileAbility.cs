@@ -11,10 +11,10 @@ public abstract class ProjectileAbility : Ability {
     public Rigidbody spawnProjectile(Rigidbody proj, float pSpeed, float pRange)
     {
         var owner = gameObject;
-        var startPos = transform.position + transform.forward * 0.5f;
+        var startPos = transform.position + transform.forward * 2f;
         startPos.y = 2f;
         Rigidbody p = (Rigidbody)Instantiate(proj, startPos, transform.rotation);
-        Physics.IgnoreCollision(p.GetComponent<Collider>(), owner.GetComponent<Collider>());
+        //Physics.IgnoreCollision(p.GetComponent<Collider>(), owner.GetComponent<Collider>());
         Physics.IgnoreLayerCollision(8, 9);//Ignore floor
 		Physics.IgnoreLayerCollision(9, 9);//Ignore bullets
         p.GetComponent<AbilityEffect>().owner = owner;
