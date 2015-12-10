@@ -6,6 +6,7 @@ public class TimeManager : MonoBehaviour {
 
 	public Text timerText;
 	public Text roundStartTimeText;
+	public Text gameOverText;
 
 	public RawImage playerOneSkills;
 	public RawImage playerTwoSkills;
@@ -18,8 +19,9 @@ public class TimeManager : MonoBehaviour {
 	void OnGUI () {
 
 		float roundTime = Time.timeSinceLevelLoad;
-
-		if (hasRoundTimeStarted ()) {
+		if (hasRoundTimeEnded ()) {
+			gameOverText.text = "Game Over";
+		} else if (hasRoundTimeStarted ()) {
 
 			if(!started){
 				startRound ();
@@ -59,10 +61,10 @@ public class TimeManager : MonoBehaviour {
 	}
 
 	public bool hasRoundTimeStarted() {
-		return Time.timeSinceLevelLoad + 1f >= roundStartTime;
+		return Time.timeSinceLevelLoad > roundStartTime;
 	}
 
 	public bool hasRoundTimeEnded() {
-		return Time.timeSinceLevelLoad > maxRoundTime;
+		return Time.timeSinceLevelLoad > maxRoundTime + roundStartTime;
 	}
 }
