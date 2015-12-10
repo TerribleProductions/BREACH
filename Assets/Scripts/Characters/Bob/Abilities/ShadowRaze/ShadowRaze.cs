@@ -72,7 +72,7 @@ public class ShadowRaze : Ability {
         //distanceEffectLight = distanceEffect.GetComponent<Light>();
         //distanceEffectLight.range = area;
         distanceEffect.transform.position = distance;
-        maxDistance = transform.position + aboveGround + transform.forward * 10f;
+        maxDistance = transform.position + aboveGround + transform.forward * 20f;
     }
 
     // Use this for initialization
@@ -80,7 +80,7 @@ public class ShadowRaze : Ability {
         Init();
 		energyCost = 66f;
         area = 3f;
-        speed = 12f;
+        speed = 25f;
         damage = 40f;
         explosionDuration = 0.6f;
         var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffectSphere") as GameObject);

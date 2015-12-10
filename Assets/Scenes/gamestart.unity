@@ -2048,11 +2048,11 @@ Prefab:
       objectReference: {fileID: 236801574}
     - target: {fileID: 13686894, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
       propertyPath: m_Radius
-      value: 1
+      value: 1.29999995
       objectReference: {fileID: 0}
     - target: {fileID: 13686894, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
       propertyPath: m_Height
-      value: 1.39999998
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2082,6 +2082,18 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13686894, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
+      propertyPath: m_Center.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 13686894, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13686894, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
   m_IsPrefabParent: 0
@@ -2089,23 +2101,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 198762, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
   m_PrefabInternal: {fileID: 841871175}
---- !u!95 &841871182
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 841871176}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 8fa8fbeec4c084a40875e1b6439c63da, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &885988010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,11 +3586,11 @@ Prefab:
       objectReference: {fileID: 2087801972}
     - target: {fileID: 13678662, guid: c828a07daf702df4bac5b544986f09f9, type: 2}
       propertyPath: m_Radius
-      value: 1
+      value: 1.29999995
       objectReference: {fileID: 0}
     - target: {fileID: 13678662, guid: c828a07daf702df4bac5b544986f09f9, type: 2}
       propertyPath: m_Height
-      value: 1.39999998
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 473030, guid: c828a07daf702df4bac5b544986f09f9, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3623,6 +3618,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13720936, guid: c828a07daf702df4bac5b544986f09f9, type: 2}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13678662, guid: c828a07daf702df4bac5b544986f09f9, type: 2}
+      propertyPath: m_Center.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 13678662, guid: c828a07daf702df4bac5b544986f09f9, type: 2}
+      propertyPath: m_Center.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -7,7 +7,7 @@ public class BreacherReflect : Ability
 {
 
     private bool active = false;
-    private float radius = 2f;
+    private float radius = 3.5f;
 	
 	private GameObject reflector;
 
@@ -41,7 +41,7 @@ public class BreacherReflect : Ability
         windup = 1.0f;
 
 		var reflectorPrefab = Resources.Load ("Characters/Bob/Abilities/Reflect/Reflector");
-		reflector = Instantiate(reflectorPrefab, transform.position, transform.rotation) as GameObject;
+		reflector = Instantiate(reflectorPrefab, transform.position + Vector3.up, transform.rotation) as GameObject;
     }
 
     void FixedUpdate()
