@@ -28,9 +28,9 @@ public class ScoreManager {
 
 		string score = "" + scores[player];
 
-		if (player.playerNumber == 1) {
+		if (player.playerNumber == 2) {
 			playerOneScore.text = score;
-		} else if (player.playerNumber == 2) {
+		} else if (player.playerNumber == 1) {
 			playerTwoScore.text = score;
 		}
     }
