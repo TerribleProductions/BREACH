@@ -27,10 +27,10 @@ public class Dash : MovementAbility {
 	// Use this for initialization
 	void Awake () {
         Init();
-        energyCost = 55f;
+        energyCost = 60f;
 		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();
 
-        range = 14f;
+        range = 12f;
 	}
 
 	void MoveStep (){

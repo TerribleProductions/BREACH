@@ -28,11 +28,11 @@ public class Charge : MovementAbility {
     void Awake()
     {
         Init();
-        range = 10f;
+        range = 14f;
         duration = 0.4f;
         windup = 0.01f;
         damage = 25f;
-        radius = 3f;
+        radius = 3.5f;
         energyCost = 65f;
 
 		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();

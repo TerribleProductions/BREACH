@@ -35,9 +35,9 @@ public class RapidFire : ProjectileAbility {
 
         projectile = (Resources.Load("Characters/Alice/Abilities/RapidFire/RapidFireProjectile") as GameObject).GetComponent<Rigidbody>();
         quickShotProjectile = (Resources.Load("Characters/Bob/Abilities/Quickshot/QuickshotProjectile") as GameObject).GetComponent<Rigidbody>();
-        projectileSpeed = 30f;
+        projectileSpeed = 25f;
         quickShotProjectileSpeed = 75f;
-        quickShotEnergyCost = 60f;
+        quickShotEnergyCost = 70f;
     }
 
     void FixedUpdate()
