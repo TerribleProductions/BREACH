@@ -2293,7 +2293,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22418352, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5.55000019
+      value: -4.44999981
       objectReference: {fileID: 0}
     - target: {fileID: 22418352, guid: 4d459d2d01ca0ad43accffa1ae4f5bc3, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3431,9 +3431,9 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -280, y: -628}
-  m_SizeDelta: {x: 400, y: 180}
-  m_Pivot: {x: .5, y: 0}
+  m_AnchoredPosition: {x: -20, y: -628}
+  m_SizeDelta: {x: 380, y: 80}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &1550145036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3447,7 +3447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 93494c016fb452142913671727aa5099, type: 3}
+  m_Texture: {fileID: 2800000, guid: dc312dd9a015df44ea729d611051964a, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3618,7 +3618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Texture: {fileID: 2800000, guid: 15dfbff1487e9244789866a2d409564b, type: 3}
+  m_Texture: {fileID: 2800000, guid: dc312dd9a015df44ea729d611051964a, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -3645,9 +3645,9 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 270, y: -630}
-  m_SizeDelta: {x: 400, y: 180}
-  m_Pivot: {x: .5, y: 0}
+  m_AnchoredPosition: {x: 20, y: -630}
+  m_SizeDelta: {x: 380, y: 80}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1680368227 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 117270, guid: 3fd6636e7e7011f46a15ac0183c6daab, type: 2}
@@ -4076,7 +4076,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22401008, guid: c828a07daf702df4bac5b544986f09f9, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5.76000023
+      value: -4.73000002
       objectReference: {fileID: 0}
     - target: {fileID: 22401008, guid: c828a07daf702df4bac5b544986f09f9, type: 2}
       propertyPath: m_LocalRotation.x

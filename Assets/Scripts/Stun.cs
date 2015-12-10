@@ -47,6 +47,6 @@ public class Stun : Buff
     public override void Unapply(Character target)
     {
 		GameObject stun = target.transform.Find ("Stun").gameObject;
-		stun.SetActive (false);   
+		stun.SetActive (false);
     }
 }

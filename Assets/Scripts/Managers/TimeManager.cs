@@ -48,6 +48,10 @@ public class TimeManager : MonoBehaviour {
 
 			int seconds = ((int) (roundStartTime - roundTime));
 			roundStartTimeText.text = seconds.ToString();
+
+			if(seconds <= 5) {
+				roundStartTimeText.color = Color.red;
+			}
 		}
 	}
 
