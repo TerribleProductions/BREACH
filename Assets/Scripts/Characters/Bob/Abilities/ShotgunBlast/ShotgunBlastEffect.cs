@@ -9,7 +9,7 @@ public class ShotgunBlastEffect : AbilityEffect {
 
     void Awake()
     {
-        maxRangeInTime = 0.3f;
+        maxRangeInTime = 0.4f;
         timer = 0;
         
     }

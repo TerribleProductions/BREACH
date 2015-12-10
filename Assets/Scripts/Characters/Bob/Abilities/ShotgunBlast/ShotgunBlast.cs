@@ -9,7 +9,7 @@ public class ShotgunBlast : ProjectileAbility {
     {
         get
         {
-            return new StateEffect(CharacterState.BASIC_ATTACK, 0.3f, Cast, null, PostCast);
+            return new StateEffect(CharacterState.BASIC_ATTACK, 0.15f, Cast, null, PostCast);
         }
     }
 
@@ -25,7 +25,7 @@ public class ShotgunBlast : ProjectileAbility {
 
         speed = 40f;
         energyCost = 50f;
-        projectileAmount = 6;
+        projectileAmount = 8;
 		int spread = 40;
 
         rotations = new Quaternion[projectileAmount];

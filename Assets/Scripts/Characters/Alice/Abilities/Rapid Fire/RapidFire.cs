@@ -26,7 +26,7 @@ public class RapidFire : ProjectileAbility {
     {
         Init();
         cooldown = 0.125f;
-        quickShotCooldown = 0.6f;
+        quickShotCooldown = 0.5f;
         timer = 0;
 
         energyCost = 10f;
@@ -36,8 +36,8 @@ public class RapidFire : ProjectileAbility {
         projectile = (Resources.Load("Characters/Alice/Abilities/RapidFire/RapidFireProjectile") as GameObject).GetComponent<Rigidbody>();
         quickShotProjectile = (Resources.Load("Characters/Bob/Abilities/Quickshot/QuickshotProjectile") as GameObject).GetComponent<Rigidbody>();
         projectileSpeed = 25f;
-        quickShotProjectileSpeed = 75f;
-        quickShotEnergyCost = 70f;
+        quickShotProjectileSpeed = 85f;
+        quickShotEnergyCost = 75f;
     }
 
     void FixedUpdate()

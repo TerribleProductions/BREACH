@@ -18,7 +18,7 @@ public class BigShot : ProjectileAbility
         if (abilityOwner.SapEnergy(energyCost))
         {
             var owner = gameObject;
-            var startPos = transform.position + transform.forward * 4f;
+            var startPos = transform.position + transform.forward * 4.5f;
             startPos.y = 2f;
             Rigidbody p = (Rigidbody)Instantiate(projectile, startPos, transform.rotation);
             //Physics.IgnoreCollision(p.GetComponent<Collider>(), owner.GetComponent<Collider>());
@@ -40,7 +40,7 @@ public class BigShot : ProjectileAbility
         Init();
 
         projectile = (Resources.Load("Characters/Bob/Abilities/BigShot/BigShotProjectile") as GameObject).GetComponent<Rigidbody>();
-        speed = 30f ; ;
+        speed = 25f ; ;
         energyCost = 80f;
     }
 }

@@ -12,7 +12,7 @@ public class BigShotEffect : AbilityEffect {
         if (enemy != null)
         {
             enemy.DamageCharacter(damage);
-            enemy.AddBuff(new Stun(0.75f, true, "bigShotStun"));
+            enemy.AddBuff(new Stun(0.4f, true, "bigShotStun"));
             Destroy(gameObject);
         }
     }
