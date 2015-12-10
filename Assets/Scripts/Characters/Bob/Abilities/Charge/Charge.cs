@@ -42,7 +42,11 @@ public class Charge : MovementAbility {
 
     public override void Cast()
     {
-        targetPoint = transform.position + transform.forward * range;
+        if (abilityOwner.SapEnergy(energyCost))
+        {
+            targetPoint = transform.position + transform.forward * range;
+        }
+        
     }
 
     void MoveStep()

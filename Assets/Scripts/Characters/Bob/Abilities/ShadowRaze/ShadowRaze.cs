@@ -59,16 +59,20 @@ public class ShadowRaze : Ability {
 
     private void preEffect()
     {
-        charging = true;
-        explosionDuration = 0;
-        distance = transform.position + transform.forward + aboveGround;
-        var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffectSphere") as GameObject);
-        distanceEffect = (GameObject)Instantiate(distanceEffectPrefab, distance, transform.rotation);
-        //distanceEffectLight = distanceEffect.GetComponent<Light>();
-        //distanceEffectLight.range = area;
-        distanceEffect.transform.position = distance;
+        if (abilityOwner.SapEnergy(energyCost))
+        {
+            charging = true;
+            explosionDuration = 0;
+            distance = transform.position + transform.forward + aboveGround;
+            var distanceEffectPrefab = (Resources.Load("Characters/Bob/Abilities/ShadowRaze/ShadowRazeDistanceEffectSphere") as GameObject);
+            distanceEffect = (GameObject)Instantiate(distanceEffectPrefab, distance, transform.rotation);
+            //distanceEffectLight = distanceEffect.GetComponent<Light>();
+            //distanceEffectLight.range = area;
+            distanceEffect.transform.position = distance;
 
-        maxDistance = transform.position + aboveGround + transform.forward * 20f;
+            maxDistance = transform.position + aboveGround + transform.forward * 20f;
+        }
+        
     }
 
     // Use this for initialization
