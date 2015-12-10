@@ -53,9 +53,9 @@ public class AimMode : Ability
         if (aimLine.enabled)
         {
             var startPos = abilityOwner.transform.position;
-            startPos.y = 1.05f; //Otherwise ray is rendered beneath the floor sometimes
+            startPos.y = 2f; //Otherwise ray is rendered beneath the floor sometimes
             var endPos = startPos + abilityOwner.transform.forward * 20;
-            endPos.y = 1.1f;
+            endPos.y = 2f;
             aimLine.SetPosition(0, startPos);
             aimLine.SetPosition(1, endPos);
         }
