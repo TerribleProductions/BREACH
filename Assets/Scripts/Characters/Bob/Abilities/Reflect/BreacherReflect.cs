@@ -56,7 +56,7 @@ public class BreacherReflect : Ability
 
             foreach (Rigidbody rb in projectilesInArea(transform.position, radius))
             {
-                rb.velocity = new Vector3(-rb.velocity.x, rb.velocity.y, -rb.velocity.z);
+                rb.velocity = new Vector3(-rb.velocity.x, rb.velocity.y, -rb.velocity.z) * 1.75f;
                 rb.GetComponent<AbilityEffect>().owner = abilityOwner.gameObject;
             }
 		} else {
