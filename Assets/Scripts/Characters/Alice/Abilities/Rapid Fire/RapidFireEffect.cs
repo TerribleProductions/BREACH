@@ -5,7 +5,7 @@ using System;
 public class RapidFireEffect : AbilityEffect
 {
 
-    public float damage = 10f;
+    public float damage = 8.5f;
 
 
     //TODO: Add collision code here
@@ -13,11 +13,12 @@ public class RapidFireEffect : AbilityEffect
     {
         var collider = collision.collider;
         var enemyChar = GetHitCharacter(collider);
-        Destroy(gameObject);
+        Debug.Log(enemyChar);
         if(enemyChar != null)
         {
             enemyChar.DamageCharacter(damage);
         }
+        Destroy(gameObject);
     }
 
 

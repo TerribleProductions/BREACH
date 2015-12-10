@@ -45,6 +45,7 @@ public abstract class Character : MonoBehaviour {
 
 
     StateEffect moveState = new StateEffect(CharacterState.MOVING, Mathf.Infinity);
+	public Vector3 initialPosition;
 
     public int playerNumber;
     public Vector3 movementVector { get; set; }
@@ -68,7 +69,7 @@ public abstract class Character : MonoBehaviour {
         
         moveSpeedMultiplier = 1f;
         hp = 100f;
-        
+		initialPosition = transform.position;
     }
 
     #region input
@@ -91,6 +92,7 @@ public abstract class Character : MonoBehaviour {
 
             // Normalise the movement vector and make it proportional to the speed per second.
             movementVector = movementVector.normalized * moveSpeed  * moveSpeedMultiplier * Time.deltaTime;
+            
 
             // Move the player to it's current position plus the movement.
             playerRigidbody.MovePosition(transform.position + movementVector);
@@ -187,6 +189,8 @@ public abstract class Character : MonoBehaviour {
         if (!dead)
         {
             CharacterDeath(this);
+			ClearAllDebuffs();
+			stateManager.SetNeutralState();
         }
     }
 
@@ -223,19 +227,23 @@ public abstract class Character : MonoBehaviour {
     /// </summary>
     public void RegenEnergy()
     {
-        if(energy >= maxEnergy)
+        if (!HasState(CharacterState.CHANNELING_IMMOBILE))
         {
-            energy = maxEnergy;
-            return;
-        }
-        if (energy > maxEnergy)
-        {
-            energy = maxEnergy;
-        }
-        energy += energyRegeneration*Time.deltaTime;
-            
+            if (energy >= maxEnergy)
+            {
+                energy = maxEnergy;
+                return;
+            }
+            if (energy > maxEnergy)
+            {
+                energy = maxEnergy;
+            }
+            energy += energyRegeneration * Time.deltaTime;
 
-		energySlider.value = energy;
+
+            energySlider.value = energy;
+        }
+        
     }
 
     public void MultiplyMovespeed(float amount)

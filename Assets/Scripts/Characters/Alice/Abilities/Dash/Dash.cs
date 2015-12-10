@@ -9,13 +9,13 @@ public class Dash : MovementAbility {
         get
         {
             var preState = new StateEffect(CharacterState.PRE_ATTACK, windup, Cast, null, null);
-            var castState = new StateEffect(CharacterState.SPECIAL_ATTACK, movementTime, null, MoveStep, PostEffect);
+            var castState = new StateEffect(CharacterState.CHANNELING_IMMOBILE, movementTime, null, MoveStep, PostEffect);
 
             return preState + castState;
         }
     }
 
-    private float movementTime = 0.200f; // Movement time in seconds
+    private float movementTime = 0.3f; // Movement time in seconds
 
 	private TrailRenderer trailRenderer;
 	
@@ -27,14 +27,16 @@ public class Dash : MovementAbility {
 	// Use this for initialization
 	void Awake () {
         Init();
-		energyCost = 50f;
+        energyCost = 60f;
 		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();
 
-        range = 8f;
+        range = 12f;
 	}
 
 	void MoveStep (){
-        Vector3 moveStep = Vector3.MoveTowards(transform.position, targetPoint, range * movementTime);
+
+		// TODO fix movement time
+        Vector3 moveStep = Vector3.MoveTowards(transform.position, targetPoint, (range / movementTime) * Time.deltaTime);
         MoveToPoint(abilityOwner, moveStep);
 	}
 
@@ -52,14 +54,22 @@ public class Dash : MovementAbility {
             {
                 direction = abilityOwner.transform.forward;
             }
+
             targetPoint = transform.position + direction * range;
+
+			RaycastHit hit;
+			
+			if (Physics.Raycast(transform.position + Vector3.up,  transform.forward + Vector3.up, out hit, range)) {
+				if(hit.distance > 3f) {
+					targetPoint = transform.position + transform.forward * hit.distance * 0.5f; 
+				} else if(hit.distance <= 3f) {
+					targetPoint = transform.position;
+				}
+			}
 
 			// Enable trails
 			trailRenderer.enabled = true;
-
-			
         }
-        
     }
 
 }

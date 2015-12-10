@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
     private void spawnCharacter(Character c)
     {
         Debug.Log("spawning char");
-        c.transform.position = initialSpawnPos; //Set to some random pos?
+        c.transform.position = c.initialPosition;
         c.RespawnCharacter();
     }
 
