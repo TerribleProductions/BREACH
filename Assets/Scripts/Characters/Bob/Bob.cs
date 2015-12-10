@@ -13,7 +13,7 @@ public class Bob : Character {
         energyRegeneration = 66f;
 
         var mainAbility = gameObject.AddComponent<ShotgunBlast>();
-        var secondaryAbility = gameObject.AddComponent<ShadowRaze>();
+        var secondaryAbility = gameObject.AddComponent<DoubleTap>();
         var movementAbility = gameObject.AddComponent<Charge>();
         var defensiveAbility = gameObject.AddComponent<BreacherReflect>();
 

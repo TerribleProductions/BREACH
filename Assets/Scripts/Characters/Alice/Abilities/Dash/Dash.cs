@@ -9,13 +9,13 @@ public class Dash : MovementAbility {
         get
         {
             var preState = new StateEffect(CharacterState.PRE_ATTACK, windup, Cast, null, null);
-            var castState = new StateEffect(CharacterState.SPECIAL_ATTACK, movementTime, null, MoveStep, PostEffect);
+            var castState = new StateEffect(CharacterState.CHANNELING_IMMOBILE, movementTime, null, MoveStep, PostEffect);
 
             return preState + castState;
         }
     }
 
-    private float movementTime = 0.400f; // Movement time in seconds
+    private float movementTime = 0.3f; // Movement time in seconds
 
 	private TrailRenderer trailRenderer;
 	
@@ -27,16 +27,16 @@ public class Dash : MovementAbility {
 	// Use this for initialization
 	void Awake () {
         Init();
-		energyCost = 66f;
+        energyCost = 55f;
 		trailRenderer = abilityOwner.GetComponent<TrailRenderer> ();
 
-        range = 10f;
+        range = 14f;
 	}
 
 	void MoveStep (){
 
 		// TODO fix movement time
-        Vector3 moveStep = Vector3.MoveTowards(transform.position, targetPoint, range * movementTime);
+        Vector3 moveStep = Vector3.MoveTowards(transform.position, targetPoint, (range / movementTime) * Time.deltaTime);
         MoveToPoint(abilityOwner, moveStep);
 	}
 

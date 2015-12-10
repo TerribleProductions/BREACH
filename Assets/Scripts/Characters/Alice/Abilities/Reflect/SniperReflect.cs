@@ -16,7 +16,7 @@ public class SniperReflect : Ability
     {
         get
         {
-            return new StateEffect(CharacterState.IMMOBILE, windup, Cast, null, PostCast);
+            return new StateEffect(CharacterState.CHANNELING_IMMOBILE, windup, Cast, null, PostCast);
         }
 
     }
