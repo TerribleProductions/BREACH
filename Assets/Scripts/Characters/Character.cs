@@ -57,10 +57,12 @@ public abstract class Character : MonoBehaviour {
     protected ControlInterface controllerInterface { get; set; }
     protected CharAbilities abilities { get; set; }
 
-
+	float bodyAngle = 0;
+	Animator anim;
     
     protected virtual void Awake()
     {
+		anim = GetComponentsInChildren<Animator>()[0];
         stateManager = new StateManager(this);
         buffManager = new BuffManager(this);
         stateManager.SetNeutralState();
@@ -81,6 +83,7 @@ public abstract class Character : MonoBehaviour {
 
 		// Set the movement vector based on the axis input.
 		movementVector = new Vector3(h, 0f, v);
+		Vector3 adjustment = new Vector3 (0.0f, 2.5f, 0.0f);
 
         if((h != 0 || v != 0) && (CanSetState(moveState) || isMoving || HasState(CharacterState.CHANNELING) || HasState(CharacterState.BASIC_ATTACK) ||HasState(CharacterState.PRE_ATTACK)))
 
@@ -105,19 +108,68 @@ public abstract class Character : MonoBehaviour {
             }
             
         }
+		float h2 = controllerInterface.getLookHorizontal();
+		float v2 = controllerInterface.getLookVertical();
+		if(h2 != 0 || v2 != 0){
+			Quaternion newRotation = Quaternion.LookRotation(new Vector3(h2,0,v2));
+			
+			
+			float rot = newRotation.eulerAngles.y;
+			float diff = rot - bodyAngle;
+			
+			while(diff > 180){
+				diff-=360;
+			}while (diff < -180){
+				diff+=360;
+			}
+			
+			if(diff > 90){
+				//bodyAngle = rot + 90;
+				bodyAngle += diff;
+			}else if(diff < -90){
+				//bodyAngle = rot - 90;
+				bodyAngle -= diff;
+			}
+			while(bodyAngle > 180){
+				bodyAngle-=360;
+			}while (bodyAngle < -180){
+				bodyAngle+=360;
+			}
+			
+			anim.SetFloat("HorAimAngle", bodyAngle);
+			anim.SetFloat("WalkStartAngle", bodyAngle);
+			anim.SetFloat("WalkStopAngle", bodyAngle);
+		}
+		Quaternion newRot = Quaternion.AngleAxis(bodyAngle, Vector3.up);
+		playerRigidbody.MoveRotation (newRot);
+		Vector3 vec = newRot* new Vector3(h, 0, v);
+
+		anim.SetFloat ("Vertical", vec.z);
+		anim.SetFloat ("Horizontal", vec.x);
+		/*if(vec.z == 0 && vec.x == 0){
+			anim.SetFloat ("Vertical", 1.0f);
+			anim.SetFloat ("Horizontal", 1.0f);
+		}*/
+
+		anim.SetFloat ("InputMagnitude", Mathf.Sqrt (v * v + h * h));
+
     }
 
     protected void Turn()
     {
+
         float h = controllerInterface.getLookHorizontal();
         float v = controllerInterface.getLookVertical();
-            
+
+
         Vector3 newDirection = Vector3.Normalize(new Vector3(h, 0.0f, v));
 
         if (!controllerInterface.equalsZero(newDirection) && !HasState(CharacterState.IMMOBILE) && !HasState(CharacterState.INACTIVE))
         {
-            transform.forward = newDirection;
+           	//transform.forward = newDirection;
+
         }
+
     }
 
     bool isUp = false;
