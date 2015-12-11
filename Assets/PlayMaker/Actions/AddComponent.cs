@@ -52,10 +52,11 @@ namespace HutongGames.PlayMaker.Actions
 		void DoAddComponent()
 		{
 			var go = Fsm.GetOwnerDefaultTarget(gameObject);
-            var t = System.Type.GetType(component.Value);
-            addedComponent = go.AddComponent(t);
 
-            storeComponent.Value = addedComponent;
+			var t = System.Type.GetType(component.Value);
+			addedComponent = go.AddComponent(t);
+
+		    storeComponent.Value = addedComponent;
 
 			if (addedComponent == null)
 			{
