@@ -52,10 +52,10 @@ namespace HutongGames.PlayMaker.Actions
 		void DoAddComponent()
 		{
 			var go = Fsm.GetOwnerDefaultTarget(gameObject);
+            var t = System.Type.GetType(component.Value);
+            addedComponent = go.AddComponent(t);
 
-			addedComponent = UnityEngineInternal.APIUpdaterRuntimeServices.AddComponent(go, "Assets/PlayMaker/Actions/AddComponent.cs (56,21)", component.Value);
-
-		    storeComponent.Value = addedComponent;
+            storeComponent.Value = addedComponent;
 
 			if (addedComponent == null)
 			{

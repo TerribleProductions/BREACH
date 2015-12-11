@@ -136,12 +136,12 @@ public abstract class Character : MonoBehaviour {
 				bodyAngle+=360;
 			}
 			
-			anim.SetFloat("HorAimAngle", bodyAngle);
+			anim.SetFloat("HorAimAngle", Mathf.Atan2(h, v));
 			anim.SetFloat("WalkStartAngle", bodyAngle);
 			anim.SetFloat("WalkStopAngle", bodyAngle);
 		}
 		Quaternion newRot = Quaternion.AngleAxis(bodyAngle, Vector3.up);
-		playerRigidbody.MoveRotation (newRot);
+		//playerRigidbody.MoveRotation (newRot);
 		Vector3 vec = newRot* new Vector3(h, 0, v);
 
 		anim.SetFloat ("Vertical", vec.z);
@@ -152,6 +152,7 @@ public abstract class Character : MonoBehaviour {
 		}*/
 
 		anim.SetFloat ("InputMagnitude", Mathf.Sqrt (v * v + h * h));
+        anim.speed = moveSpeedMultiplier;
 
     }
 
@@ -166,7 +167,7 @@ public abstract class Character : MonoBehaviour {
 
         if (!controllerInterface.equalsZero(newDirection) && !HasState(CharacterState.IMMOBILE) && !HasState(CharacterState.INACTIVE))
         {
-           	//transform.forward = newDirection;
+           	transform.forward = newDirection;
 
         }
 
