@@ -1,7 +1,11 @@
 # BREACH
-BREACH is what we like to call a couch-competitive multiplayer shooter. Two players enter an arena, and have to use tactics and the many tools to their disposal to emerge victorious in combat. 
+BREACH is a couch-competitive multiplayer shooter. Two players enter an arena each with their own distinct characters, and have to use all the tools to their disposal to emerge victorious in combat. Rounds are short, packed with intense action and most importantly tons of epic moments. 
 
 [BREACH Website](http://simonfra.se/Breach/)
+
+## Usage
+
+BREACH is designed to be played with two Xbox 360 controllers. Right and left triggers are used for main and secondary abilities, left bumper is used for movement abilities and the right bumper for defensive abilities.
 
 ## Images
 
